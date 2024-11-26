@@ -1,4 +1,4 @@
-//Bank managemt system.
+//su
 #include <iostream>
 #include <string>
 using namespace std;
