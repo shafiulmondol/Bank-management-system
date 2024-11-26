@@ -1,32 +1,40 @@
 // Bank Management System
 #include <iostream>
 #include <string>
-#include<math.h>
+#include <math.h>
+
 using namespace std;
+
 class calclute{
     public:
     string name;
     int withdrow;
-        int initial=1000;
+    int initial=1000;
+
     float ammount (int withdrow){
         initial=initial-withdrow;
        // cout<<"your current balance is: "<<initial<<endl;
         return initial;
     }
+
     void shafiul(){
     cout<<"hi Shafiul! Your bank menu here-----"<<endl<<"1. For know details press D\n2. For withdrow ammount press W\n";
     }
+
     void details(){
         cout<<"NAME : MD SHAFIUL iSLAM\nID : 23303106\n Your current balance is 100000 TK.";
     }
 
 
     };
-    int main(){
+
+int main(){
+    
 calclute cal;
 int num,amm;
 string de,m,j;
 float f=1000;
+    
 cout<<"Enter you account number"<<endl;
 cin>>num;
 if(num==23303106){
@@ -35,6 +43,7 @@ if(num==23303106){
 else {
     cout<<"Please create an account.";
 }
+    
 cin>>de;
 if(de=="w"||de=="W"){
 do{
