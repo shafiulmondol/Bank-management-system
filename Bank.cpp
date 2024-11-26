@@ -1,3 +1,4 @@
+//Bank managemt system.
 #include <iostream>
 #include <string>
 using namespace std;
