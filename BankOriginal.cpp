@@ -27,21 +27,66 @@ class calclute{
 
 
     };
+    char first_chart(){
+        char first;
+        cout<<"1.Use as a customer-(press---C).\n2.Use as a employee-(press---E)\n3.help-(press---H)\n";
+        cin>>first;
+        return first;
+    }
+    long enter(){
+        long num;
+        cout<<"Enter you account number"<<endl;
+        cin>>num;
+        return num;
+    }
+    void sing_up(){
+        string name,date,address,phone,mail;
+        cout<<"Full Name: ";
+        getline(cin,name);
+        cout<<"Date of Birth: ";
+        getline(cin,date);
+        cout<<"Address: ";
+        getline(cin,address);
+        cout<<"Contact Details:\n\tPhone number: ";
+        getline(cin,phone);
+        cout<<"\tEmail address: ";
+        getline(cin,mail);
+        
+    }
+
 
 int main(){
-    
+    char first;
+    long num;
+    string user_openion,op;
+    first=first_chart();
+    if (first=='C' ||first=='c'){
 calclute cal;
-int num,amm;
+int amm,count=0;
 string de,m,j;
 float f=1000;
-    
-cout<<"Enter you account number"<<endl;
-cin>>num;
+    cout<<"login/sign up--\n";
+    cin>>user_openion;
+    if(user_openion=="login"){
+        num=enter();
 if(num==23303106){
     cal.shafiul();
 }
 else {
-    cout<<"Please create an account.";
+    cout<<"Not found.Try again\n";
+    count++;
+   
+    if(count==2){
+        cout<<"Please sign up first";
+        cout<<"Are you interested to create an account?\n yes/no\n";
+        cin>>op;
+        if(op=="yes"||"Yes"){
+            sing_up();
+        }
+        else {
+            cout<<"Thank you sir!";
+        }
+    }
 }
     
 cin>>de;
@@ -84,6 +129,6 @@ while (f>0);
 }
 else{
     cout<<"Enter correct command: ";
-}
-
+}}
+    }
     }
