@@ -10,6 +10,10 @@ cout<<"1. Use as a customer:---(press-----C)\n2. Use as a Employee:---(press----
 void ask_for_login(){
     cout<<">>Login/sign up\n";
 }
+void employee_login()
+{
+    cout<<"...Login..."<<endl;
+}
 
 };
 
@@ -127,18 +131,11 @@ if (log_option=="signup"||log_option=="sign up"||log_option=="Sighup"||log_optio
     user.signup();
 }
 
-
+employee employee_log;//create object
 if (option=="E"||option=="e")
     {
-    chart.ask_for_login();
-    }
-
-
-    cin>>log_option;
-if(log_option=="login"||log_option=="Login")
-    {
-    employee user; //create object
-    user.login_id();
+    chart.employee_login();
+    employee_log.login_id();
     }
     
 
