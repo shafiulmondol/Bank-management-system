@@ -35,9 +35,31 @@ class user1{
             login();}
             else{
                cout << ">> Too many failed attempts. Go to help center.\n";
+               //here will be call kawsar help center link;
             }
         }
     }
+
+    void signup() {
+    string full_name, dob, nationality, gender;
+    cout << "1. Personal Information>>\n";
+    cout << "\n\tFull Name: ";
+    getline(cin, full_name);
+    cout << "\n\tDate of Birth (DD/MM/YYYY): ";
+    getline(cin, dob);
+    cout << "\n\tNationality and Residency: ";
+    getline(cin, nationality);
+    cout << "\n\tGender: ";
+    getline(cin, gender);
+
+//this part for this time
+    cout << "\nSignup successful! Here is your information:\n";
+    cout << "\tFull Name: " << full_name << "\n";
+    cout << "\tDate of Birth: " << dob << "\n";
+    cout << "\tNationality and Residency: " << nationality << "\n";
+    cout << "\tGender: " << gender << "\n";
+}
+
 
 };
 int user1::count=0;
@@ -96,11 +118,14 @@ int main(){
     if (option=="c"||option=="C"){
     chart.ask_for_login();}
 
-
-    cin>>log_option;
-if(log_option=="login"||log_option=="Login"){
+    cin.ignore();
+    getline(cin,log_option);
     user1 user; //create object
+if(log_option=="login"||log_option=="Login"){
     user.login();}
+if (log_option=="signup"||log_option=="sign up"||log_option=="Sighup"||log_option=="Sign up"){
+    user.signup();
+}
 
 
 if (option=="E"||option=="e")
