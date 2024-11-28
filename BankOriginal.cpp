@@ -20,29 +20,11 @@ void employee_login()
 
 class user1{
     public:
-    static int count;
+     int count;
     long account_number;
     string login_pass;
     
-<<<<<<< HEAD
-    long login(){
-        cout<<"Enter account number:  ";
-        cin>>account_number;
-        cin.ignore();
-        cout<<"Enter password:  ";
-        getline(cin,login_pass);
-        if(account_number==23303106 && login_pass=="user#@01"){
-        return account_number;
-        count++;}
-        else{
-            if(count<=3){
-            cout<<">> Wrong ID"<<endl<<"Please try again\n";
-            login();}
-            else{
-               cout << ">> Too many failed attempts. Go to help center.\n";
-               //here will be call kawsar help center link;
-=======
-  void login() {
+   void login() {
         for (int i = 0; i < 3; i++) {
             cout << "Enter account number:  ";
             cin >> account_number;
@@ -54,11 +36,12 @@ class user1{
                 return;
             } else {
                 cout << ">> Wrong ID / Pin\n>> Please try again\n";
->>>>>>> bdb73c4e52c37e39f585df06cb3408e51c20f9d4
             }
         }
         cout << ">> Too many failed attempts. Go to help center.\n";
     }
+
+    
 
     void signup() {
     string full_name, dob, nationality, gender;
@@ -82,7 +65,7 @@ class user1{
 
 
 };
-int user1::count=0;
+
 
 
 
