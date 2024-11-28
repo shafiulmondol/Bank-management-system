@@ -35,7 +35,7 @@ class user1{
         count++;}
         else{
             if(count<=3){
-            cout<<">> Wrong ID / Pin\n>>Please try again\n";
+            cout<<">> Wrong ID"<<endl<<"Please try again\n";
             login();}
             else{
                cout << ">> Too many failed attempts. Go to help center.\n";
@@ -74,31 +74,30 @@ class employee{
     public:
     long id;
     string password;
-    static int count_enter;
+     int count_enter;
 
-    long login_id()
-    {
-        cout<<"Enter your id number: ";
-        cin>>id;
-        cout<<"Enter your password: ";
-        getline(cin,password);
-        if(id==23303137 && password=="sum01*#")
-        {
-        return id;
-        count_enter++;
+     void login_id() {
+        for (int i = 0; i < 3; i++) {
+            cout << "Enter your ID number: ";
+            cin >> id;
+            cin.ignore(); // Clear input buffer
+            cout << "Enter your password: ";
+            getline(cin, password);
+            if (id == 23303137 && password == "sum01*#") {
+                cout << ">> Login Successful\n";
+                return;
+            } else {
+                cout << ">> Wrong ID / Pin\n>> Please try again\n";
+            }
         }
-        else{
-            if(count_enter<=3){
-            cout<<">> Wrong ID"<<endl<<"Please try again"<<endl;
-            login_id();}
-            else{
-               cout << ">> Too many failed attempts. Go to help center."<<endl;
-                }
-             }
-
+        cout << ">> Too many failed attempts. Go to help center.\n";
     }
 };
-int employee::count_enter=0;
+
+class bank_lone{
+    public:
+
+};
 
 
 
@@ -120,10 +119,10 @@ int main(){
     string option,log_option;
     cin>>option;
     if (option=="c"||option=="C"){
-    chart.ask_for_login();}
-
+    chart.ask_for_login();
     cin.ignore();
-    getline(cin,log_option);
+    getline(cin,log_option);}
+
     user1 user; //create object
 if(log_option=="login"||log_option=="Login"){
     user.login();}
@@ -132,12 +131,8 @@ if (log_option=="signup"||log_option=="sign up"||log_option=="Sighup"||log_optio
 }
 
 employee employee_log;//create object
-if (option=="E"||option=="e")
-    {
+if (option=="E"||option=="e") {
     chart.employee_login();
     employee_log.login_id();
     }
-    
-
-
 }
