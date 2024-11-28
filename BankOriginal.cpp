@@ -24,6 +24,7 @@ class user1{
     long account_number;
     string login_pass;
     
+<<<<<<< HEAD
     long login(){
         cout<<"Enter account number:  ";
         cin>>account_number;
@@ -40,8 +41,23 @@ class user1{
             else{
                cout << ">> Too many failed attempts. Go to help center.\n";
                //here will be call kawsar help center link;
+=======
+  void login() {
+        for (int i = 0; i < 3; i++) {
+            cout << "Enter account number:  ";
+            cin >> account_number;
+            cin.ignore(); // Clear input buffer
+            cout << "Enter password:  ";
+            getline(cin, login_pass);
+            if (account_number == 23303106 && login_pass == "user#@01") {
+                cout << ">> Login Successful\n";
+                return;
+            } else {
+                cout << ">> Wrong ID / Pin\n>> Please try again\n";
+>>>>>>> bdb73c4e52c37e39f585df06cb3408e51c20f9d4
             }
         }
+        cout << ">> Too many failed attempts. Go to help center.\n";
     }
 
     void signup() {
