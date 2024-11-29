@@ -51,9 +51,9 @@ void show_user_chart(){
 
 
 class user1{
-        private:
-    string set_pass;
+      
     public:
+    string set_pass;
      int count;
     long account_number;
     string login_pass,full_name, dob, nationality, gender;;
