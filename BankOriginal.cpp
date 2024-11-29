@@ -1,9 +1,37 @@
 #include <iostream>
 #include <string>
+#include <regex>
 using namespace std;
+
+// Helper function to validate password
+bool isPasswordValid(const string& password) {
+    if (password.length() < 8) {
+        cout << "Password must be at least 8 characters long.\n";
+        return false;
+    }
+    if (!regex_search(password, regex("[A-Z]"))) {
+        cout << "Password must include at least one uppercase letter.\n";
+        return false;
+    }
+    if (!regex_search(password, regex("[a-z]"))) {
+        cout << "Password must include at least one lowercase letter.\n";
+        return false;
+    }
+    if (!regex_search(password, regex("[0-9]"))) {
+        cout << "Password must include at least one digit.\n";
+        return false;
+    }
+    if (!regex_search(password, regex("[^a-zA-Z0-9]"))) {
+        cout << "Password must include at least one special character.\n";
+        return false;
+    }
+    return true;
+}
+
 
 class display_chart{
 public:
+string name;
 void show_first_chart(){
 cout<<"1. Use as a customer:---(press-----C)\n2. Use as a Employee:---(press-----E)\n3.Help\n";
 }
@@ -14,17 +42,23 @@ void employee_login()
 {
     cout<<"...Login..."<<endl;
 }
+void show_user_chart(){
+    cout<<"Hellow "<<name<<" sir! Your chart below now>>\n";
+    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--(C)"<<endl;
+}
 
 };
 
 
 class user1{
+        private:
+    string set_pass;
     public:
      int count;
     long account_number;
-    string login_pass;
+    string login_pass,full_name, dob, nationality, gender;;
     
-   void login() {
+   long login() {
         for (int i = 0; i < 3; i++) {
             cout << "Enter account number:  ";
             cin >> account_number;
@@ -33,7 +67,7 @@ class user1{
             getline(cin, login_pass);
             if (account_number == 23303106 && login_pass == "user#@01") {
                 cout << ">> Login Successful\n";
-                return;
+                return account_number;
             } else {
                 cout << ">> Wrong ID / Pin\n>> Please try again\n";
             }
@@ -44,7 +78,6 @@ class user1{
     
 
     void signup() {
-    string full_name, dob, nationality, gender;
     cout << "1. Personal Information>>\n";
     cout << "\n\tFull Name: ";
     getline(cin, full_name);
@@ -54,6 +87,16 @@ class user1{
     getline(cin, nationality);
     cout << "\n\tGender: ";
     getline(cin, gender);
+   while (true) {
+        cout << "Set a strong password (at least 8 characters, include uppercase, lowercase, digits, and special symbols): "<<endl;
+        getline(cin, set_pass);
+        if (isPasswordValid(set_pass)) {
+            cout << "\nPassword is valid.\n";
+            break;  // Exit the loop if the password is valid
+        } else {
+            cout << "Invalid password. Please try again.\n";
+        }
+    }
 
 //this part for this time
     cout << "\nSignup successful! Here is your information:\n";
@@ -116,6 +159,7 @@ int main(){
     chart.show_first_chart();
 
     string option,log_option;
+    long id;
     cin>>option;
     if (option=="c"||option=="C"){
     chart.ask_for_login();
@@ -124,7 +168,7 @@ int main(){
 
     user1 user; //create object
 if(log_option=="login"||log_option=="Login"){
-    user.login();}
+    id=user.login();}
 if (log_option=="signup"||log_option=="sign up"||log_option=="Sighup"||log_option=="Sign up"){
     user.signup();
 }
@@ -134,4 +178,9 @@ if (option=="E"||option=="e") {
     chart.employee_login();
     employee_log.login_id();
     }
+
+if (id==23303106){
+    chart.name="Md. Shafiul Islam";
+    chart.show_user_chart();
+}
 }
