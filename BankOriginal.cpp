@@ -4,6 +4,7 @@
 #include <map> // For storing multiple users
 using namespace std;
 
+
 // Helper function to validate password
 bool isPasswordValid(const string& password) {
     if (password.length() < 8) {
