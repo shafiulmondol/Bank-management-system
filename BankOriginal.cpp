@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <map> // For storing multiple users
 using namespace std;
 
 // Helper function to validate password
@@ -47,68 +48,57 @@ void show_user_chart(){
     cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--(C)"<<endl;
 }
 
-};
-
-
-class user1{
-      
-    public:
-    string set_pass;
-     int count;
-    long account_number;
-    string login_pass,full_name, dob, nationality, gender;;
-    
-   long login() {
-        for (int i = 0; i < 3; i++) {
-            cout << "Enter account number:  ";
-            cin >> account_number;
-            cin.ignore(); // Clear input buffer
-            cout << "Enter password:  ";
-            getline(cin, login_pass);
-            if (account_number == 23303106 && login_pass == "user#@01") {
-                cout << ">> Login Successful\n";
-                return account_number;
-            } else {
-                cout << ">> Wrong ID / Pin\n>> Please try again\n";
-            }
-        }
-        cout << ">> Too many failed attempts. Go to help center.\n";
-    }
-
-    
-
-    void signup() {
-    cout << "1. Personal Information>>\n";
-    cout << "\n\tFull Name: ";
-    getline(cin, full_name);
-    cout << "\n\tDate of Birth (DD/MM/YYYY): ";
-    getline(cin, dob);
-    cout << "\n\tNationality and Residency: ";
-    getline(cin, nationality);
-    cout << "\n\tGender: ";
-    getline(cin, gender);
-   while (true) {
-        cout << "Set a strong password (at least 8 characters, include uppercase, lowercase, digits, and special symbols): "<<endl;
-        getline(cin, set_pass);
-        if (isPasswordValid(set_pass)) {
-            cout << "\nPassword is valid.\n";
-            break;  // Exit the loop if the password is valid
-        } else {
-            cout << "Invalid password. Please try again.\n";
-        }
-    }
-
-//this part for this time
-    cout << "\nSignup successful! Here is your information:\n";
-    cout << "\tFull Name: " << full_name << "\n";
-    cout << "\tDate of Birth: " << dob << "\n";
-    cout << "\tNationality and Residency: " << nationality << "\n";
-    cout << "\tGender: " << gender << "\n";
+void show_exit(){
+    cout<<"Thank you Sir! logout your account:"<<endl;
 }
 
-
 };
 
+
+class user1 {
+public:
+    long account_number;
+    string login_pass, full_name, dob, nationality, gender;
+    static long next_account_number;
+
+    user1() : account_number(next_account_number++) {}
+
+    // Login method for a specific user
+    bool login(long entered_account, const string& entered_password) {
+        return (entered_account == account_number && entered_password == login_pass);
+    }
+
+    void signup() {
+        cout << "1. Personal Information>>\n";
+        cout << "\n\tFull Name: ";
+        getline(cin, full_name);
+        cout << "\n\tDate of Birth (DD/MM/YYYY): ";
+        getline(cin, dob);
+        cout << "\n\tNationality and Residency: ";
+        getline(cin, nationality);
+        cout << "\n\tGender: ";
+        getline(cin, gender);
+
+        while (true) {
+            cout << "Set a strong password: ";
+            getline(cin, login_pass);
+            if (isPasswordValid(login_pass)) {
+                cout << "\nPassword is valid.\n";
+                break;
+            } else {
+                cout << "Invalid password. Please try again.\n";
+            }
+        }
+
+        cout << "\nSignup successful! Here is your information:\n";
+        cout << "\tFull Name: " << full_name << "\n";
+        cout << "\tDate of Birth: " << dob << "\n";
+        cout << "\tNationality and Residency: " << nationality << "\n";
+        cout << "\tGender: " << gender << "\n";
+        cout << "\tAccount Number: " << account_number << "\n";
+    }
+};
+long user1::next_account_number = 10000000;
 
 
 
@@ -149,38 +139,62 @@ class help{
 
 };
 
+void continue_code() {
+    display_chart chart;
+    map<long, user1> users; // Store users with account_number as key
+    employee emp;
+    string option;
 
+    while (true) {
+        chart.show_first_chart();
+        cin >> option;
+        cin.ignore();
 
+        if (option == "C" || option == "c") {
+            chart.ask_for_login();
+            string log_option;
+            getline(cin, log_option);
+
+            if (log_option == "login" || log_option == "Login") {
+                long entered_account;
+                string entered_password;
+                cout << "Enter account number: ";
+                cin >> entered_account;
+                cin.ignore();
+                cout << "Enter password: ";
+                getline(cin, entered_password);
+
+                auto it = users.find(entered_account);
+                if (it != users.end() && it->second.login(entered_account, entered_password)) {
+                    chart.name = it->second.full_name;
+                    chart.show_user_chart();
+                } else {
+                    cout << ">> Wrong ID / Pin. Please try again.\n";
+                }
+            } else if (log_option == "signup" || log_option == "Signup") {
+                user1 new_user;
+                new_user.signup();
+                users[new_user.account_number] = new_user;
+            }
+        } else if (option == "E" || option == "e") {
+            chart.employee_login();
+            emp.login_id();
+        } else if (option == "H" || option == "h") {
+            cout << "Help Section: Please contact customer service for support.\n";
+        } else {
+            cout << "Invalid option. Try again.\n";
+        }
+    }
+}
 
 
 
 int main(){
-    display_chart chart;//create object
-    chart.show_first_chart();
+   continue_code();
+    
+   
 
-    string option,log_option;
-    long id;
-    cin>>option;
-    if (option=="c"||option=="C"){
-    chart.ask_for_login();
-    cin.ignore();
-    getline(cin,log_option);}
 
-    user1 user; //create object
-if(log_option=="login"||log_option=="Login"){
-    id=user.login();}
-if (log_option=="signup"||log_option=="sign up"||log_option=="Sighup"||log_option=="Sign up"){
-    user.signup();
-}
 
-employee employee_log;//create object
-if (option=="E"||option=="e") {
-    chart.employee_login();
-    employee_log.login_id();
-    }
 
-if (id==23303106){
-    chart.name="Md. Shafiul Islam";
-    chart.show_user_chart();
-}
 }
