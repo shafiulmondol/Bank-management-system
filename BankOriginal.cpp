@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include <map> // For storing multiple users
+#include <map>
+#include<math.h> // For storing multiple users
 using namespace std;
 
 
@@ -46,12 +47,13 @@ void employee_login()
 }
 void show_user_chart(){
     cout<<"Hellow "<<name<<" sir! Your chart below now>>\n";
-    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--(C)"<<endl;
+    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--\n\t5.customer lone details--(L)(C)"<<endl;
 }
 
 void show_exit(){
     cout<<"Thank you Sir! logout your account:"<<endl;
 }
+
 
 };
 
@@ -129,7 +131,72 @@ class employee{
 
 class bank_lone{
     public:
+    string name,address,profession,problem;
+    string university_name,department;
+    string office,rank_position;
+    int age,income,lone_amount,id,semester;
 
+    void customer_details()
+    {
+        cout<<"Enter your name= ";
+        getline(cin,name);
+        cout<<"Enter your age= ";
+        cin>>age;
+        cin.ignore();
+        cout<<"Enter your address= ";
+        getline(cin,address);
+        cout<<"Enter your profession student/working person= ";
+        getline(cin,profession);
+    }
+    void occupation()
+    {
+        if(profession=="student"||profession=="Student"){
+        cout<<"Enter your university name= ";
+        getline(cin,university_name);
+        cout<<"Enter your department= ";
+        getline(cin,department);
+        cout<<"Enter your id= ";
+        cin>>id;
+        cout<<"Enter your income= ";
+        cin>>income;
+        cout<<"Enter your lone amount= ";
+        cin>>lone_amount;
+        cin.ignore();
+        cout<<"Why do you want to take a loan= ";
+        getline(cin,problem);
+
+        cout<<endl;
+        cout<<"name= "<<name<<endl;
+        cout<<"University name= "<<university_name<<endl;
+        cout<<"Department = "<<department<<endl;
+        cout<<"your id = "<<id<<endl;
+        cout<<"Your income= "<<income<<endl;
+        cout<<"your want "<<lone_amount<<"tk lone."<<endl;
+        cout<<"problem= "<<problem;
+        }
+        else{
+            cout<<"Enter your office name= ";
+            getline(cin,office);
+            cout<<"Enter your position= ";
+            getline(cin,rank_position);cout<<"Enter your income= ";
+            cin>>income;
+            cout<<"Enter your lone amount= ";
+            cin>>lone_amount;
+            cin.ignore();
+            cout<<"Why do you want to take a loan= ";
+            getline(cin,problem);
+
+            cout<<endl;
+            cout<<"name= "<<name<<endl;
+            cout<<"Office name is = "<<office<<endl;
+            cout<<"Your position= "<<rank_position<<endl;
+            cout<<"Your income= "<<income<<endl;
+            cout<<"your want "<<lone_amount<<"tk lone."<<endl;
+            cout<<"problem= "<<problem;
+
+            
+        }
+    }
 };
 
 
@@ -144,7 +211,8 @@ void continue_code() {
     display_chart chart;
     map<long, user1> users; // Store users with account_number as key
     employee emp;
-    string option;
+    bank_lone loan;
+    string option,openion;
 
     while (true) {
         chart.show_first_chart();
@@ -185,7 +253,16 @@ void continue_code() {
         } else {
             cout << "Invalid option. Try again.\n";
         }
-    }
+        cout<<"Are you withdrow a LOAN..Yes/No= ";
+        cin>>openion;
+        cin.ignore();
+        if (openion=="yes"||openion=="Yes")
+        {
+            loan.customer_details();
+            loan.occupation();
+        }
+        
+    }   
 }
 
 
@@ -194,8 +271,4 @@ int main(){
    continue_code();
     
    
-
-
-
-
 }
