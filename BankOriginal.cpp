@@ -47,7 +47,7 @@ void employee_login()
 }
 void show_user_chart(){
     cout<<"Hellow "<<name<<" sir! Your chart below now>>\n";
-    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--\n\t5.customer lone details--(L)(C)"<<endl;
+    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--(C)\n\t5.customer lone --(L)\n\t6.Exit"<<endl;
 }
 
 void show_exit(){
@@ -92,8 +92,11 @@ public:
                 cout << "Invalid password. Please try again.\n";
             }
         }
+         cout << "\tAccount Number: " << account_number << "\n";
 
-        cout << "\nSignup successful! Here is your information:\n";
+    }
+    void show_details(){
+         cout << "\nSignup successful! Here is your information:\n";
         cout << "\tFull Name: " << full_name << "\n";
         cout << "\tDate of Birth: " << dob << "\n";
         cout << "\tNationality and Residency: " << nationality << "\n";
@@ -102,6 +105,81 @@ public:
     }
 };
 long user1::next_account_number = 10000000;
+
+class after_login {
+public:
+    static map<long, long double> balances; // Each user has a unique balance
+    map<long, vector<string>> transaction_history; // Transaction logs for each user
+
+    long double deposit_balance, withdraw_amount;
+    string op, sh;
+
+    void deposit(long account_number) {
+        cout << "\tEnter deposit amount: ";
+        cin >> deposit_balance;
+
+        if (deposit_balance <= 0) {
+            cout << "Invalid deposit amount. Please try again.\n";
+            return;
+        }
+
+        balances[account_number] += deposit_balance;
+        transaction_history[account_number].push_back("Deposited: " + to_string(deposit_balance));
+        cout << "Deposit successful. Current balance: " << balances[account_number] << "\n";
+    }
+
+    void withdraw(long account_number) {
+        cout << "\tEnter withdrawal amount (max 50000 at a time): ";
+        cin >> withdraw_amount;
+
+        if (balances[account_number] == 0) {
+            cout << "Sorry! You have no funds.\n";
+            return;
+        }
+
+        if (withdraw_amount > 50000) {
+            cout << "Maximum withdrawal limit is 50000. Please try again.\n";
+            return;
+        }
+
+        if (withdraw_amount > balances[account_number]) {
+            cout << "Insufficient funds. Available balance: " << balances[account_number] << "\n";
+            return;
+        }
+
+        balances[account_number] -= withdraw_amount;
+        transaction_history[account_number].push_back("Withdrawn: " + to_string(withdraw_amount));
+        cout << "Withdrawal successful. Remaining balance: " << balances[account_number] << "\n";
+    }
+
+   void show_detail(long account_number, map<long, user1>& users) {
+    cout << "Do you want to show your biodata (b) or transaction details (a)? ";
+    cin >> sh;
+    if (sh == "b" || sh == "B") {
+        auto it = users.find(account_number);
+        if (it != users.end()) {
+            cout << "\n--- Biodata ---\n";
+            it->second.show_details(); // Call the show_details method of the user
+        } else {
+            cout << "User details not found.\n";
+        }
+    } else if (sh == "a" || sh == "A") {
+        cout << "\n--- Transaction Details ---\n";
+        if (transaction_history[account_number].empty()) {
+            cout << "No transactions found.\n";
+        } else {
+            for (const auto& entry : transaction_history[account_number]) {
+                cout << "- " << entry << "\n";
+            }
+        }
+    } else {
+        cout << "Invalid option. Try again.\n";
+    }
+}
+
+};
+
+map<long, long double> after_login::balances; // Define static member
 
 
 
@@ -212,13 +290,17 @@ void continue_code() {
     map<long, user1> users; // Store users with account_number as key
     employee emp;
     bank_lone loan;
-    string option,openion;
+    string option,openion,second_chart;
+    after_login log;
 
     while (true) {
         chart.show_first_chart();
         cin >> option;
         cin.ignore();
-
+        if (option == "exit" || option == "Exit") {
+            cout << "Exiting program. Thank you!\n"; // Change Made
+            break; // Exit the loop // Change Made
+        }
         if (option == "C" || option == "c") {
             chart.ask_for_login();
             string log_option;
@@ -237,6 +319,33 @@ void continue_code() {
                 if (it != users.end() && it->second.login(entered_account, entered_password)) {
                     chart.name = it->second.full_name;
                     chart.show_user_chart();
+                    cin>>second_chart;
+                    if(second_chart=="l"||second_chart=="L"){
+                         cout<<"Are you withdrow a LOAN..Yes/No= ";
+                             cin>>openion;
+                             cin.ignore();
+                             if (openion=="yes"||openion=="Yes")
+                             {
+                             loan.customer_details();
+                           loan.occupation();
+                             }
+                    }
+                    else if(second_chart=="exit"||second_chart=="Exit"){
+                        continue;
+                    }
+
+                   if (second_chart == "d" || second_chart == "D") {
+                     log.deposit(it->first); // Pass the account number
+                    } else if (second_chart == "w" || second_chart == "W") {
+                   log.withdraw(it->first); // Pass the account number
+                } 
+                else if (second_chart == "s" || second_chart == "S") {
+    log.show_detail(it->first, users); // Pass account number and users map
+}
+
+
+
+
                 } else {
                     cout << ">> Wrong ID / Pin. Please try again.\n";
                 }
@@ -244,6 +353,7 @@ void continue_code() {
                 user1 new_user;
                 new_user.signup();
                 users[new_user.account_number] = new_user;
+                //new_user.show_details();
             }
         } else if (option == "E" || option == "e") {
             chart.employee_login();
@@ -253,14 +363,14 @@ void continue_code() {
         } else {
             cout << "Invalid option. Try again.\n";
         }
-        cout<<"Are you withdrow a LOAN..Yes/No= ";
+       /* cout<<"Are you withdrow a LOAN..Yes/No= ";
         cin>>openion;
         cin.ignore();
         if (openion=="yes"||openion=="Yes")
         {
             loan.customer_details();
             loan.occupation();
-        }
+        }*/
         
     }   
 }
