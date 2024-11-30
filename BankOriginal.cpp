@@ -2,6 +2,7 @@
 #include <string>
 #include <regex>
 #include <map>
+#include <vector> // Added for transaction history
 #include<math.h> // For storing multiple users
 using namespace std;
 
