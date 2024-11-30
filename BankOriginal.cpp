@@ -172,7 +172,7 @@ class bank_lone{
         cout<<"your id = "<<id<<endl;
         cout<<"Your income= "<<income<<endl;
         cout<<"your want "<<lone_amount<<"tk lone."<<endl;
-        cout<<"problem= "<<problem;
+        cout<<"problem= "<<problem<<endl;
         }
         else{
             cout<<"Enter your office name= ";
