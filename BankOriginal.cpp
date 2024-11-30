@@ -48,7 +48,7 @@ void employee_login()
 }
 void show_user_chart(){
     cout<<"Hellow "<<name<<" sir! Your chart below now>>\n";
-    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.Check balance--(C)\n\t5.customer lone --(L)\n\t6.Exit"<<endl;
+    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.customer lone --(L)\n\t5.Exit"<<endl;
 }
 
 void show_exit(){
@@ -332,7 +332,7 @@ void continue_code() {
                              }
                     }
                     else if(second_chart=="exit"||second_chart=="Exit"){
-                        continue;
+                        break;
                     }
 
                    if (second_chart == "d" || second_chart == "D") {
