@@ -6,30 +6,62 @@
 #include<math.h> // For storing multiple users
 using namespace std;
 
+//this function for function validation.
+bool Password_Validity(const string &password) {
+    if(password.length()<8){
+        cout <<"Password must be at least 8 characters long.\n";
+        return false;
+    }
+    bool Upper,Lower,Digit,SpecialChar;
 
-// Helper function to validate password
-bool isPasswordValid(const string& password) {
-    if (password.length() < 8) {
-        cout << "Password must be at least 8 characters long.\n";
+    for (int i=0;i<password.length();i++){
+        char ch=password[i];
+        if(ch>='A'&& ch<='Z') {
+            Upper =true;
+        }
+        else if(ch>='a'&&ch<='z'){
+            Lower =true;
+        }
+        else if(ch>='0'&&ch<='9') {
+            Digit =true;
+        }
+        else {
+            SpecialChar =true; 
+        }
+    }
+
+    if(!Upper){
+        cout <<"Password must include at least one uppercase letter.\n";
         return false;
     }
-    if (!regex_search(password, regex("[A-Z]"))) {
-        cout << "Password must include at least one uppercase letter.\n";
-        return false;
-    }
-    if (!regex_search(password, regex("[a-z]"))) {
+    if (!Lower) {
         cout << "Password must include at least one lowercase letter.\n";
         return false;
     }
-    if (!regex_search(password, regex("[0-9]"))) {
+    if (!Digit) {
         cout << "Password must include at least one digit.\n";
         return false;
     }
-    if (!regex_search(password, regex("[^a-zA-Z0-9]"))) {
+    if (!SpecialChar) {
         cout << "Password must include at least one special character.\n";
         return false;
     }
     return true;
+}
+
+void read_Users_From_File(){
+    FILE* file = fopen("store.txt","r");
+    if(file){
+        char buffer[500];
+        cout << "\n>>--- User Data ---<<\n";
+        while(fgets(buffer,sizeof(buffer),file)) {
+            cout << buffer;
+        }
+        fclose(file);
+    }
+    else {
+        cout << "Error: Could not open file for reading.\n";
+    }
 }
 
 
@@ -37,10 +69,11 @@ class display_chart{
 public:
 string name;
 void show_first_chart(){
-cout<<"1. Use as a customer:---(press-----C)\n2. Use as a Employee:---(press-----E)\n3.Help\n";
+    cout<<"---->>Bank System<<----"<<endl;
+cout<<"1. Use as a customer\n2. Use as a Employee\n3. Help\n4. Exit\nChoose an option: ";
 }
 void ask_for_login(){
-    cout<<">>Login/sign up\n";
+    cout<<"----->>Bank Manu<<-----\n1. Sign Up\n2. Log In\n3. View All Users (Admin Only)\n4. Exit\nChoose an option: ";
 }
 void employee_login()
 {
@@ -48,7 +81,7 @@ void employee_login()
 }
 void show_user_chart(){
     cout<<"Hellow "<<name<<" sir! Your chart below now>>\n";
-    cout<<"\t1.Deposit--(D).\n\t2.Withdrow--(W).\n\t3.Show details--(S)\n\t4.customer lone --(L)\n\t5.Exit"<<endl;
+    cout<<"\t1.Deposit\n\t2.Withdrow\n\t3.Show details\n\t4.customer lone \n\t5.Exit\n\tChoose an option: ";
 }
 
 void show_exit(){
@@ -86,7 +119,7 @@ public:
         while (true) {
             cout << "Set a strong password: ";
             getline(cin, login_pass);
-            if (isPasswordValid(login_pass)) {
+            if (Password_Validity(login_pass)) {
                 cout << "\nPassword is valid.\n";
                 break;
             } else {
@@ -291,75 +324,85 @@ void continue_code() {
     map<long, user1> users; // Store users with account_number as key
     employee emp;
     bank_lone loan;
-    string option,openion,second_chart;
+    string openion;
     after_login log;
+    int option,second_chart;
 
     while (true) {
         chart.show_first_chart();
         cin >> option;
         cin.ignore();
-        if (option == "exit" || option == "Exit") {
+        cout<<endl;
+        if (option == 4) {
             cout << "Exiting program. Thank you!\n"; // Change Made
             break; // Exit the loop // Change Made
         }
-        if (option == "C" || option == "c") {
+        if (option == 1) {
             chart.ask_for_login();
-            string log_option;
-            getline(cin, log_option);
+            int log_option;
+            cin>>log_option;
+            cout<<endl;
 
-            if (log_option == "login" || log_option == "Login") {
+            if (log_option ==2) {
                 long entered_account;
                 string entered_password;
-                cout << "Enter account number: ";
+                cout << "Enter Account Number: ";
                 cin >> entered_account;
                 cin.ignore();
                 cout << "Enter password: ";
                 getline(cin, entered_password);
+                cout<<endl;
 
                 auto it = users.find(entered_account);
                 if (it != users.end() && it->second.login(entered_account, entered_password)) {
                     chart.name = it->second.full_name;
                     chart.show_user_chart();
                     cin>>second_chart;
-                    if(second_chart=="l"||second_chart=="L"){
+                    cout<<endl;
+                    if(second_chart==4){
                          cout<<"Are you withdrow a LOAN..Yes/No= ";
                              cin>>openion;
                              cin.ignore();
+                             cout<<endl;
                              if (openion=="yes"||openion=="Yes")
                              {
                              loan.customer_details();
                            loan.occupation();
                              }
                     }
-                    else if(second_chart=="exit"||second_chart=="Exit"){
+                    else if(second_chart==5){
                         break;
                     }
 
-                   if (second_chart == "d" || second_chart == "D") {
+                   if (second_chart == 1) {
                      log.deposit(it->first); // Pass the account number
-                    } else if (second_chart == "w" || second_chart == "W") {
+                    } 
+                    else if (second_chart == 2) {
                    log.withdraw(it->first); // Pass the account number
                 } 
-                else if (second_chart == "s" || second_chart == "S") {
+                else if (second_chart == 3) {
     log.show_detail(it->first, users); // Pass account number and users map
 }
 
 
 
 
-                } else {
+                } 
+                else {
                     cout << ">> Wrong ID / Pin. Please try again.\n";
                 }
-            } else if (log_option == "signup" || log_option == "Signup") {
+            }
+            else if (log_option ==1) {
                 user1 new_user;
                 new_user.signup();
                 users[new_user.account_number] = new_user;
                 //new_user.show_details();
             }
-        } else if (option == "E" || option == "e") {
+        } 
+        else if (option == 2) {
             chart.employee_login();
             emp.login_id();
-        } else if (option == "H" || option == "h") {
+        } else if (option == 3) {
             cout << "Help Section: Please contact customer service for support.\n";
         } else {
             cout << "Invalid option. Try again.\n";
@@ -372,7 +415,7 @@ void continue_code() {
             loan.customer_details();
             loan.occupation();
         }*/
-        
+        cout<<endl;
     }   
 }
 
