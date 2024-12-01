@@ -49,20 +49,86 @@ bool Password_Validity(const string &password) {
     return true;
 }
 
-void read_Users_From_File(){
-    FILE* file = fopen("store.txt","r");
-    if(file){
-        char buffer[500];
-        cout << "\n>>--- User Data ---<<\n";
-        while(fgets(buffer,sizeof(buffer),file)) {
-            cout << buffer;
-        }
+class save_file{
+    void save_user_to_file(long account_number, const string& full_name, const string& dob,
+                       const string& nationality, const string& gender, const string& password) {
+    FILE* file = fopen("users.txt", "a");
+    if (file) {
+        fprintf(file, "%ld|%s|%s|%s|%s|%s\n", account_number, full_name.c_str(), dob.c_str(),
+                nationality.c_str(), gender.c_str(), password.c_str());
         fclose(file);
-    }
-    else {
-        cout << "Error: Could not open file for reading.\n";
+    } else {
+        cout << "Error: Unable to open file for saving user data.\n";
     }
 }
+
+// Function to read user data from file
+bool find_user_in_file(long account_number, string& full_name, string& dob,
+                       string& nationality, string& gender, string& password) {
+    FILE* file = fopen("users.txt", "r");
+    if (!file) return false;
+
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), file)) {
+        long acc_no;
+        char name[100], birth[20], nation[50], gen[10], pass[50];
+        sscanf(buffer, "%ld|%[^|]|%[^|]|%[^|]|%[^|]|%[^\n]", &acc_no, name, birth, nation, gen, pass);
+        if (acc_no == account_number) {
+            full_name = name;
+            dob = birth;
+            nationality = nation;
+            gender = gen;
+            password = pass;
+            fclose(file);
+            return true;
+        }
+    }
+
+    fclose(file);
+    return false;
+}
+
+// Function to save transaction details
+void save_transaction(long account_number, const string& detail) {
+    FILE* file = fopen("transactions.txt", "a");
+    if (file) {
+        fprintf(file, "%ld|%s\n", account_number, detail.c_str());
+        fclose(file);
+    } else {
+        cout << "Error: Unable to save transaction.\n";
+    }
+}
+
+// Function to show transaction history
+void show_transactions(long account_number) {
+    FILE* file = fopen("transactions.txt", "r");
+    if (!file) {
+        cout << "Error: Unable to open file for transactions.\n";
+        return;
+    }
+
+    char buffer[256];
+    bool found = false;
+
+    cout << "\n--- Transaction History ---\n";
+    while (fgets(buffer, sizeof(buffer), file)) {
+        long acc_no;
+        char detail[200];
+        sscanf(buffer, "%ld|%[^\n]", &acc_no, detail);
+        if (acc_no == account_number) {
+            cout << "- " << detail << endl;
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "No transactions found.\n";
+    }
+
+    fclose(file);
+}
+
+};
 
 
 class display_chart{
