@@ -135,23 +135,36 @@ class display_chart{
 public:
 string name;
 void show_first_chart(){
-    cout<<"---->>Bank System<<----"<<endl;
-cout<<"1. Use as a customer\n2. Use as a Employee\n3. Help\n4. Exit\nChoose an option: ";
+    cout<<"\n---->>Bank System<<----"<<endl;
+    cout << "1: Customer Section"<<endl;
+    cout << "2: Employee Section"<<endl;
+    cout << "3: Help Section"<<endl;
+    cout << "4: Exit"<<endl;
+    cout << "Enter your choice: >>";
 }
-void ask_for_login(){
-    cout<<"----->>Bank Manu<<-----\n1. Sign Up\n2. Log In\n3. View All Users (Admin Only)\n4. Exit\nChoose an option: ";
-}
+void ask_for_login() {
+    cout<<"----->>Bank Manu<<-----"<<endl;
+    cout << "1: Sign Up"<<endl;
+    cout << "2: Login"<<endl;
+    cout << "3: View All Users (Admin only)"<<endl;
+    cout << "4: Back"<<endl;//exit cilo
+    cout << "Enter your choice: >>";
+    }
+    void show_user_chart() {
+        cout << "1: Deposit"<<endl;
+        cout << "2: Withdraw"<<endl;
+        cout << "3: Show Details"<<endl;
+        cout << "4: Loan Request"<<endl;
+        cout << "5: Exit"<<endl;
+        cout << "Enter your choice: >>";
+    }
 void employee_login()
 {
     cout<<"...Login..."<<endl;
 }
-void show_user_chart(){
-    cout<<"Hellow "<<name<<" sir! Your chart below now>>\n";
-    cout<<"\t1.Deposit\n\t2.Withdrow\n\t3.Show details\n\t4.customer lone \n\t5.Exit\n\tChoose an option: ";
-}
 
 void show_exit(){
-    cout<<"Thank you Sir! logout your account:"<<endl;
+    cout << "Thank you for using our service. Goodbye!"<<endl;
 }
 
 
@@ -385,14 +398,28 @@ class help{
 
 };
 
+class function_handel{
+public:
+display_chart chart2;
+ int log_option,a;
+
+void start(){
+    chart2.ask_for_login(); 
+            cin>>log_option;
+            cout<<endl;
+}
+
+};
+
 void continue_code() {
     display_chart chart;
+    function_handel fun;
     map<long, user1> users; // Store users with account_number as key
     employee emp;
     bank_lone loan;
     string openion;
     after_login log;
-    int option,second_chart;
+    int option,second_chart,log_option;
 
     while (true) {
         chart.show_first_chart();
@@ -404,12 +431,15 @@ void continue_code() {
             break; // Exit the loop // Change Made
         }
         if (option == 1) {
-            chart.ask_for_login();
-            int log_option;
-            cin>>log_option;
-            cout<<endl;
+            fun.start();
 
-            if (log_option ==2) {
+            if(log_option==1){
+                user1 new_user;
+                new_user.signup();
+                users[new_user.account_number] = new_user;
+                //new_user.show_details();
+            }
+            else if (log_option ==2) {
                 long entered_account;
                 string entered_password;
                 cout << "Enter Account Number: ";
@@ -449,25 +479,35 @@ void continue_code() {
                 else if (second_chart == 3) {
     log.show_detail(it->first, users); // Pass account number and users map
 }
-
-
-
-
                 } 
                 else {
                     cout << ">> Wrong ID / Pin. Please try again.\n";
                 }
+
             }
-            else if (log_option ==1) {
-                user1 new_user;
-                new_user.signup();
-                users[new_user.account_number] = new_user;
-                //new_user.show_details();
-            }
-        } 
+        else if (log_option==3){
+            //leter
+        }
+        else if(log_option==4){
+            continue;
+           
+
+        }
+        }
         else if (option == 2) {
+            cout<<"\n1: Employee"<<endl;
+            cout<<"2: Back";
+            int b;
+            cin>>b;
+            if (b==1){
             chart.employee_login();
-            emp.login_id();
+            emp.login_id();}
+            else if(b==1){
+                continue;
+            }
+            else{
+                //letter
+            }
         } else if (option == 3) {
             cout << "Help Section: Please contact customer service for support.\n";
         } else {
