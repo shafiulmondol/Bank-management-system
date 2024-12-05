@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
-#include <regex>
-#include <map>
-#include <vector> // Added for transaction history
+#include <fstream>
 #include<math.h> // For storing multiple users
 using namespace std;
 
@@ -52,41 +50,50 @@ bool Password_Validity(const string &password) {
 class save_file{
     void save_user_to_file(long account_number, const string& full_name, const string& dob,
                        const string& nationality, const string& gender, const string& password) {
-    FILE* file = fopen("users.txt", "a");
-    if (file) {
-        fprintf(file, "%ld|%s|%s|%s|%s|%s\n", account_number, full_name.c_str(), dob.c_str(),
-                nationality.c_str(), gender.c_str(), password.c_str());
-        fclose(file);
-    } else {
-        cout << "Error: Unable to open file for saving user data.\n";
+    ofstream write("customer_data.txt", ios::app);
+    if (!write) {
+        cerr << "Error: Unable to open file for writing." << endl;
+        return;
+    }
+    else{
+         write << account_number << " " << full_name << " " << dob << " "
+          << nationality << " " << gender << " " << password << endl;
+    write.close();
     }
 }
 
-// Function to read user data from file
-bool find_user_in_file(long account_number, string& full_name, string& dob,
-                       string& nationality, string& gender, string& password) {
-    FILE* file = fopen("users.txt", "r");
-    if (!file) return false;
+void readFromFile(long id, const string& pass) {
+    ifstream inFile("customer_data.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file for reading." << endl;
+        return;
+    }
 
-    char buffer[256];
-    while (fgets(buffer, sizeof(buffer), file)) {
-        long acc_no;
-        char name[100], birth[20], nation[50], gen[10], pass[50];
-        sscanf(buffer, "%ld|%[^|]|%[^|]|%[^|]|%[^|]|%[^\n]", &acc_no, name, birth, nation, gen, pass);
-        if (acc_no == account_number) {
-            full_name = name;
-            dob = birth;
-            nationality = nation;
-            gender = gen;
-            password = pass;
-            fclose(file);
-            return true;
+    user1 u;
+    bool found = false;
+
+    // Reading file line by line
+    while (inFile >> u.account_number >> u.full_name >> u.dob >> u.nationality >> u.gender >> u.login_pass) {
+        if (id == u.account_number && pass == u.login_pass) {
+            cout << "Account Number: " << u.account_number << endl;
+            cout << "Full Name: " << u.full_name << endl;
+            cout << "Date of Birth: " << u.dob << endl;
+            cout << "Nationality: " << u.nationality << endl;
+            cout << "Gender: " << u.gender << endl;
+            cout << "Password: " << u.login_pass << endl;
+            cout << "--------------------------" << endl;
+            found = true;
+            break; // Exit loop after finding the user
         }
     }
 
-    fclose(file);
-    return false;
-}
+    if (!found) {
+        cout << "Error: No matching record found." << endl;
+    }
+
+    inFile.close();
+    }
+
 
 // Function to save transaction details
 void save_transaction(long account_number, const string& detail) {
@@ -96,8 +103,8 @@ void save_transaction(long account_number, const string& detail) {
         fclose(file);
     } else {
         cout << "Error: Unable to save transaction.\n";
-    }
-}
+    }}
+
 
 // Function to show transaction history
 void show_transactions(long account_number) {
@@ -173,6 +180,7 @@ void show_exit(){
 
 class user1 {
 public:
+save_file s;
     long account_number;
     string login_pass, full_name, dob, nationality, gender;
     static long next_account_number;
@@ -206,7 +214,7 @@ public:
             }
         }
          cout << "\tAccount Number: " << account_number << "\n";
-
+    s.save_user_to_file( account_number,  full_name, dob, nationality, gender,   login_pass)
     }
     void show_details(){
          cout << "\nSignup successful! Here is your information:\n";
@@ -477,7 +485,8 @@ void continue_code() {
                    log.withdraw(it->first); // Pass the account number
                 } 
                 else if (second_chart == 3) {
-    log.show_detail(it->first, users); // Pass account number and users map
+                    save_file s1;
+               s1.readFromFile(entered_account,entered_password);
 }
                 } 
                 else {
@@ -486,7 +495,7 @@ void continue_code() {
 
             }
         else if (log_option==3){
-            //leter
+           
         }
         else if(log_option==4){
             continue;
