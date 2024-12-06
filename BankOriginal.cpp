@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include<math.h> // For storing multiple users
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //this function for function validation.
@@ -47,95 +48,31 @@ bool Password_Validity(const string &password) {
     return true;
 }
 
-class save_file{
-    void save_user_to_file(long account_number, const string& full_name, const string& dob,
-                       const string& nationality, const string& gender, const string& password) {
-    ofstream write("customer_data.txt", ios::app);
-    if (!write) {
-        cerr << "Error: Unable to open file for writing." << endl;
-        return;
-    }
-    else{
-         write << account_number << " " << full_name << " " << dob << " "
-          << nationality << " " << gender << " " << password << endl;
-    write.close();
-    }
-}
-
-void readFromFile(long id, const string& pass) {
-    ifstream inFile("customer_data.txt");
-    if (!inFile) {
-        cerr << "Error: Unable to open file for reading." << endl;
-        return;
-    }
-
-    user1 u;
-    bool found = false;
-
-    // Reading file line by line
-    while (inFile >> u.account_number >> u.full_name >> u.dob >> u.nationality >> u.gender >> u.login_pass) {
-        if (id == u.account_number && pass == u.login_pass) {
-            cout << "Account Number: " << u.account_number << endl;
-            cout << "Full Name: " << u.full_name << endl;
-            cout << "Date of Birth: " << u.dob << endl;
-            cout << "Nationality: " << u.nationality << endl;
-            cout << "Gender: " << u.gender << endl;
-            cout << "Password: " << u.login_pass << endl;
-            cout << "--------------------------" << endl;
-            found = true;
-            break; // Exit loop after finding the user
+class save_file {
+public:
+    void save_user_to_file(long account_number, const string &full_name, const string &dob,
+                           const string &nationality, const string &gender, const string &password) {
+        ofstream write("customer_data.txt", ios::app);
+        if (!write) {
+            cerr << "Error: Unable to open file for writing.\n";
+            return;
         }
+        write << account_number << " " << full_name << " " << dob << " "
+              << nationality << " " << gender << " " << password << endl;
+        write.close();
     }
 
-    if (!found) {
-        cout << "Error: No matching record found." << endl;
-    }
-
-    inFile.close();
-    }
-
-
-// Function to save transaction details
-void save_transaction(long account_number, const string& detail) {
-    FILE* file = fopen("transactions.txt", "a");
-    if (file) {
-        fprintf(file, "%ld|%s\n", account_number, detail.c_str());
-        fclose(file);
-    } else {
-        cout << "Error: Unable to save transaction.\n";
-    }}
-
-
-// Function to show transaction history
-void show_transactions(long account_number) {
-    FILE* file = fopen("transactions.txt", "r");
-    if (!file) {
-        cout << "Error: Unable to open file for transactions.\n";
-        return;
-    }
-
-    char buffer[256];
-    bool found = false;
-
-    cout << "\n--- Transaction History ---\n";
-    while (fgets(buffer, sizeof(buffer), file)) {
-        long acc_no;
-        char detail[200];
-        sscanf(buffer, "%ld|%[^\n]", &acc_no, detail);
-        if (acc_no == account_number) {
-            cout << "- " << detail << endl;
-            found = true;
+    void save_transaction(long account_number, const double &balance, const string &type) {
+        ofstream write("transactions.txt", ios::app);
+        if (!write) {
+            cerr << "Error: Unable to open file for writing.\n";
+            return;
         }
+        write << account_number << " | " << type << ": " << balance << endl;
+        write.close();
     }
-
-    if (!found) {
-        cout << "No transactions found.\n";
-    }
-
-    fclose(file);
-}
-
 };
+
 
 
 class display_chart{
@@ -180,44 +117,90 @@ void show_exit(){
 
 class user1 {
 public:
-save_file s;
-    long account_number;
-    string login_pass, full_name, dob, nationality, gender;
-    static long next_account_number;
+ long account_number;
+    string full_name, dob, nationality, gender, login_pass;
 
-    user1() : account_number(next_account_number++) {}
+    // Login method
+    bool login(long entered_account, const string &entered_password) {
+        ifstream inFile("customer_data.txt");
+        if (!inFile) {
+            cerr << "Error: Unable to open file for reading.\n";
+            return false;
+        }
 
-    // Login method for a specific user
-    bool login(long entered_account, const string& entered_password) {
-        return (entered_account == account_number && entered_password == login_pass);
+        while (inFile >> account_number >> full_name >> dob >> nationality >> gender >> login_pass) {
+            if (entered_account == account_number && entered_password == login_pass) {
+                
+                inFile.close();
+                return true;
+            }
+        }
+        inFile.close();
+        return false;
     }
 
     void signup() {
-        cout << "1. Personal Information>>\n";
-        cout << "\n\tFull Name: ";
-        getline(cin, full_name);
-        cout << "\n\tDate of Birth (DD/MM/YYYY): ";
-        getline(cin, dob);
-        cout << "\n\tNationality and Residency: ";
-        getline(cin, nationality);
-        cout << "\n\tGender: ";
-        getline(cin, gender);
+    cout << "1. Personal Information>>\n";
+    cout << "\n\tFull Name: ";
+    getline(cin, full_name);
+    cout << "\n\tDate of Birth (DD/MM/YYYY): ";
+    getline(cin, dob);
+    cout << "\n\tNationality and Residency: ";
+    getline(cin, nationality);
+    cout << "\n\tGender: ";
+    getline(cin, gender);
 
-        while (true) {
-            cout << "Set a strong password: ";
-            getline(cin, login_pass);
-            if (Password_Validity(login_pass)) {
-                cout << "\nPassword is valid.\n";
+    while (true) {
+        cout << "Set a strong password: ";
+        getline(cin, login_pass);
+        if (Password_Validity(login_pass)) {
+            cout << "\nPassword is valid.\n";
+            break;
+        } else {
+            cout << "Invalid password. Please try again.\n";
+        }
+    }
+
+    account_number = generate_unique_account_number();
+
+    cout << "Your Account Number: " << account_number << endl;
+
+    save_file s;
+    s.save_user_to_file(account_number, full_name, dob, nationality, gender, login_pass);
+}
+
+long generate_unique_account_number() {
+    long new_account_number;
+    bool is_unique;
+
+    do {
+        new_account_number = 10000000 + rand() % 90000000; // Generate an 8-digit number
+        is_unique = true;
+
+        ifstream inFile("customer_data.txt");
+        if (!inFile) {
+            cerr << "Error: Unable to open file for reading. Assuming account number is unique.\n";
+            break;
+        }
+
+        long stored_account_number;
+        string dummy;
+        while (inFile >> stored_account_number) {
+            getline(inFile, dummy); // Skip the rest of the line
+            if (stored_account_number == new_account_number) {
+                is_unique = false;
                 break;
-            } else {
-                cout << "Invalid password. Please try again.\n";
             }
         }
-         cout << "\tAccount Number: " << account_number << "\n";
-    s.save_user_to_file( account_number,  full_name, dob, nationality, gender,   login_pass)
-    }
-    void show_details(){
-         cout << "\nSignup successful! Here is your information:\n";
+        inFile.close();
+    } while (!is_unique);
+
+    return new_account_number;
+}
+
+
+    void show_details() const {
+        cout << "\nSignup successful! Here is your information:\n";
         cout << "\tFull Name: " << full_name << "\n";
         cout << "\tDate of Birth: " << dob << "\n";
         cout << "\tNationality and Residency: " << nationality << "\n";
@@ -225,82 +208,65 @@ save_file s;
         cout << "\tAccount Number: " << account_number << "\n";
     }
 };
-long user1::next_account_number = 10000000;
+
 
 class after_login {
 public:
-    static map<long, long double> balances; // Each user has a unique balance
-    map<long, vector<string>> transaction_history; // Transaction logs for each user
-
-    long double deposit_balance, withdraw_amount;
-    string op, sh;
+    save_file s;
 
     void deposit(long account_number) {
-        cout << "\tEnter deposit amount: ";
-        cin >> deposit_balance;
+        double deposit_amount;
+        cout << "Enter deposit amount: ";
+        cin >> deposit_amount;
 
-        if (deposit_balance <= 0) {
+        if (deposit_amount <= 0) {
             cout << "Invalid deposit amount. Please try again.\n";
             return;
         }
 
-        balances[account_number] += deposit_balance;
-        transaction_history[account_number].push_back("Deposited: " + to_string(deposit_balance));
-        cout << "Deposit successful. Current balance: " << balances[account_number] << "\n";
+        s.save_transaction(account_number, deposit_amount, "Deposit");
+        cout << "Deposit successful. Amount: " << deposit_amount << "\n";
     }
 
-    void withdraw(long account_number) {
-        cout << "\tEnter withdrawal amount (max 50000 at a time): ";
+    void withdraw(long account_number, double &balance) {
+        double withdraw_amount;
+        cout << "Enter withdrawal amount: ";
         cin >> withdraw_amount;
 
-        if (balances[account_number] == 0) {
-            cout << "Sorry! You have no funds.\n";
+        if (withdraw_amount <= 0 || withdraw_amount > balance) {
+            cout << "Invalid withdrawal amount. Available balance: " << balance << "\n";
             return;
         }
 
-        if (withdraw_amount > 50000) {
-            cout << "Maximum withdrawal limit is 50000. Please try again.\n";
-            return;
-        }
-
-        if (withdraw_amount > balances[account_number]) {
-            cout << "Insufficient funds. Available balance: " << balances[account_number] << "\n";
-            return;
-        }
-
-        balances[account_number] -= withdraw_amount;
-        transaction_history[account_number].push_back("Withdrawn: " + to_string(withdraw_amount));
-        cout << "Withdrawal successful. Remaining balance: " << balances[account_number] << "\n";
+        balance -= withdraw_amount;
+        s.save_transaction(account_number, withdraw_amount, "Withdrawal");
+        cout << "Withdrawal successful. Remaining balance: " << balance << "\n";
     }
 
-   void show_detail(long account_number, map<long, user1>& users) {
-    cout << "Do you want to show your biodata (b) or transaction details (a)? ";
-    cin >> sh;
-    if (sh == "b" || sh == "B") {
-        auto it = users.find(account_number);
-        if (it != users.end()) {
-            cout << "\n--- Biodata ---\n";
-            it->second.show_details(); // Call the show_details method of the user
-        } else {
-            cout << "User details not found.\n";
+    void show_transaction_history(long account_number) {
+        ifstream file("transactions.txt");
+        if (!file) {
+            cerr << "Error: Unable to open transactions file.\n";
+            return;
         }
-    } else if (sh == "a" || sh == "A") {
-        cout << "\n--- Transaction Details ---\n";
-        if (transaction_history[account_number].empty()) {
-            cout << "No transactions found.\n";
-        } else {
-            for (const auto& entry : transaction_history[account_number]) {
-                cout << "- " << entry << "\n";
+
+        string record;
+        bool found = false;
+        cout << "\n--- Transaction History ---\n";
+        while (getline(file, record)) {
+            if (record.find(to_string(account_number)) == 0) {
+                cout << record << "\n";
+                found = true;
             }
         }
-    } else {
-        cout << "Invalid option. Try again.\n";
-    }
-}
 
+        if (!found) {
+            cout << "No transactions found.\n";
+        }
+        file.close();
+    }
 };
 
-map<long, long double> after_login::balances; // Define static member
 
 
 
@@ -408,13 +374,10 @@ class help{
 
 class function_handel{
 public:
-display_chart chart2;
- int log_option,a;
+
 
 void start(){
-    chart2.ask_for_login(); 
-            cin>>log_option;
-            cout<<endl;
+   
 }
 
 };
@@ -422,12 +385,12 @@ void start(){
 void continue_code() {
     display_chart chart;
     function_handel fun;
-    map<long, user1> users; // Store users with account_number as key
     employee emp;
+    user1 user;
     bank_lone loan;
     string openion;
     after_login log;
-    int option,second_chart,log_option;
+    int option,second_chart,log_option,a;
 
     while (true) {
         chart.show_first_chart();
@@ -435,17 +398,18 @@ void continue_code() {
         cin.ignore();
         cout<<endl;
         if (option == 4) {
-            cout << "Exiting program. Thank you!\n"; // Change Made
+          cout << "Thank you for using our service. Goodbye!\n";
             break; // Exit the loop // Change Made
         }
         if (option == 1) {
-            fun.start();
+             chart.ask_for_login(); 
+            cin>>log_option;
+            cout<<endl;
 
             if(log_option==1){
-                user1 new_user;
-                new_user.signup();
-                users[new_user.account_number] = new_user;
-                //new_user.show_details();
+                user.signup();
+                user.show_details();
+                //user.show_details();
             }
             else if (log_option ==2) {
                 long entered_account;
@@ -457,9 +421,10 @@ void continue_code() {
                 getline(cin, entered_password);
                 cout<<endl;
 
-                auto it = users.find(entered_account);
-                if (it != users.end() && it->second.login(entered_account, entered_password)) {
-                    chart.name = it->second.full_name;
+
+                if (user.login(entered_account, entered_password)) {
+                    double balance = 0.0;
+                    while (true)
                     chart.show_user_chart();
                     cin>>second_chart;
                     cout<<endl;
@@ -475,32 +440,31 @@ void continue_code() {
                              }
                     }
                     else if(second_chart==5){
+                        cout << "Logging out...\n";
                         break;
                     }
 
                    if (second_chart == 1) {
-                     log.deposit(it->first); // Pass the account number
+                     log.deposit(entered_account);
                     } 
                     else if (second_chart == 2) {
-                   log.withdraw(it->first); // Pass the account number
+                   log.withdraw(entered_account, balance);
                 } 
                 else if (second_chart == 3) {
-                    save_file s1;
-               s1.readFromFile(entered_account,entered_password);
+                   log.show_transaction_history(entered_account);
 }
                 } 
                 else {
-                    cout << ">> Wrong ID / Pin. Please try again.\n";
+                   cout << "Invalid option. Try again.\n";
                 }
 
             }
         else if (log_option==3){
-           
+             cout << "Help Section: Please contact customer support.\n";
         }
         else if(log_option==4){
             continue;
            
-
         }
         }
         else if (option == 2) {
@@ -517,19 +481,13 @@ void continue_code() {
             else{
                 //letter
             }
-        } else if (option == 3) {
+        } 
+        else if (option == 3) {
             cout << "Help Section: Please contact customer service for support.\n";
-        } else {
+        } 
+        else {
             cout << "Invalid option. Try again.\n";
         }
-       /* cout<<"Are you withdrow a LOAN..Yes/No= ";
-        cin>>openion;
-        cin.ignore();
-        if (openion=="yes"||openion=="Yes")
-        {
-            loan.customer_details();
-            loan.occupation();
-        }*/
         cout<<endl;
     }   
 }
@@ -537,6 +495,7 @@ void continue_code() {
 
 
 int main(){
+    srand(time(0)); 
    continue_code();
     
    
