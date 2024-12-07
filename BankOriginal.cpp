@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
 //this function for pass validation.
@@ -195,30 +193,38 @@ public:
 }
 
 long generate_unique_account_number() {
-    long new_account_number;
-    bool is_unique;
+    long last_account_number = 10000000;
+    bool is_unique = false;
 
-    do {
-        new_account_number = 10000000 + rand() % 90000000; // Generate an 8-digit number
-        is_unique = true;
-
-        ifstream inFile("customer_data.txt");
-        if (!inFile) {
-            cerr << "Error: Unable to open file for reading. Assuming account number is unique.\n";
-            break;
+    ifstream inFile("customer_data.txt");
+    if (inFile) {
+        long account_number;
+        while (inFile >> account_number) {
+            last_account_number = account_number;
         }
+        inFile.close();
+    }
+    long new_account_number = last_account_number + 1;
 
-        long stored_account_number;
-        string dummy;
-        while (inFile >> stored_account_number) {
-            getline(inFile, dummy);
-            if (stored_account_number == new_account_number) {
-                is_unique = false;
+    while (true) {
+        ifstream inFile("customer_data.txt");
+        bool found = false;
+        while (inFile.eof()) {
+            inFile >> last_account_number;
+            if (last_account_number == new_account_number) {
+                found = true;
                 break;
             }
         }
         inFile.close();
-    } while (!is_unique);
+
+        if (!found) {
+            is_unique = true;
+            break;
+        } else {
+            new_account_number++;
+        }
+    }
 
     return new_account_number;
 }
@@ -565,7 +571,6 @@ void continue_code() {
 
 
 int main(){
-    srand(time(0)); 
    continue_code();
     
    
