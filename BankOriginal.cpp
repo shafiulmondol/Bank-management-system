@@ -11,7 +11,8 @@ bool Password_Validity(const string &password) {
         cout <<"Password must be at least 8 characters long.\n";
         return false;
     }
-    bool Upper,Lower,Digit,SpecialChar;
+   bool Upper = false, Lower = false, Digit = false, SpecialChar = false;
+
 
     for (int i=0;i<password.length();i++){
         char ch=password[i];
@@ -71,6 +72,46 @@ public:
         write << account_number << " | " << type << ": " << balance << endl;
         write.close();
     }
+
+    void update_balance(long account_number, double new_balance) {
+        ifstream file("balances.txt");
+        ofstream temp("temp.txt");
+        bool found = false;
+
+        long acc;
+        double bal;
+        while (file >> acc >> bal) {
+            if (acc == account_number) {
+                temp << acc << " " << new_balance << endl;
+                found = true;
+            } else {
+                temp << acc << " " << bal << endl;
+            }
+        }
+
+        if (!found) {
+            temp << account_number << " " << new_balance << endl;
+        }
+
+        file.close();
+        temp.close();
+        remove("balances.txt");
+        rename("temp.txt", "balances.txt");
+    }
+
+    double get_balance(long account_number) {
+        ifstream file("balances.txt");
+        if (!file) return 0.0;
+
+        long acc;
+        double bal;
+        while (file >> acc >> bal) {
+            if (acc == account_number) {
+                return bal;
+            }
+        }
+        return 0.0; // Default to zero if account not found
+    }
 };
 
 
@@ -121,27 +162,12 @@ public:
     string full_name, dob, nationality, gender, login_pass;
 
     // Login method
-    bool login(long entered_account, const string &entered_password) {
-        ifstream inFile("customer_data.txt");
-        if (!inFile) {
-            cerr << "Error: Unable to open file for reading.\n";
-            return false;
-        }
-
-        while (inFile >> account_number >> full_name >> dob >> nationality >> gender >> login_pass) {
-            if (entered_account == account_number && entered_password == login_pass) {
-                
-                inFile.close();
-                return true;
-            }
-        }
-        inFile.close();
-        return false;
-    }
+      
 
     void signup() {
     cout << "1. Personal Information>>\n";
     cout << "\n\tFull Name: ";
+    cin.ignore();
     getline(cin, full_name);
     cout << "\n\tDate of Birth (DD/MM/YYYY): ";
     getline(cin, dob);
@@ -224,23 +250,30 @@ public:
             return;
         }
 
+        double current_balance = s.get_balance(account_number);
+        current_balance += deposit_amount;
+        s.update_balance(account_number, current_balance);
+
         s.save_transaction(account_number, deposit_amount, "Deposit");
-        cout << "Deposit successful. Amount: " << deposit_amount << "\n";
+        cout << "Deposit successful. Current balance: " << current_balance << "\n";
     }
 
-    void withdraw(long account_number, double &balance) {
+    void withdraw(long account_number) {
         double withdraw_amount;
         cout << "Enter withdrawal amount: ";
         cin >> withdraw_amount;
 
-        if (withdraw_amount <= 0 || withdraw_amount > balance) {
-            cout << "Invalid withdrawal amount. Available balance: " << balance << "\n";
+        double current_balance = s.get_balance(account_number);
+        if (withdraw_amount <= 0 || withdraw_amount > current_balance) {
+            cout << "Invalid withdrawal amount. Available balance: " << current_balance << "\n";
             return;
         }
 
-        balance -= withdraw_amount;
+        current_balance -= withdraw_amount;
+        s.update_balance(account_number, current_balance);
+
         s.save_transaction(account_number, withdraw_amount, "Withdrawal");
-        cout << "Withdrawal successful. Remaining balance: " << balance << "\n";
+        cout << "Withdrawal successful. Remaining balance: " << current_balance << "\n";
     }
 
     void show_transaction_history(long account_number) {
@@ -390,6 +423,7 @@ void continue_code() {
     bank_lone loan;
     string openion;
     after_login log;
+    save_file file_manager;
     int option,second_chart,log_option,a;
 
     while (true) {
@@ -398,8 +432,8 @@ void continue_code() {
         cin.ignore();
         cout<<endl;
         if (option == 4) {
-          cout << "Thank you for using our service. Goodbye!\n";
-            break; // Exit the loop // Change Made
+          chart.show_exit();
+            break;
         }
         if (option == 1) {
              chart.ask_for_login(); 
@@ -411,61 +445,91 @@ void continue_code() {
                 user.show_details();
                 //user.show_details();
             }
-            else if (log_option ==2) {
-                long entered_account;
-                string entered_password;
-                cout << "Enter Account Number: ";
-                cin >> entered_account;
-                cin.ignore();
-                cout << "Enter password: ";
-                getline(cin, entered_password);
-                cout<<endl;
+            else if (log_option == 2) {
+    long entered_account;
+    string entered_password;
 
+    cout << "Enter Account Number: ";
+    cin >> entered_account;
+    cin.ignore();
+    cout << "Enter Password: ";
+    getline(cin, entered_password);
+    cout << endl;
 
-                if (user.login(entered_account, entered_password)) {
-                    double balance = 0.0;
-                    while (true)
-                    chart.show_user_chart();
-                    cin>>second_chart;
-                    cout<<endl;
-                    if(second_chart==4){
-                         cout<<"Are you withdrow a LOAN..Yes/No= ";
-                             cin>>openion;
-                             cin.ignore();
-                             cout<<endl;
-                             if (openion=="yes"||openion=="Yes")
-                             {
-                             loan.customer_details();
-                           loan.occupation();
-                             }
+    // Open the customer data file
+    ifstream file("customer_data.txt");
+    if (!file) {
+        cerr << "Error: Unable to open customer data file.\n";
+        continue;
+    }
+
+    // Verify the credentials
+    bool is_valid = false;
+    
+
+    while (file >> user.account_number) {
+        file.ignore(); // Skip space
+        getline(file, user.full_name, ' ');
+        getline(file, user.dob, ' ');
+        getline(file, user.nationality, ' ');
+        getline(file, user.gender, ' ');
+        getline(file, user.login_pass);
+
+        if (user.account_number == entered_account && user.login_pass == entered_password) {
+            cout << "\nLogin successful! Welcome, " << user.full_name << ".\n";
+            is_valid = true;
+
+            // Post-login operations
+            int second_chart;
+            while (true) {
+                chart.show_user_chart();
+                cin >> second_chart;
+                cout << endl;
+
+                if (second_chart == 1) {
+                    log.deposit(user.account_number);
+                } else if (second_chart == 2) {
+                    log.withdraw(user.account_number);
+                } else if (second_chart == 3) {
+                    double balance = file_manager.get_balance(user.account_number);
+                    cout << "Account Details:\n";
+                    user.show_details();
+                    cout << "Current Balance: " << balance << endl;
+                } else if (second_chart == 4) {
+                    string openion;
+                    cout << "Are you withdrawing a loan? (Yes/No): ";
+                    cin >> openion;
+                    cin.ignore();
+                    cout << endl;
+                    if (openion == "Yes" || openion == "yes") {
+                        loan.customer_details();
+                        loan.occupation();
                     }
-                    else if(second_chart==5){
-                        cout << "Logging out...\n";
-                        break;
-                    }
-
-                   if (second_chart == 1) {
-                     log.deposit(entered_account);
-                    } 
-                    else if (second_chart == 2) {
-                   log.withdraw(entered_account, balance);
-                } 
-                else if (second_chart == 3) {
-                   log.show_transaction_history(entered_account);
-}
-                } 
-                else {
-                   cout << "Invalid option. Try again.\n";
+                } else if (second_chart == 5) {
+                    cout << "Logging out...\n";
+                    break;
+                } else {
+                    cout << "Invalid choice. Please try again.\n";
                 }
-
             }
+            break;
+        }
+    }
+
+    if (!is_valid) {
+        cout << "Invalid account number or password. Please try again.\n";
+    }
+
+    file.close();
+}
+
         else if (log_option==3){
              cout << "Help Section: Please contact customer support.\n";
         }
         else if(log_option==4){
             continue;
            
-        }
+        }      
         }
         else if (option == 2) {
             cout<<"\n1: Employee"<<endl;
