@@ -392,6 +392,9 @@ class bank_lone{
 
 
 class help{
+void help_menu(){
+    cout << "1. login" << endl;
+}
 
 
 };
