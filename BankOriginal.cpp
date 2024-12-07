@@ -5,7 +5,7 @@
 #include <ctime>
 using namespace std;
 
-//this function for function validation.
+//this function for pass validation.
 bool Password_Validity(const string &password) {
     if(password.length()<8){
         cout <<"Password must be at least 8 characters long.\n";
@@ -51,15 +51,13 @@ bool Password_Validity(const string &password) {
 
 class save_file {
 public:
-    void save_user_to_file(long account_number, const string &full_name, const string &dob,
-                           const string &nationality, const string &gender, const string &password) {
+    void save_user_to_file(long account_number, const string &full_name, const string &dob,const string &nationality, const string &gender, const string &password) {
         ofstream write("customer_data.txt", ios::app);
         if (!write) {
             cerr << "Error: Unable to open file for writing.\n";
             return;
         }
-        write << account_number << " " << full_name << " " << dob << " "
-              << nationality << " " << gender << " " << password << endl;
+        write << account_number << " " << full_name << " " << dob << " "<< nationality << " " << gender << " " << password << endl;
         write.close();
     }
 
@@ -101,7 +99,8 @@ public:
 
     double get_balance(long account_number) {
         ifstream file("balances.txt");
-        if (!file) return 0.0;
+        if (!file) 
+        {cout <<"Error";}
 
         long acc;
         double bal;
@@ -110,7 +109,7 @@ public:
                 return bal;
             }
         }
-        return 0.0; // Default to zero if account not found
+        return 0.0;
     }
 };
 
@@ -212,7 +211,7 @@ long generate_unique_account_number() {
         long stored_account_number;
         string dummy;
         while (inFile >> stored_account_number) {
-            getline(inFile, dummy); // Skip the rest of the line
+            getline(inFile, dummy);
             if (stored_account_number == new_account_number) {
                 is_unique = false;
                 break;
@@ -249,14 +248,14 @@ public:
             cout << "Invalid deposit amount. Please try again.\n";
             return;
         }
-
+        else{
         double current_balance = s.get_balance(account_number);
         current_balance += deposit_amount;
         s.update_balance(account_number, current_balance);
 
         s.save_transaction(account_number, deposit_amount, "Deposit");
         cout << "Deposit successful. Current balance: " << current_balance << "\n";
-    }
+    }}
 
     void withdraw(long account_number) {
         double withdraw_amount;
@@ -268,13 +267,13 @@ public:
             cout << "Invalid withdrawal amount. Available balance: " << current_balance << "\n";
             return;
         }
-
+        else{
         current_balance -= withdraw_amount;
         s.update_balance(account_number, current_balance);
 
         s.save_transaction(account_number, withdraw_amount, "Withdrawal");
         cout << "Withdrawal successful. Remaining balance: " << current_balance << "\n";
-    }
+    }}
 
     void show_transaction_history(long account_number) {
         ifstream file("transactions.txt");
@@ -282,7 +281,7 @@ public:
             cerr << "Error: Unable to open transactions file.\n";
             return;
         }
-
+        else{
         string record;
         bool found = false;
         cout << "\n--- Transaction History ---\n";
@@ -297,7 +296,7 @@ public:
             cout << "No transactions found.\n";
         }
         file.close();
-    }
+    }}
 };
 
 
@@ -491,10 +490,17 @@ void continue_code() {
                 } else if (second_chart == 2) {
                     log.withdraw(user.account_number);
                 } else if (second_chart == 3) {
+                    cout<<"1: Show biodata\n2: Show transection history"<<endl;
+                    int b;
+                    cin>>b;
+                    if(b==1){
                     double balance = file_manager.get_balance(user.account_number);
                     cout << "Account Details:\n";
                     user.show_details();
-                    cout << "Current Balance: " << balance << endl;
+                    cout << "Current Balance: " << balance << endl;}
+                    else if (b==2){
+                       log. show_transaction_history(entered_account);
+                    }
                 } else if (second_chart == 4) {
                     string openion;
                     cout << "Are you withdrawing a loan? (Yes/No): ";
