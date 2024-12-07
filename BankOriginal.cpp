@@ -193,41 +193,27 @@ public:
 }
 
 long generate_unique_account_number() {
-    long last_account_number = 10000000;
-    bool is_unique = false;
+    long last_account_number = 10000000; // Default if no accounts exist
+    long new_account_number;
 
+    // Open the file and find the last account number
     ifstream inFile("customer_data.txt");
     if (inFile) {
         long account_number;
         while (inFile >> account_number) {
-            last_account_number = account_number;
+            string dummy;
+            getline(inFile, dummy); // Skip the rest of the line
+            last_account_number = account_number; // Update with the last number read
         }
         inFile.close();
     }
-    long new_account_number = last_account_number + 1;
 
-    while (true) {
-        ifstream inFile("customer_data.txt");
-        bool found = false;
-        while (inFile.eof()) {
-            inFile >> last_account_number;
-            if (last_account_number == new_account_number) {
-                found = true;
-                break;
-            }
-        }
-        inFile.close();
-
-        if (!found) {
-            is_unique = true;
-            break;
-        } else {
-            new_account_number++;
-        }
-    }
+    // Generate a new account number
+    new_account_number = last_account_number + 1;
 
     return new_account_number;
 }
+
 
 
     void show_details() const {
