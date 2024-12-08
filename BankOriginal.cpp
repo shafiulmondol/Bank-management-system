@@ -392,8 +392,131 @@ class bank_lone{
 
 
 class help{
+public:
+    
 void help_menu(){
-    cout << "1. login" << endl;
+  cout << "---->> Help Menu <<----" << endl;
+  cout << "-----------------------" << endl << endl;
+  
+  cout << "1. How to Create an Account" << endl;
+  cout << "2. Password Requirements" << endl;
+  cout << "3. Login Issues" << endl;
+  cout << "4. How to Reset Password" << endl;
+  cout << "5. Transaction Guidelines" << endl;
+  cout << "6. Account Management" << endl;
+  cout << "7. Loan Applications" << endl;
+  cout << "8. Security Tips" << endl;
+  cout << "9. Contact Support" << endl;
+  cout << "10. Exit" << endl;
+}
+
+void problem_1(){
+            int choice;
+    cout << "--->>How to Create an Account<<---" << endl;
+    cout << "----------------------------------" << endl << endl;
+    
+        do {
+    cout << "Welcome to the Bank System!" << endl;
+    cout << "Follow these steps to create an account:" << endl << endl;
+    cout << "1. Choose 'Customer Section' from the main menu" << endl;
+    cout << "2. Select 'Sign Up' from the Customer Menu" << endl;
+    cout << "3. Provide the following details when prompted:" << endl;
+    cout << "   - Your full name." << endl;
+    cout << "   - Date of Birth (format: DD/MM/YYYY)." << endl;
+    cout << "   - Your nationality and residency." << endl;
+    cout << "   - Gender (Male/Female/Other)." << endl;
+    cout << "4. Set a strong password following these rules:" << endl;
+    cout << "   - At least 8 characters long." << endl;
+    cout << "   - Must include uppercase and lowercase letters, at least one digit, and one special character." << endl;
+    cout << "5. Once the information is submitted, your account number will be generated." << endl;
+    cout << "6. Save your account number securely." << endl << endl;
+    cout << "--->>Thank you for staying with us<<---" << endl << endl;
+
+        cout << "\n--->>How to Create an Account<<---" << endl;
+        cout << "1. Again" << endl;
+        cout << "2. Back" << endl;
+        cout << "Enter your choice (1-2): ";
+        cin >> choice;
+        cout << endl;
+        
+        if (choice == 2);
+        } while (choice == 1);
+}
+
+void problem_2(){
+    int choice;
+    cout << "--->>Password Requirements<<---" << endl;
+    cout << "----------------------------------" << endl << endl;
+    
+        do {
+    cout << "1. Password must be at least 8 characters long." << endl;
+    cout << "2. Password must include at least one uppercase letter (A-Z)." << endl;
+    cout << "3. Password must include at least one lowercase letter (a-z)." << endl;
+   cout << "4. Password must include at least one digit (0-9)." << endl;
+   cout << "5. Password must include at least one special character (@, #, $, %, &, *)." << endl << endl;
+   
+   cout << "--->>Here are some examples of strong passwords<<---" << endl;
+   cout << "----------------------------------------------------" << endl;
+    cout << "- Summer2024@# " << endl;
+    cout << "- SecureP@ssw0rd123 " << endl;
+    cout << "- P@ssw0rD!567 " << endl;
+    cout << "- MyStrongPass!2024 " << endl;
+    cout << "- Safe&Sound#123 " << endl;
+    
+    cout << "\n---->>Passwords that should NOT be used<<---" << endl;
+    cout << "--------------------------------------------" << endl;
+    cout << "- 12345678" << endl;
+    cout << "- password" << endl;
+    cout << "- abc12345" << endl;
+    cout << "- qwerty12" << endl;
+    cout << "- letmein@" << endl;
+    cout << "- admin123" << endl;
+    cout << "- welcome1" << endl;
+    cout << "- iloveyou" << endl << endl;
+
+    cout << "--->>Thank you for staying with us<<---" << endl << endl;
+
+        cout << "\n--->>Password Requirements<<---" << endl;
+        cout << "1. Again" << endl;
+        cout << "2. Back" << endl;
+        cout << "Enter your choice (1-2): ";
+        cin >> choice;
+        cout << endl;
+        
+        if (choice == 2);
+        } while (choice == 1);
+}
+
+void problem_3(){
+    
+}
+
+void problem_4(){
+   
+}
+
+void problem_5(){
+    
+}
+
+void problem_6(){
+  
+}
+
+void problem_7(){
+    
+}
+
+void problem_8(){
+    
+}
+
+void problem_9(){
+    
+}
+
+void problem_10(){
+
 }
 
 
