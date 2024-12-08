@@ -671,7 +671,63 @@ void continue_code() {
             }
         } 
         else if (option == 3) {
-            cout << "Help Section: Please contact customer service for support.\n";
+            int choice;
+
+    while (true) {
+        help  h;
+        h.help_menu();
+        
+        cout << "\nEnter your choice: >> ";
+        cin >> choice;
+        cout << endl;
+        
+        switch(choice){
+            
+            case 1:
+            h.problem_1();
+            break;
+            
+            case 2:
+            h.problem_2();
+            break;
+            
+            case 3:
+            h.problem_3();
+            break;
+            
+            case 4:
+            h.problem_4();
+            break;
+            
+            case 5:
+            h.problem_5();
+            break;
+            
+            case 6:
+            h.problem_6();
+            break;
+            
+            case 7:
+            h.problem_7();
+            break;
+            
+            case 8:
+            h.problem_8();
+            break;
+            
+            case 9:
+            h.problem_9();
+            break;
+            
+            case 10:
+            continue_code();
+            break;
+            
+            default: 
+            cout << "Error. Try Again" << endl << endl;
+    
+            }
+          }
         } 
         else {
             cout << "Invalid option. Try again.\n";
