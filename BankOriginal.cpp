@@ -736,5 +736,5 @@ void continue_code() {
 int main(){
    continue_code();
     
-   
+   return 0;
 }
