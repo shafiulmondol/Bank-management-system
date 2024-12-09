@@ -52,7 +52,7 @@ public:
     void save_user_to_file(long account_number, const string &full_name, const string &dob,const string &nationality, const string &gender, const string &password) {
         ofstream write("customer_data.txt", ios::app);
         if (!write) {
-            cerr << "Error: Unable to open file for writing.\n";
+            cout << "Error: Unable to open file for writing.\n";
             return;
         }
         write << account_number << " " << full_name << " " << dob << " "<< nationality << " " << gender << " " << password << endl;
@@ -60,55 +60,58 @@ public:
     }
 
     void save_transaction(long account_number, const double &balance, const string &type) {
-        ofstream write("transactions.txt", ios::app);
-        if (!write) {
-            cerr << "Error: Unable to open file for writing.\n";
-            return;
-        }
-        write << account_number << " | " << type << ": " << balance << endl;
-        write.close();
+    ofstream write("transactions.txt", ios::app);
+    if (!write) {
+        cout << "Error: Unable to open file for writing.\n";
+        return;
     }
+    write << account_number << " | " << type << ": " << balance << endl;
+    write.close();
+}
+
 
     void update_balance(long account_number, double new_balance) {
-        ifstream file("balances.txt");
-        ofstream temp("temp.txt");
-        bool found = false;
+    ifstream file("balances.txt");
+    ofstream temp("temp.txt");
+    bool found = false;
 
-        long acc;
-        double bal;
-        while (file >> acc >> bal) {
-            if (acc == account_number) {
-                temp << acc << " " << new_balance << endl;
-                found = true;
-            } else {
-                temp << acc << " " << bal << endl;
-            }
+    long acc;
+    double bal;
+    while (file >> acc >> bal) {
+        if (acc == account_number) {
+            temp << acc << " " << new_balance << endl;
+            found = true;
+        } else {
+            temp << acc << " " << bal << endl;
         }
-
-        if (!found) {
-            temp << account_number << " " << new_balance << endl;
-        }
-
-        file.close();
-        temp.close();
-        remove("balances.txt");
-        rename("temp.txt", "balances.txt");
     }
+
+    if (!found) {
+        temp << account_number << " " << new_balance << endl;
+    }
+
+    file.close();
+    temp.close();
+    remove("balances.txt");
+    rename("temp.txt", "balances.txt");
+}
+
 
     double get_balance(long account_number) {
-        ifstream file("balances.txt");
-        if (!file) 
-        {cout <<"Error";}
-
-        long acc;
-        double bal;
-        while (file >> acc >> bal) {
-            if (acc == account_number) {
-                return bal;
-            }
-        }
-        return 0.0;
+    ifstream file("balances.txt");
+    if (!file) {
+        cout << "Error";
     }
+
+    long acc;
+    double bal;
+    while (file >> acc >> bal) {
+        if (acc == account_number) {
+            return bal;
+        }
+    }
+    return 0.0;
+}
 };
 
 
@@ -595,8 +598,10 @@ void continue_code() {
 
                 if (second_chart == 1) {
                     log.deposit(user.account_number);
+                    cout<<endl;
                 } else if (second_chart == 2) {
                     log.withdraw(user.account_number);
+                    cout<<endl;
                 } else if (second_chart == 3) {
                     cout<<"1: Show biodata\n2: Show transection history"<<endl;
                     int b;
