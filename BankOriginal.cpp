@@ -304,7 +304,7 @@ class employee{
         for (int i = 0; i < 3; i++) {
             cout << "Enter your ID number: ";
             cin >> id;
-            cin.ignore(); // Clear input buffer
+            cin.ignore();
             cout << "Enter your password: ";
             getline(cin, password);
             if (id == 23303137 && password == "sum01*#") {
@@ -522,19 +522,9 @@ void problem_10(){
 
 };
 
-class function_handel{
-public:
-
-
-void start(){
-   
-}
-
-};
 
 void continue_code() {
     display_chart chart;
-    function_handel fun;
     employee emp;
     user1 user;
     bank_lone loan;
@@ -620,12 +610,12 @@ void continue_code() {
                        log. show_transaction_history(entered_account);
                     }
                 } else if (second_chart == 4) {
-                    string openion;
-                    cout << "Are you withdrawing a loan? (Yes/No): ";
+                    int  openion;
+                    cout << "Are you withdrawing a loan? \n1: Yes\n2: No): ";
                     cin >> openion;
                     cin.ignore();
                     cout << endl;
-                    if (openion == "Yes" || openion == "yes") {
+                    if (openion == 1 || openion ==2) {
                         loan.customer_details();
                         loan.occupation();
                     }
@@ -657,7 +647,7 @@ void continue_code() {
         }
         else if (option == 2) {
             cout<<"\n1: Employee"<<endl;
-            cout<<"2: Back";
+            cout<<"2: Back\n>>>Choice an option: ";
             int b;
             cin>>b;
             if (b==1){
