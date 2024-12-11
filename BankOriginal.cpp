@@ -587,38 +587,21 @@ void access_help(){
           }
 }
 
-
-void continue_code() {
-    display_chart chart;
-    employee emp;
-    user1 user;
-    bank_lone loan;
-    string openion;
-    after_login log;
+class login_conditions{
+    public:
+     bank_lone loan;
+      user1 user;
+       display_chart chart;
+       after_login log;
     save_file file_manager;
-    int option,second_chart,log_option,a;
+bool is_valid;
 
-    while (true) {
-        chart.show_first_chart();
-        cin >> option;
-        cin.ignore();
-        cout<<endl;
-        if (option == 4) {
-          chart.show_exit();
-            break;
-        }
-        if (option == 1) {
-             chart.ask_for_login(); 
-            cin>>log_option;
-            cout<<endl;
+    login_conditions(){
+        is_valid=false;
+    }
+void login_conditionn(){
 
-            if(log_option==1){
-                user.signup();
-                user.show_details();
-                //user.show_details();
-            }
-            else if (log_option == 2) {
-    long entered_account;
+     long entered_account;
     string entered_password;
 
     cout << "Enter Account Number: ";
@@ -627,20 +610,14 @@ void continue_code() {
     cout << "Enter Password: ";
     getline(cin, entered_password);
     cout << endl;
-
-    // Open the customer data file
     ifstream file("customer_data.txt");
     if (!file) {
         cerr << "Error: Unable to open customer data file.\n";
-        continue;
     }
 
-    // Verify the credentials
-    bool is_valid = false;
-    
 
     while (file >> user.account_number) {
-        file.ignore(); // Skip space
+        file.ignore(); 
         getline(file, user.full_name, ' ');
         getline(file, user.dob, ' ');
         getline(file, user.nationality, ' ');
@@ -651,7 +628,6 @@ void continue_code() {
             cout << "\nLogin successful! Welcome, " << user.full_name << ".\n";
             is_valid = true;
 
-            // Post-login operations
             int second_chart;
             while (true) {
                 chart.show_user_chart();
@@ -702,6 +678,47 @@ void continue_code() {
     }
 
     file.close();
+}
+};
+
+void continue_code() {
+    display_chart chart;
+    employee emp;
+    user1 user;
+   login_conditions loginC;
+    string openion;
+    after_login log;
+    save_file file_manager;
+    int option,second_chart,log_option,a;
+
+    while (true) {
+        chart.show_first_chart();
+        cin >> option;
+        cin.ignore();
+        cout<<endl;
+        if (option == 4) {
+          chart.show_exit();
+            break;
+        }
+        if (option == 1) {
+             chart.ask_for_login(); 
+            cin>>log_option;
+            cout<<endl;
+
+            if(log_option==1){
+                user.signup();
+                user.show_details();
+            }
+               
+            else if (log_option == 2) {
+                loginC.is_valid=false;
+               for(int i=0;i<3;i++){
+               if(loginC.is_valid==false){
+               loginC. login_conditionn();
+                // break;
+               }
+               else{
+               cout<<"Please go to help section.";}}
 }
 
         else if (log_option==3){
