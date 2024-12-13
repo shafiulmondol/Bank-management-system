@@ -610,7 +610,7 @@ void problem_9(){
 }
 
 void problem_10(){
-
+cout << "visiting us" << endl << endl;
 }
 
 
