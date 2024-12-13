@@ -507,6 +507,97 @@ void problem_6(){
 }
 
 void problem_7(){
+     int choice;
+    do{
+        cout << "--->>Types of Bank Loans<<---" << endl;
+        cout << "-----------------------------" << endl << endl;
+        
+        cout << "1. Home Loan" << endl;
+        cout << "2. Car Loan" << endl;
+        cout << "3. Student Loan" << endl;
+        cout << "4. Personal Loan" << endl;
+        cout << "5. Agriculture Loan" << endl;
+        cout << "6. Business Loan" << endl;
+        cout << "7. More details" << endl;
+        cout << "8. Exit" << endl;
+        
+        cout << "Enter your choice: ";
+        cin>> choice;
+        cout << endl << endl;
+        
+        switch(choice){
+            
+        case 1:
+        cout << "--->>Home Loan<<---" << endl;
+        cout << "- Interest Rate: 7%" << endl;
+        cout << "- Maximum Tenure: 20 years" << endl;
+        cout << "- Minimum Amount: 5,00,000"<< endl;
+        break;
+            
+        case 2:
+        cout << "--->>Car loan<<---" << endl;
+        cout << "- Interest Rate: 9%" << endl;
+        cout << "- Maximum Tenure: 7 years" << endl;
+        cout << "- Minimum Amount: 1,00,000" << endl;
+        break;
+            
+        case 3:
+        cout << "--->>Student Loan<<---" << endl;
+        cout << "- Interest Rate: 4%\n";
+        cout << "- Maximum Tenure: 15 years\n";
+        cout << "- Minimum Amount: 50,000\n";
+        break;
+            
+        case 4:
+        cout << "--->>Personal Loan<<---" << endl;
+        cout << "- Interest Rate: 12%\n";
+        cout << "- Maximum Tenure: 5 years\n";
+        cout << "- Minimum Amount: 50,000\n";
+            break;
+            
+        case 5:
+        cout << "--->>Agriculture Loan<<---" << endl;
+        cout << "- Interest Rate: 5%" << endl;
+        cout << "- Maximum Tenure: 10 years" << endl;
+        cout << "- Minimum Amount: 1,00,000" << endl;
+        break;
+        
+        case 6:
+        cout <<"--->>Business Loan<<---" << endl;
+        cout << "- Interest Rate: 10%";
+        cout << "- Maximum Tenure: 15 years";
+        cout << "- Minimum Amount: 2,00,000";
+        
+        case 7:
+        cout << "--->>More details<<---" << endl;
+        cout << "-->>Contruct us.." << endl << endl;
+        cout << "Email: -bankmanagement@gmil.com" <<endl;
+        cout << "Phone: \n-01727**** \n-01610******" << endl;
+        cout << "\nThank you" << endl;
+        break;
+        
+        case 8:{
+        cout << "Thank you for visiting us." << endl << endl;
+        return;
+        }
+        break;
+        
+        default:
+        cout << "Error.Try Again" << endl;
+        cout << "xxxxxxxxxxxxxxx" << endl << endl;
+        problem_7();
+        break;
+        }
+        
+        cout << "\n--->>Types of Bank Loans<<---" << endl;
+        cout << "1. Again" << endl;
+        cout << "2. Back" << endl;
+        cout << "Enter your choice (1-2): ";
+        cin >> choice;
+        cout << endl;
+        
+        if (choice == 2);
+        } while (choice == 1);
     
 }
 
