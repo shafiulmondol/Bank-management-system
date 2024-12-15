@@ -401,9 +401,9 @@ void help_menu(){
   cout << "---->> Help Menu <<----" << endl;
   cout << "-----------------------" << endl << endl;
   
-  cout << "1. How to Create an Account" << endl;
-  cout << "2. Password Requirements" << endl;
-  cout << "3. Login Issues" << endl;
+  cout << "1. About Us " << endl;
+  cout << "2. How to Create an Account" << endl;
+  cout << "3. Password Requirements" << endl;
   cout << "4. How to Reset Password" << endl;
   cout << "5. Transaction Guidelines" << endl;
   cout << "6. Account Management" << endl;
@@ -414,7 +414,110 @@ void help_menu(){
 }
 
 void problem_1(){
-            int choice;
+    int choice;
+    do{
+        cout << "-->>This part of the program is taken from \"The City Bank\"<<--" << endl << endl;
+        cout << "--->>About Us<<---" << endl;
+        cout << "-----------------------------" << endl << endl;
+        
+        cout << "1. Overview" << endl;
+        cout << "2. History" << endl;
+        cout << "3. Vision, Mission & Core Values" << endl;
+        cout << "4. Board of Directors" << endl;
+        cout << "5. Management Committee" << endl;
+        cout << "6. Awards and Recognitions" << endl;
+        cout << "7. Annual Reports" << endl;
+        cout << "8. Exit" << endl;
+        
+        cout << "Enter your choice: ";
+        cin>> choice;
+        cout << endl << endl;
+        
+        switch(choice){
+            
+        case 1:
+        cout << "--->>Overview<<---" << endl;
+        cout <<"From 1983 till date, City Bank has been a case study in evolution, having transformed over time from a traditional organization to a critically acclaimed multi-faceted institution that embraces global best practices and chooses to be at the forefront of technological initiatives. Unlike many, the Bank's criteria for success are not only the bottom-line numbers but also the milestones set towards becoming the most complete bank in the country." <<endl;
+        break;
+            
+        case 2:
+        cout << "--->>History<<---" << endl;
+       cout << "In 1983, 12 young businessmen set the wheels in motion to establish the country's first private commercial bank. "
+     << "We salute the founding fathers of this institution. These visionary entrepreneurs braved immense uncertainties with "
+     << "courage and zeal to make history. Their grand step will always remain in our memory, and we wholeheartedly pay tribute to them. "
+     << "The founding members are (from left to right): Mr. Monowar Ali, Mr. Ibrahim Mia (Late), Mr. Abdul Hadi (Late), Mr. M.A. Hashem (Late), "
+     << "Mr. Anwar Hossain (Late), Mr. Abdul Barik Choudhury (Late), Mr. Deen Mohammad (Late), Mr. A.B.M. Feroz, Mr. Md. Ali Hossain, "
+     << "Mr. Azizul Haque Chowdhury (Late), and Mr. N.A. Chowdhury (Late)." << endl;
+        break;
+            
+        case 3:
+        cout << "--->>Vision, Mission & Core Values<<---" << endl;
+        
+        cout << "-->>The Vision<<--"<< endl <<endl;
+        cout << "The Financial Supermarket with a Winning Culture Offering Enjoyable Experiences" << endl << endl;
+
+        cout << "-->>The Mission<<--"<< endl <<endl;
+        cout << "1. Offer a wide array of products and services that differentiate and excite all customer segments." << endl;
+        cout << "2. Be the \"Employer of Choice\" by offering an environment where people excel and leaders are created." << endl;
+        cout << "3. Continuously challenge processes and platforms to enhance effectiveness and efficiency." << endl;
+        cout << "4. Promote innovation and automation with a view to guaranteeing and enhancing excellence in service." << endl;
+        cout << "5. Ensure respect for community, good governance, and compliance in everything we do." << endl << endl;
+        
+        cout << "-->>Core Values<<--" << endl;
+        cout << "- Result Driven" << endl;
+        cout << "- Accountable & Transparent" << endl;
+        cout << "- Courageous & Respectful" << endl;
+        cout << "- Engaged & Inspired" << endl;
+        cout << "- Focused on Customer Delight" << endl;
+        break;
+            
+        case 4:
+        cout << "--->>Board of Directors<<---" << endl;
+        cout << "This File is Private." << endl;
+        break;
+            
+        case 5:
+        cout << "--->>Management Committee<<---" << endl;
+        cout << "This File is Private." << endl;
+
+        break;
+        
+        case 6:
+        cout <<"--->>Awards and Recognitions<<---" << endl;
+        cout << "We enable our clients to realize their ambitions by using our expertise to provide innovative and dependable solutions." << endl;
+        cout << "We are proud of our many awards and recognitions that inspire us to continuously lead the way and shape the future of banking in Bangladesh and abroad." << endl;
+
+        case 7:
+        cout << "--->>Annual Reports<<---" << endl;
+        cout << "Soory. We are working on it" << endl;
+        break;
+        
+        case 8:{
+        cout << "Thank you for visiting us." << endl << endl;
+        return;
+        }
+        break;
+        
+        default:
+        cout << "Error.Try Again" << endl;
+        cout << "xxxxxxxxxxxxxxx" << endl << endl;
+        problem_1();
+        break;
+        }
+        
+        cout << "\n--->>About Us<<---" << endl;
+        cout << "1. Again" << endl;
+        cout << "2. Back" << endl;
+        cout << "Enter your choice (1-2): ";
+        cin >> choice;
+        cout << endl;
+        
+        if (choice == 2);
+        } while (choice == 1);
+}
+
+void problem_2(){
+    int choice;
     cout << "--->>How to Create an Account<<---" << endl;
     cout << "----------------------------------" << endl << endl;
     
@@ -446,7 +549,7 @@ void problem_1(){
         } while (choice == 1);
 }
 
-void problem_2(){
+void problem_3(){
     int choice;
     cout << "--->>Password Requirements<<---" << endl;
     cout << "----------------------------------" << endl << endl;
@@ -455,11 +558,11 @@ void problem_2(){
     cout << "1. Password must be at least 8 characters long." << endl;
     cout << "2. Password must include at least one uppercase letter (A-Z)." << endl;
     cout << "3. Password must include at least one lowercase letter (a-z)." << endl;
-   cout << "4. Password must include at least one digit (0-9)." << endl;
-   cout << "5. Password must include at least one special character (@, #, $, %, &, *)." << endl << endl;
+    cout << "4. Password must include at least one digit (0-9)." << endl;
+    cout << "5. Password must include at least one special character (@, #, $, %, &, *)." << endl << endl;
    
-   cout << "--->>Here are some examples of strong passwords<<---" << endl;
-   cout << "----------------------------------------------------" << endl;
+    cout << "--->>Here are some examples of strong passwords<<---" << endl;
+    cout << "----------------------------------------------------" << endl;
     cout << "- Summer2024@# " << endl;
     cout << "- SecureP@ssw0rd123 " << endl;
     cout << "- P@ssw0rD!567 " << endl;
@@ -488,10 +591,6 @@ void problem_2(){
         
         if (choice == 2);
         } while (choice == 1);
-}
-
-void problem_3(){
-    
 }
 
 void problem_4(){
@@ -610,7 +709,7 @@ void problem_9(){
 }
 
 void problem_10(){
-cout << "visiting us" << endl << endl;
+cout << "Thank you for visiting us." << endl << endl;
 }
 
 
