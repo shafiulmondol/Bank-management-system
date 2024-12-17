@@ -131,8 +131,7 @@ void ask_for_login() {
     cout<<"----->>Bank Manu<<-----"<<endl;
     cout << "1: Sign Up"<<endl;
     cout << "2: Login"<<endl;
-    cout << "3: View All Users (Admin only)"<<endl;
-    cout << "4: Back"<<endl;//exit cilo
+    cout << "3: Back"<<endl;//exit cilo
     cout << "Enter your choice: >>";
     }
     void show_user_chart() {
@@ -404,13 +403,14 @@ void help_menu(){
   cout << "1. About Us " << endl;
   cout << "2. How to Create an Account" << endl;
   cout << "3. Password Requirements" << endl;
-  cout << "4. How to Reset Password" << endl;
+  cout << "4. Reset Password" << endl;
   cout << "5. Transaction Guidelines" << endl;
   cout << "6. Account Management" << endl;
   cout << "7. Loan Applications" << endl;
   cout << "8. Security Tips" << endl;
   cout << "9. Contact Support" << endl;
-  cout << "10. Exit" << endl;
+  cout << "10. Delate account" <<endl;
+  cout << "11. Exit" << endl;
 }
 
 void problem_1(){
@@ -709,6 +709,87 @@ void problem_9(){
 }
 
 void problem_10(){
+   user1 use;
+     cout << "Do you want to delete your account?\n1. Yes\n2. No\n3. Back\nEnter your choice >> ";
+    int dlt;
+    cin >> dlt;
+
+    if (dlt == 1) {
+        long entered_account;
+        string entered_password;
+
+        cout << "Enter Account Number: ";
+        cin >> entered_account;
+        cin.ignore(); // Clear input buffer
+        cout << "Enter Password: ";
+        getline(cin, entered_password);
+        cout << endl;
+
+        ifstream file("customer_data.txt");
+        ofstream temp("temp.txt");
+
+        if (!file) {
+            cerr << "Error: Unable to open the customer data file for reading.\n";
+            cout << "Operation aborted.\n";
+           
+        }
+        if (!temp) {
+            cerr << "Error: Unable to create a temporary file for writing.\n";
+            cout << "Operation aborted.\n";
+            file.close();
+          
+        }
+
+        bool found = false;
+        while (file >> use.account_number) {
+            file.ignore();
+            getline(file, use.full_name, ' ');    
+            getline(file, use.dob, ' ');        
+            getline(file, use.nationality, ' '); 
+            getline(file, use.gender, ' ');     
+            getline(file, use.login_pass);      
+            if (use.account_number == entered_account && use.login_pass == entered_password) {
+                cout << "\nAccount belonging to " << use.full_name << " found and will be deleted.\n";
+                found = true;
+                continue;
+            }
+            temp << use.account_number << " " << use.full_name << " " << use.dob << " "
+                 << use.nationality << " " << use.gender << " " << use.login_pass << endl;
+        }
+
+        file.close();
+        temp.close();
+
+        if (!found) {
+            cout << "Account not found or password incorrect." << endl;
+            remove("temp.txt"); // Clean up temporary file
+        } else {
+            // Replace the original file with the updated one
+            if (remove("customer_data.txt") != 0) {
+                cerr << "Error: Unable to delete the original file." << endl;
+                cout << "Operation aborted.\n";
+            } else if (rename("temp.txt", "customer_data.txt") != 0) {
+                cerr << "Error: Unable to rename the temporary file." << endl;
+                cout << "Operation aborted.\n";
+            } else {
+                cout << "Account deleted successfully!" << endl;
+            }
+        }
+
+    } else if (dlt == 2) {
+        cout << "No action taken." << endl;
+    } else if (dlt == 3) {
+        cout << "Returning to the previous menu." << endl;
+    }
+
+    else {
+        cout << "Invalid choice." << endl;
+        problem_10();
+    }
+    }
+
+
+void problem_11(){
 cout << "Thank you for visiting us." << endl << endl;
 }
 
@@ -766,6 +847,9 @@ void access_help(){
             break;
 
             case 10:
+            h.problem_10();
+
+            case 11:
             cout << "Exiting help section." << endl;
             return;
             break;
@@ -802,7 +886,7 @@ void login_conditionn(){
     cout << endl;
     ifstream file("customer_data.txt");
     if (!file) {
-        cerr << "Error: Unable to open customer data file.\n";
+        cout << "Error: Unable to open customer data file.\n";
     }
 
 
