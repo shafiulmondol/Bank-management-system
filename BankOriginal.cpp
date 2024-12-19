@@ -139,7 +139,8 @@ void ask_for_login() {
         cout << "2: Withdraw"<<endl;
         cout << "3: Show Details"<<endl;
         cout << "4: Loan Request"<<endl;
-        cout << "5: Exit"<<endl;
+        cout << "5: Help"<<endl;
+        cout << "6: Exit"<<endl;
         cout << "Enter your choice: >>";
     }
 void employee_login()
@@ -159,9 +160,6 @@ class user1 {
 public:
  long account_number;
     string full_name, dob, nationality, gender, key, login_pass;
-
-    // Login method
-      
 
     void signup() {
     cout << "1. Personal Information>>\n";
@@ -532,6 +530,7 @@ void problem_2(){
     cout << "   - Date of Birth (format: DD/MM/YYYY)." << endl;
     cout << "   - Your nationality and residency." << endl;
     cout << "   - Gender (Male/Female/Other)." << endl;
+    cout << "   -Set a 2 degit key password. Which is helping you to recover your account." << endl;
     cout << "4. Set a strong password following these rules:" << endl;
     cout << "   - At least 8 characters long." << endl;
     cout << "   - Must include uppercase and lowercase letters, at least one digit, and one special character." << endl;
@@ -1099,7 +1098,11 @@ void login_conditionn(){
                         loan.customer_details();
                         loan.occupation();
                     }
-                } else if (second_chart == 5) {
+                } 
+                else if (second_chart==5){
+                    access_help();
+                }
+                else if (second_chart == 6) {
                     cout << "Logging out...\n";
                     break;
                 } else {
@@ -1122,6 +1125,7 @@ void continue_code() {
     display_chart chart;
     employee emp;
     user1 user;
+    help h;
    login_conditions loginC;
     string openion;
     after_login log;
@@ -1143,8 +1147,15 @@ void continue_code() {
             cout<<endl;
 
             if(log_option==1){
+                cout <<"1. How to create an account.\n2. Create an account.\nEnter your choice: >>";
+                int s;
+                cin >> s;
+                if (s==1){
+                    h.problem_2();
+                }
+                else if (s==2){
                 user.signup();
-                user.show_details();
+                user.show_details();}
             }
                
             else if (log_option == 2) {
@@ -1152,10 +1163,8 @@ void continue_code() {
                for(int i=0;i<3;i++){
                if(loginC.is_valid==false){
                loginC. login_conditionn();
-                // break;
-               }
-               else{
-               cout<<"Please go to help section.";}}
+               }}
+               cout<<"Please go to help section.";
 }
 
         else if (log_option==3){
