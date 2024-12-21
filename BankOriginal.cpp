@@ -335,14 +335,18 @@ class bank_lone{
         cin.ignore();
         cout<<"Enter your address= ";
         getline(cin,address);
-        cout<<"Enter your profession student/working person= ";
-        getline(cin,profession);
-    }
-    void occupation(save_file &s, long account_number) {
-    customer_details(); // Collect basic user details
 
-    if (profession == "student" || profession == "Student") {
+
+    }
+    void occupation(long account_number) {
+   // customer_details(); // Collect basic user details
+    cout<<"Enter your profession\n 1.Student\n 2.Working\n Your choice= ";
+        long profession1;
+        cin>>profession1;
+
+    if (profession1 ==1 ) {
         cout << "Enter your university name= ";
+        cin.ignore();
         getline(cin, university_name);
         cout << "Enter your department= ";
         getline(cin, department);
@@ -364,12 +368,17 @@ class bank_lone{
         cout << "Income: " << income << endl;
         cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
         cout << "Reason: " << problem << endl;
-
-        // Save loan details to file
-        s.save_loan_to_file(account_number, name, profession, age, income, lone_amount, problem);
-
-    } else { // Working professional
+        ofstream loan("Lone.txt",ios::app);
+        if(!loan)
+        {
+            cout<<"not created";
+        }
+        loan<<account_number<<" "<<name<<" "<<university_name <<" "<< department<<" "<< id<<" "<<income<<" "<<lone_amount<<" "<< problem<<endl;
+         loan.close();
+         }
+     else { // Working professional
         cout << "Enter your office name= ";
+        cin.ignore();
         getline(cin, office);
         cout << "Enter your position= ";
         getline(cin, rank_position);
@@ -388,11 +397,16 @@ class bank_lone{
         cout << "Income: " << income << endl;
         cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
         cout << "Reason: " << problem << endl;
-
-        // Save loan details to file
-        s.save_loan_to_file(account_number, name, profession, age, income, lone_amount, problem);
+        ofstream loan("Lone.txt",ios::app);
+        if(!loan)
+        {
+            cout<<"not created";
+        }
+        loan<<account_number<<" "<<name<<" "<< profession<<" "<< age<<" "<< income<<" "<< lone_amount<<" "<< problem<<endl;
+      loan.close();
     }
 }
+};
 
 
 class help{
@@ -1099,7 +1113,7 @@ void login_conditionn(){
                     cout << endl;
                     if (openion == 1 || openion ==2) {
                         loan.customer_details();
-                        loan.occupation();
+                        loan.occupation(entered_account);
                     }
                 } 
                 else if (second_chart==5){
