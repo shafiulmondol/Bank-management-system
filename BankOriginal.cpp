@@ -49,13 +49,13 @@ bool Password_Validity(const string &password) {
 
 class save_file {
 public:
-    void save_user_to_file(long account_number, const string &full_name, const string &dob,const string &nationality, const string &gender, const string &password) {
+    void save_user_to_file(long account_number, const string &full_name, const string &dob,const string &nationality, const string &gender, const string &key, const string &password) {
         ofstream write("customer_data.txt", ios::app);
         if (!write) {
             cout << "Error: Unable to open file for writing.\n";
             return;
         }
-        write << account_number << " " << full_name << " " << dob << " "<< nationality << " " << gender << " " << password << endl;
+        write << account_number << " " << full_name << " " << dob << " "<< nationality << " " << gender << " "<< key << " " << password << endl;
         write.close();
     }
 
@@ -139,7 +139,8 @@ void ask_for_login() {
         cout << "2: Withdraw"<<endl;
         cout << "3: Show Details"<<endl;
         cout << "4: Loan Request"<<endl;
-        cout << "5: Exit"<<endl;
+        cout << "5: Help"<<endl;
+        cout << "6: Exit"<<endl;
         cout << "Enter your choice: >>";
     }
 void employee_login()
@@ -158,10 +159,7 @@ void show_exit(){
 class user1 {
 public:
  long account_number;
-    string full_name, dob, nationality, gender, login_pass;
-
-    // Login method
-      
+    string full_name, dob, nationality, gender, key, login_pass;
 
     void signup() {
     cout << "1. Personal Information>>\n";
@@ -174,6 +172,8 @@ public:
     getline(cin, nationality);
     cout << "\n\tGender: ";
     getline(cin, gender);
+    cout << "\n\tKey password(2 digits): ";
+    getline(cin, key);
 
     while (true) {
         cout << "Set a strong password: ";
@@ -191,7 +191,7 @@ public:
     cout << "Your Account Number: " << account_number << endl;
 
     save_file s;
-    s.save_user_to_file(account_number, full_name, dob, nationality, gender, login_pass);
+    s.save_user_to_file(account_number, full_name, dob, nationality, gender, key, login_pass);
 }
 
 long generate_unique_account_number() {
@@ -224,7 +224,7 @@ long generate_unique_account_number() {
         cout << "\tDate of Birth: " << dob << "\n";
         cout << "\tNationality and Residency: " << nationality << "\n";
         cout << "\tGender: " << gender << "\n";
-        cout << "\tAccount Number: " << account_number << "\n";
+        cout << "\tAccount Number: " << account_number << "\n\n";
     }
 };
 
@@ -240,7 +240,6 @@ public:
 
         if (deposit_amount <= 0) {
             cout << "Invalid deposit amount. Please try again.\n";
-            return;
         }
         else{
         double current_balance = s.get_balance(account_number);
@@ -248,7 +247,7 @@ public:
         s.update_balance(account_number, current_balance);
 
         s.save_transaction(account_number, deposit_amount, "Deposit");
-        cout << "Deposit successful. Current balance: " << current_balance << "\n";
+        cout << "Deposit successful. Current balance: " << current_balance << "\n\n";
     }}
 
     void withdraw(long account_number) {
@@ -266,7 +265,7 @@ public:
         s.update_balance(account_number, current_balance);
 
         s.save_transaction(account_number, withdraw_amount, "Withdrawal");
-        cout << "Withdrawal successful. Remaining balance: " << current_balance << "\n";
+        cout << "Withdrawal successful. Remaining balance: " << current_balance << "\n\n";
     }}
 
     void show_transaction_history(long account_number) {
@@ -316,7 +315,7 @@ class employee{
                 cout << ">> Wrong ID / Pin\n>> Please try again\n";
             }
         }
-        cout << ">> Too many failed attempts. Go to help center.\n";
+        cout << ">> Too many failed attempts. Go to help center.\n\n";
     }
 };
 
@@ -534,6 +533,7 @@ void problem_2(){
     cout << "   - Date of Birth (format: DD/MM/YYYY)." << endl;
     cout << "   - Your nationality and residency." << endl;
     cout << "   - Gender (Male/Female/Other)." << endl;
+    cout << "   -Set a 2 degit key password. Which is helping you to recover your account." << endl;
     cout << "4. Set a strong password following these rules:" << endl;
     cout << "   - At least 8 characters long." << endl;
     cout << "   - Must include uppercase and lowercase letters, at least one digit, and one special character." << endl;
@@ -597,7 +597,168 @@ void problem_3(){
 }
 
 void problem_4(){
-   
+    user1 us;
+    int res;
+    string reset_pass;
+    cout << "1. Reset password\n2. Reset key password\n3. Back\n--Enter choice: >> ";
+    cin >> res;
+
+    if (res == 1) {
+        long entered_account;
+        string entered_password;
+
+        cout << "Enter Account Number: ";
+        cin >> entered_account;
+        cin.ignore(); // Clear input buffer
+        cout << "Enter key Password: ";
+        getline(cin, entered_password);
+        cout << endl;
+
+        ifstream file("customer_data.txt");
+        ofstream temp("temp.txt");
+
+        if (!file) {
+            cerr << "Error: Unable to open the customer data file for reading.\n";
+            cout << "Operation aborted.\n";
+           
+        }
+        if (!temp) {
+            cerr << "Error: Unable to create a temporary file for writing.\n";
+            cout << "Operation aborted.\n";
+            file.close();
+          
+        }
+
+        bool found = false;
+        while (file >> us.account_number) {
+            file.ignore();
+            getline(file, us.full_name, ' ');    
+            getline(file, us.dob, ' ');        
+            getline(file, us.nationality, ' '); 
+            getline(file, us.gender, ' ');   
+            getline(file, us.key, ' ');   
+            getline(file, us.login_pass);      
+            if (us.account_number == entered_account && us.key == entered_password) {
+                cout << "\nAccount belonging to " << us.full_name << " found and password will be reset.\n";
+               //cin.ignore();
+               while (true) {
+        cout << "Set a strong password: ";
+         getline(cin , reset_pass);
+        if (Password_Validity(reset_pass)) {
+            cout << "\nPassword is valid.\n";
+            break;
+        } else {
+            cout << "Invalid password. Please try again.\n";
+        }
+    }
+
+ temp << us.account_number << " " << us.full_name << " " << us.dob << " "
+    << us.nationality << " " << us.gender << " " << us.key << " "<< reset_pass << endl;
+            found=true;
+            continue;
+            }
+            
+            temp << us.account_number << " " << us.full_name << " " << us.dob << " "
+        << us.nationality << " " << us.gender << " " << us.key << " "<< us.login_pass << endl;
+        }
+
+        file.close();
+        temp.close();
+
+        if (!found) {
+            cout << "Account not found or password incorrect.\n" << endl;
+            remove("temp.txt");
+        } else {
+            if (remove("customer_data.txt") != 0) {
+                cerr << "Error: Unable to delete the original file." << endl;
+                cout << "Operation aborted.\n";
+            } else if (rename("temp.txt", "customer_data.txt") != 0) {
+                cerr << "Error: Unable to rename the temporary file." << endl;
+                cout << "Operation aborted.\n";
+            } else {
+                cout << "Password reset successfully!\nDo not sear your password and key password.\n" << endl;
+            }
+        }
+
+    } 
+    else if (res==2){
+        long entered_account;
+        string entered_password;
+
+        cout << "Enter Account Number: ";
+        cin >> entered_account;
+        cin.ignore(); // Clear input buffer
+        cout << "Enter Password: ";
+        getline(cin, entered_password);
+        cout << endl;
+
+        ifstream file("customer_data.txt");
+        ofstream temp("temp.txt");
+
+        if (!file) {
+            cerr << "Error: Unable to open the customer data file for reading.\n";
+            cout << "Operation aborted.\n";
+           
+        }
+        if (!temp) {
+            cerr << "Error: Unable to create a temporary file for writing.\n";
+            cout << "Operation aborted.\n";
+            file.close();
+          
+        }
+
+        bool found = false;
+        while (file >> us.account_number) {
+            file.ignore();
+            getline(file, us.full_name, ' ');    
+            getline(file, us.dob, ' ');        
+            getline(file, us.nationality, ' '); 
+            getline(file, us.gender, ' ');   
+            getline(file, us.key, ' ');   
+            getline(file, us.login_pass);      
+            if (us.account_number == entered_account && us.login_pass == entered_password) {
+                cout << "\nAccount belonging to " << us.full_name << " found and key password will be reset.\n";
+        cout << "Set a 2 digits key password: ";
+         getline(cin , reset_pass);
+ temp << us.account_number << " " << us.full_name << " " << us.dob << " "
+    << us.nationality << " " << us.gender << " " << reset_pass << " "<<us.login_pass  << endl;
+            found=true;
+            continue;
+            }
+            
+            temp << us.account_number << " " << us.full_name << " " << us.dob << " "
+        << us.nationality << " " << us.gender << " " << us.key << " "<< us.login_pass << endl;
+        }
+
+        file.close();
+        temp.close();
+
+        if (!found) {
+            cout << "Account not found or password incorrect.\n" << endl;
+            remove("temp.txt");
+        } else {
+            if (remove("customer_data.txt") != 0) {
+                cerr << "Error: Unable to delete the original file." << endl;
+                cout << "Operation aborted.\n";
+            } else if (rename("temp.txt", "customer_data.txt") != 0) {
+                cerr << "Error: Unable to rename the temporary file." << endl;
+                cout << "Operation aborted.\n";
+            } else {
+                cout << "Key Password reset successfully!\nDo not sear your password and key password.\n" << endl;
+            }
+        }
+
+    }
+    else if (res == 3) {
+        cout << "Returning to the previous menu." << endl;
+    }
+
+    else {
+        cout << "Invalid choice." << endl;
+        problem_4();
+    }
+    
+
 }
 
 void problem_5(){
@@ -749,7 +910,8 @@ void problem_10(){
             getline(file, use.full_name, ' ');    
             getline(file, use.dob, ' ');        
             getline(file, use.nationality, ' '); 
-            getline(file, use.gender, ' ');     
+            getline(file, use.gender, ' ');   
+            getline(file, use.key, ' ');   
             getline(file, use.login_pass);      
             if (use.account_number == entered_account && use.login_pass == entered_password) {
                 cout << "\nAccount belonging to " << use.full_name << " found and will be deleted.\n";
@@ -757,17 +919,16 @@ void problem_10(){
                 continue;
             }
             temp << use.account_number << " " << use.full_name << " " << use.dob << " "
-                 << use.nationality << " " << use.gender << " " << use.login_pass << endl;
+                 << use.nationality << " " << use.gender << " " << use.key << " "<< use.login_pass << endl;
         }
 
         file.close();
         temp.close();
 
         if (!found) {
-            cout << "Account not found or password incorrect." << endl;
-            remove("temp.txt"); // Clean up temporary file
+            cout << "Account not found or password incorrect.\n" << endl;
+            remove("temp.txt");
         } else {
-            // Replace the original file with the updated one
             if (remove("customer_data.txt") != 0) {
                 cerr << "Error: Unable to delete the original file." << endl;
                 cout << "Operation aborted.\n";
@@ -899,6 +1060,7 @@ void login_conditionn(){
         getline(file, user.dob, ' ');
         getline(file, user.nationality, ' ');
         getline(file, user.gender, ' ');
+        getline(file, user.key, ' ');
         getline(file, user.login_pass);
 
         if (user.account_number == entered_account && user.login_pass == entered_password) {
@@ -939,7 +1101,11 @@ void login_conditionn(){
                         loan.customer_details();
                         loan.occupation();
                     }
-                } else if (second_chart == 5) {
+                } 
+                else if (second_chart==5){
+                    access_help();
+                }
+                else if (second_chart == 6) {
                     cout << "Logging out...\n";
                     break;
                 } else {
@@ -962,6 +1128,7 @@ void continue_code() {
     display_chart chart;
     employee emp;
     user1 user;
+    help h;
    login_conditions loginC;
     string openion;
     after_login log;
@@ -983,8 +1150,15 @@ void continue_code() {
             cout<<endl;
 
             if(log_option==1){
+                cout <<"1. How to create an account.\n2. Create an account.\nEnter your choice: >>";
+                int s;
+                cin >> s;
+                if (s==1){
+                    h.problem_2();
+                }
+                else if (s==2){
                 user.signup();
-                user.show_details();
+                user.show_details();}
             }
                
             else if (log_option == 2) {
@@ -992,10 +1166,8 @@ void continue_code() {
                for(int i=0;i<3;i++){
                if(loginC.is_valid==false){
                loginC. login_conditionn();
-                // break;
-               }
-               else{
-               cout<<"Please go to help section.";}}
+               }}
+               cout<<"Please go to help section.";
 }
 
         else if (log_option==3){
@@ -1031,8 +1203,6 @@ void continue_code() {
         cout<<endl;
     }   
 }
-
-
 
 int main(){
    continue_code();
