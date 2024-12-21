@@ -339,58 +339,61 @@ class bank_lone{
         cout<<"Enter your profession student/working person= ";
         getline(cin,profession);
     }
-    void occupation()
-    {
-        if(profession=="student"||profession=="Student"){
-        cout<<"Enter your university name= ";
-        getline(cin,university_name);
-        cout<<"Enter your department= ";
-        getline(cin,department);
-        cout<<"Enter your id= ";
-        cin>>id;
-        cout<<"Enter your income= ";
-        cin>>income;
-        cout<<"Enter your lone amount= ";
-        cin>>lone_amount;
-        cin.ignore();
-        cout<<"Why do you want to take a loan= ";
-        getline(cin,problem);
+    void occupation(save_file &s, long account_number) {
+    customer_details(); // Collect basic user details
 
-        cout<<endl;
-        cout<<"name= "<<name<<endl;
-        cout<<"University name= "<<university_name<<endl;
-        cout<<"Department = "<<department<<endl;
-        cout<<"your id = "<<id<<endl;
-        cout<<"Your income= "<<income<<endl;
-        cout<<"your want "<<lone_amount<<"tk lone."<<endl;
-        cout<<"problem= "<<problem<<endl;
-        }
-        else{
-            cout<<"Enter your office name= ";
-            getline(cin,office);
-            cout<<"Enter your position= ";
-            getline(cin,rank_position);cout<<"Enter your income= ";
-            cin>>income;
-            cout<<"Enter your lone amount= ";
-            cin>>lone_amount;
-            cin.ignore();
-            cout<<"Why do you want to take a loan= ";
-            getline(cin,problem);
+    if (profession == "student" || profession == "Student") {
+        cout << "Enter your university name= ";
+        getline(cin, university_name);
+        cout << "Enter your department= ";
+        getline(cin, department);
+        cout << "Enter your id= ";
+        cin >> id;
+        cout << "Enter your income= ";
+        cin >> income;
+        cout << "Enter your loan amount= ";
+        cin >> lone_amount;
+        cin.ignore(); // Ignore leftover newline character
+        cout << "Why do you want to take a loan= ";
+        getline(cin, problem);
 
-            cout<<endl;
-            cout<<"name= "<<name<<endl;
-            cout<<"Office name is = "<<office<<endl;
-            cout<<"Your position= "<<rank_position<<endl;
-            cout<<"Your income= "<<income<<endl;
-            cout<<"your want "<<lone_amount<<"tk lone."<<endl;
-            cout<<"problem= "<<problem;
+        cout << "\nLoan application details:\n";
+        cout << "Name: " << name << endl;
+        cout << "University: " << university_name << endl;
+        cout << "Department: " << department << endl;
+        cout << "ID: " << id << endl;
+        cout << "Income: " << income << endl;
+        cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
+        cout << "Reason: " << problem << endl;
 
-            
-        }
+        // Save loan details to file
+        s.save_loan_to_file(account_number, name, profession, age, income, lone_amount, problem);
+
+    } else { // Working professional
+        cout << "Enter your office name= ";
+        getline(cin, office);
+        cout << "Enter your position= ";
+        getline(cin, rank_position);
+        cout << "Enter your income= ";
+        cin >> income;
+        cout << "Enter your loan amount= ";
+        cin >> lone_amount;
+        cin.ignore(); // Ignore leftover newline character
+        cout << "Why do you want to take a loan= ";
+        getline(cin, problem);
+
+        cout << "\nLoan request summary:\n";
+        cout << "Name: " << name << endl;
+        cout << "Office: " << office << endl;
+        cout << "Position: " << rank_position << endl;
+        cout << "Income: " << income << endl;
+        cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
+        cout << "Reason: " << problem << endl;
+
+        // Save loan details to file
+        s.save_loan_to_file(account_number, name, profession, age, income, lone_amount, problem);
     }
-};
-
-
+}
 
 
 class help{
