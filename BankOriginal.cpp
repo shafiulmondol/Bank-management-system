@@ -335,61 +335,78 @@ class bank_lone{
         cin.ignore();
         cout<<"Enter your address= ";
         getline(cin,address);
-        cout<<"Enter your profession student/working person= ";
-        getline(cin,profession);
+
+
     }
-    void occupation()
-    {
-        if(profession=="student"||profession=="Student"){
-        cout<<"Enter your university name= ";
-        getline(cin,university_name);
-        cout<<"Enter your department= ";
-        getline(cin,department);
-        cout<<"Enter your id= ";
-        cin>>id;
-        cout<<"Enter your income= ";
-        cin>>income;
-        cout<<"Enter your lone amount= ";
-        cin>>lone_amount;
+    void occupation(long account_number) {
+   // customer_details(); // Collect basic user details
+    cout<<"Enter your profession\n 1.Student\n 2.Working\n Your choice= ";
+        long profession1;
+        cin>>profession1;
+
+    if (profession1 ==1 ) {
+        cout << "Enter your university name= ";
         cin.ignore();
-        cout<<"Why do you want to take a loan= ";
-        getline(cin,problem);
+        getline(cin, university_name);
+        cout << "Enter your department= ";
+        getline(cin, department);
+        cout << "Enter your id= ";
+        cin >> id;
+        cout << "Enter your income= ";
+        cin >> income;
+        cout << "Enter your loan amount= ";
+        cin >> lone_amount;
+        cin.ignore(); // Ignore leftover newline character
+        cout << "Why do you want to take a loan= ";
+        getline(cin, problem);
 
-        cout<<endl;
-        cout<<"name= "<<name<<endl;
-        cout<<"University name= "<<university_name<<endl;
-        cout<<"Department = "<<department<<endl;
-        cout<<"your id = "<<id<<endl;
-        cout<<"Your income= "<<income<<endl;
-        cout<<"your want "<<lone_amount<<"tk lone."<<endl;
-        cout<<"problem= "<<problem<<endl;
+        cout << "\nLoan application details:\n";
+        cout << "Name: " << name << endl;
+        cout << "University: " << university_name << endl;
+        cout << "Department: " << department << endl;
+        cout << "ID: " << id << endl;
+        cout << "Income: " << income << endl;
+        cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
+        cout << "Reason: " << problem << endl;
+        ofstream loan("Lone.txt",ios::app);
+        if(!loan)
+        {
+            cout<<"not created";
         }
-        else{
-            cout<<"Enter your office name= ";
-            getline(cin,office);
-            cout<<"Enter your position= ";
-            getline(cin,rank_position);cout<<"Enter your income= ";
-            cin>>income;
-            cout<<"Enter your lone amount= ";
-            cin>>lone_amount;
-            cin.ignore();
-            cout<<"Why do you want to take a loan= ";
-            getline(cin,problem);
+        loan<<account_number<<" "<<name<<" "<<university_name <<" "<< department<<" "<< id<<" "<<income<<" "<<lone_amount<<" "<< problem<<endl;
+         loan.close();
+         }
+     else { // Working professional
+        cout << "Enter your office name= ";
+        cin.ignore();
+        getline(cin, office);
+        cout << "Enter your position= ";
+        getline(cin, rank_position);
+        cout << "Enter your income= ";
+        cin >> income;
+        cout << "Enter your loan amount= ";
+        cin >> lone_amount;
+        cin.ignore(); // Ignore leftover newline character
+        cout << "Why do you want to take a loan= ";
+        getline(cin, problem);
 
-            cout<<endl;
-            cout<<"name= "<<name<<endl;
-            cout<<"Office name is = "<<office<<endl;
-            cout<<"Your position= "<<rank_position<<endl;
-            cout<<"Your income= "<<income<<endl;
-            cout<<"your want "<<lone_amount<<"tk lone."<<endl;
-            cout<<"problem= "<<problem;
-
-            
+        cout << "\nLoan request summary:\n";
+        cout << "Name: " << name << endl;
+        cout << "Office: " << office << endl;
+        cout << "Position: " << rank_position << endl;
+        cout << "Income: " << income << endl;
+        cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
+        cout << "Reason: " << problem << endl;
+        ofstream loan("Lone.txt",ios::app);
+        if(!loan)
+        {
+            cout<<"not created";
         }
+        loan<<account_number<<" "<<name<<" "<< profession<<" "<< age<<" "<< income<<" "<< lone_amount<<" "<< problem<<endl;
+      loan.close();
     }
+}
 };
-
-
 
 
 class help{
@@ -1096,7 +1113,7 @@ void login_conditionn(){
                     cout << endl;
                     if (openion == 1 || openion ==2) {
                         loan.customer_details();
-                        loan.occupation();
+                        loan.occupation(entered_account);
                     }
                 } 
                 else if (second_chart==5){
