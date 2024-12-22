@@ -614,6 +614,8 @@ void problem_4(){
     user1 us;
     int res;
     string reset_pass;
+     long account_number;
+        string full_name,dob,nationality,gender,login_pass,key;
     cout << "1. Reset password\n2. Reset key password\n3. Back\n--Enter choice: >> ";
     cin >> res;
 
@@ -644,16 +646,16 @@ void problem_4(){
         }
 
         bool found = false;
-        while (file >> us.account_number) {
+        while (file >> account_number) {
             file.ignore();
-            getline(file, us.full_name, ' ');    
-            getline(file, us.dob, ' ');        
-            getline(file, us.nationality, ' '); 
-            getline(file, us.gender, ' ');   
-            getline(file, us.key, ' ');   
-            getline(file, us.login_pass);      
-            if (us.account_number == entered_account && us.key == entered_password) {
-                cout << "\nAccount belonging to " << us.full_name << " found and password will be reset.\n";
+            getline(file, full_name, ' ');    
+            getline(file, dob, ' ');        
+            getline(file, nationality, ' '); 
+            getline(file, gender, ' ');   
+            getline(file, key, ' ');   
+            getline(file, login_pass);      
+            if (account_number == entered_account && key == entered_password) {
+                cout << "\nAccount belonging to " << full_name << " found and password will be reset.\n";
                //cin.ignore();
                while (true) {
         cout << "Set a strong password: ";
@@ -666,14 +668,14 @@ void problem_4(){
         }
     }
 
- temp << us.account_number << " " << us.full_name << " " << us.dob << " "
-    << us.nationality << " " << us.gender << " " << us.key << " "<< reset_pass << endl;
+ temp << account_number << " " << full_name << " " << dob << " "
+    << nationality << " " << gender << " " << key << " "<< reset_pass << endl;
             found=true;
             continue;
             }
             
-            temp << us.account_number << " " << us.full_name << " " << us.dob << " "
-        << us.nationality << " " << us.gender << " " << us.key << " "<< us.login_pass << endl;
+            temp << account_number << " " << full_name << " " << dob << " "
+        << us.nationality << " " << gender << " " << key << " "<< login_pass << endl;
         }
 
         file.close();
@@ -722,26 +724,26 @@ void problem_4(){
         }
 
         bool found = false;
-        while (file >> us.account_number) {
+        while (file >>account_number) {
             file.ignore();
-            getline(file, us.full_name, ' ');    
-            getline(file, us.dob, ' ');        
-            getline(file, us.nationality, ' '); 
-            getline(file, us.gender, ' ');   
-            getline(file, us.key, ' ');   
-            getline(file, us.login_pass);      
-            if (us.account_number == entered_account && us.login_pass == entered_password) {
-                cout << "\nAccount belonging to " << us.full_name << " found and key password will be reset.\n";
+            getline(file, full_name, ' ');    
+            getline(file, dob, ' ');        
+            getline(file, nationality, ' '); 
+            getline(file, gender, ' ');   
+            getline(file, key, ' ');   
+            getline(file, login_pass);      
+            if (account_number == entered_account && login_pass == entered_password) {
+                cout << "\nAccount belonging to " << full_name << " found and key password will be reset.\n";
         cout << "Set a 2 digits key password: ";
          getline(cin , reset_pass);
- temp << us.account_number << " " << us.full_name << " " << us.dob << " "
-    << us.nationality << " " << us.gender << " " << reset_pass << " "<<us.login_pass  << endl;
+ temp << account_number << " " << full_name << " " << dob << " "
+    << nationality << " " << gender << " " << reset_pass << " "<<login_pass  << endl;
             found=true;
             continue;
             }
             
-            temp << us.account_number << " " << us.full_name << " " << us.dob << " "
-        << us.nationality << " " << us.gender << " " << us.key << " "<< us.login_pass << endl;
+            temp << account_number << " " << full_name << " " << dob << " "
+        << nationality << " " << gender << " " << key << " "<< login_pass << endl;
         }
 
         file.close();
@@ -1047,6 +1049,8 @@ class login_conditions{
        after_login log;
     save_file file_manager;
 bool is_valid;
+ long account_number;
+        string full_name,dob,nationality,gender,login_pass,key;
 
     login_conditions(){
         is_valid=false;
@@ -1068,17 +1072,17 @@ void login_conditionn(){
     }
 
 
-    while (file >> user.account_number) {
+    while (file >> account_number) {
         file.ignore(); 
-        getline(file, user.full_name, ' ');
-        getline(file, user.dob, ' ');
-        getline(file, user.nationality, ' ');
-        getline(file, user.gender, ' ');
-        getline(file, user.key, ' ');
-        getline(file, user.login_pass);
+        getline(file, full_name, ' ');
+        getline(file, dob, ' ');
+        getline(file, nationality, ' ');
+        getline(file, gender, ' ');
+        getline(file, key, ' ');
+        getline(file, login_pass);
 
-        if (user.account_number == entered_account && user.login_pass == entered_password) {
-            cout << "\nLogin successful! Welcome, " << user.full_name << ".\n";
+        if (account_number == entered_account && login_pass == entered_password) {
+            cout << "\nLogin successful! Welcome, " << full_name << ".\n";
             is_valid = true;
 
             int second_chart;
@@ -1088,17 +1092,17 @@ void login_conditionn(){
                 cout << endl;
 
                 if (second_chart == 1) {
-                    log.deposit(user.account_number);
+                    log.deposit(account_number);
                     cout<<endl;
                 } else if (second_chart == 2) {
-                    log.withdraw(user.account_number);
+                    log.withdraw(account_number);
                     cout<<endl;
                 } else if (second_chart == 3) {
                     cout<<"1: Show biodata\n2: Show transection history"<<endl;
                     int b;
                     cin>>b;
                     if(b==1){
-                    double balance = file_manager.get_balance(user.account_number);
+                    double balance = file_manager.get_balance(account_number);
                     cout << "Account Details:\n";
                     user.show_details();
                     cout << "Current Balance: " << balance << endl;}
