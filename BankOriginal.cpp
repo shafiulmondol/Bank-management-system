@@ -1098,7 +1098,7 @@ void login_conditionn(){
                     log.withdraw(account_number);
                     cout<<endl;
                 } else if (second_chart == 3) {
-                    cout<<"1: Show biodata\n2: Show transection history"<<endl;
+                    cout<<"1: Show biodata.\n2: Show transection history.\n--Enter your choice-->>"<<endl;
                     int b;
                     cin>>b;
                     if(b==1){
@@ -1168,7 +1168,7 @@ void continue_code() {
             cout<<endl;
 
             if(log_option==1){
-                cout <<"1. How to create an account.\n2. Create an account.\nEnter your choice: >>";
+                cout <<"1: Process of creating an account.\n2: Create an account.\nEnter your choice: >>";
                 int s;
                 cin >> s;
                 if (s==1){
