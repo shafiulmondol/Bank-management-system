@@ -325,7 +325,11 @@ class bank_lone{
     string university_name,department;
     string office,rank_position;
     int age,income,lone_amount,id,semester;
-
+    double balance;
+    bank_lone()
+    {
+        balance=0.0;
+    }
     void customer_details()
     {
         cout<<"Enter your name= ";
@@ -406,6 +410,46 @@ class bank_lone{
       loan.close();
     }
 }
+void Transaction(long account_number) {
+    string name,address,profession,problem;
+    string university_name,department;
+    string office,rank_position;
+    int age,income,lone_amount,id,semester,c;
+    cout<<"1: Student.\n2: Working.\n3: Back.\nEnter your choice..>>";
+    cin>>c;
+    if(c==1){
+    ifstream file("Lone.txt");
+    ofstream temp("temp.txt");
+    bool found = false;
+
+    long acc;
+    double bal,new_balance;
+    while (file >> acc >> name>>university_name>>department>>id>>income>>bal>>problem) {
+        if (acc == account_number) {
+            cout<<"Your curent due: "<<bal<<endl;
+            cout<<"Enter pament amount: ";
+            cin>>new_balance;
+            if(new_balance<=bal){
+                temp << acc << " " << bal-new_balance << endl;
+            found = true;
+            }
+        
+        } else {
+            temp << acc << " " << bal << endl;
+        }
+    }
+
+    //if (!found) {
+      //  temp << account_number << " " << new_balance << endl;
+    //}
+
+    file.close();
+    temp.close();
+    remove("balances.txt");
+    rename("temp.txt", "balances.txt");
+}
+} 
+  
 };
 
 
@@ -1111,14 +1155,24 @@ void login_conditionn(){
                     }
                 } else if (second_chart == 4) {
                     int  openion;
-                    cout << "Are you withdrawing a loan? \n1: Yes\n2: No): ";
+                    cout << "1: Take a loan .\n2: Pamment due loan.\n 3: Back.\n Inter your choice: >>  ";
                     cin >> openion;
                     cin.ignore();
                     cout << endl;
-                    if (openion == 1 || openion ==2) {
+                    if (openion == 1 ) {
                         loan.customer_details();
                         loan.occupation(entered_account);
                     }
+                    else if(openion==2){
+                        
+                        loan.Transaction(entered_account);
+
+                    }
+                    else if(openion==3)
+                    {
+                        continue;
+                    }
+
                 } 
                 else if (second_chart==5){
                     access_help();
