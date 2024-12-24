@@ -427,7 +427,7 @@ void Transaction(long account_number) {
     while (file >> acc >> name>>university_name>>department>>id>>income>>bal>>problem) {
         if (acc == account_number) {
             cout<<"Your curent due: "<<bal<<endl;
-            cout<<"Enter pament amount: ";
+            cout<<"Enter payment amount: ";
             cin>>new_balance;
             if(new_balance<=bal){
                 temp << acc << " " << bal-new_balance << endl;
