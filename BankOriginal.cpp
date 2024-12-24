@@ -520,7 +520,7 @@ void problem_1(){
         cout << "5. Management Committee" << endl;
         cout << "6. Awards and Recognitions" << endl;
         cout << "7. Annual Reports" << endl;
-        cout << "8. Exit" << endl;
+        cout << "8. Back" << endl;
         
         cout << "Enter your choice: ";
         cin>> choice;
@@ -610,8 +610,9 @@ void problem_1(){
 }
 
 void problem_2(){
+    user1 u;
     int choice;
-    cout << "--->>How to Create an Account<<---" << endl;
+    cout << "\n--->>How to Create an Account<<---" << endl;
     cout << "----------------------------------" << endl << endl;
     
         do {
@@ -633,14 +634,22 @@ void problem_2(){
     cout << "--->>Thank you for staying with us<<---" << endl << endl;
 
         cout << "\n--->>How to Create an Account<<---" << endl;
-        cout << "1. Again" << endl;
+        cout << "1. Sign_up" << endl;
         cout << "2. Back" << endl;
-        cout << "Enter your choice (1-2): ";
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice (1-3): ";
         cin >> choice;
         cout << endl;
         
-        if (choice == 2);
-        } while (choice == 1);
+        if (choice == 1){
+            u.signup();
+            break;
+        }
+        else if (choice == 3){
+            cout << "Exiting the program now!" << endl;
+            exit(0);
+        }
+        } while (choice != 2);
 }
 
 void problem_3(){
