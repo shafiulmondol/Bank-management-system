@@ -319,138 +319,171 @@ class employee{
     }
 };
 
-class bank_lone{
-    public:
-    string name,address,profession,problem;
-    string university_name,department;
-    string office,rank_position;
-    int age,income,lone_amount,id,semester;
-    double balance;
-    bank_lone()
-    {
-        balance=0.0;
-    }
-    void customer_details()
-    {
-        cout<<"Enter your name= ";
-        getline(cin,name);
-        cout<<"Enter your age= ";
-        cin>>age;
-        cin.ignore();
-        cout<<"Enter your address= ";
-        getline(cin,address);
+class bank_lone {
+public:
+    string name, address, profession, problem, university_name, department, office, rank_position;
+    int age, income, lone_amount, id, semester;
+    double balance, due_amount, payment;
 
+    void customer_details(long account_number) {
+        long a;
+        bool loan_exists = false;
 
-    }
-    void occupation(long account_number) {
-   // customer_details(); // Collect basic user details
-    cout<<"Enter your profession\n 1.Student\n 2.Working\n Your choice= ";
-        long profession1;
-        cin>>profession1;
-
-    if (profession1 ==1 ) {
-        cout << "Enter your university name= ";
-        cin.ignore();
-        getline(cin, university_name);
-        cout << "Enter your department= ";
-        getline(cin, department);
-        cout << "Enter your id= ";
-        cin >> id;
-        cout << "Enter your income= ";
-        cin >> income;
-        cout << "Enter your loan amount= ";
-        cin >> lone_amount;
-        cin.ignore(); // Ignore leftover newline character
-        cout << "Why do you want to take a loan= ";
-        getline(cin, problem);
-
-        cout << "\nLoan application details:\n";
-        cout << "Name: " << name << endl;
-        cout << "University: " << university_name << endl;
-        cout << "Department: " << department << endl;
-        cout << "ID: " << id << endl;
-        cout << "Income: " << income << endl;
-        cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
-        cout << "Reason: " << problem << endl;
-        ofstream loan("Lone.txt",ios::app);
-        if(!loan)
-        {
-            cout<<"not created";
+        // Check if account already has a loan
+        ifstream file1("Loan.txt");
+        if (!file1) {
+            cout << "Error opening Loan.txt for reading.\n";
         }
-        loan<<account_number<<" "<<name<<" "<<university_name <<" "<< department<<" "<< id<<" "<<income<<" "<<lone_amount<<" "<< problem<<endl;
-         loan.close();
-         }
-     else { // Working professional
-        cout << "Enter your office name= ";
-        cin.ignore();
-        getline(cin, office);
-        cout << "Enter your position= ";
-        getline(cin, rank_position);
-        cout << "Enter your income= ";
-        cin >> income;
-        cout << "Enter your loan amount= ";
-        cin >> lone_amount;
-        cin.ignore(); // Ignore leftover newline character
-        cout << "Why do you want to take a loan= ";
-        getline(cin, problem);
-
-        cout << "\nLoan request summary:\n";
-        cout << "Name: " << name << endl;
-        cout << "Office: " << office << endl;
-        cout << "Position: " << rank_position << endl;
-        cout << "Income: " << income << endl;
-        cout << "Requested Loan Amount: " << lone_amount << " TK" << endl;
-        cout << "Reason: " << problem << endl;
-        ofstream loan("Lone.txt",ios::app);
-        if(!loan)
-        {
-            cout<<"not created";
-        }
-        loan<<account_number<<" "<<name<<" "<< profession<<" "<< age<<" "<< income<<" "<< lone_amount<<" "<< problem<<endl;
-      loan.close();
-    }
-}
-void Transaction(long account_number) {
-    string name,address,profession,problem;
-    string university_name,department;
-    string office,rank_position;
-    int age,income,lone_amount,id,semester,c;
-    cout<<"1: Student.\n2: Working.\n3: Back.\nEnter your choice..>>";
-    cin>>c;
-    if(c==1){
-    ifstream file("Lone.txt");
-    ofstream temp("temp.txt");
-    bool found = false;
-
-    long acc;
-    double bal,new_balance;
-    while (file >> acc >> name>>university_name>>department>>id>>income>>bal>>problem) {
-        if (acc == account_number) {
-            cout<<"Your curent due: "<<bal<<endl;
-            cout<<"Enter pament amount: ";
-            cin>>new_balance;
-            if(new_balance<=bal){
-                temp << acc << " " << bal-new_balance << endl;
-            found = true;
+        while (file1 >> a) {
+            if (a == account_number) {
+                cout << "Sorry sir! You already have a loan. Please pay your dues first.\n";
+                file1.close();
+                return; // Exit the function if a loan exists
             }
-        
+        }
+        file1.close();
+
+        // New loan application
+        cout << "Enter your name: ";
+        cin.ignore();
+        getline(cin, name);
+        cout << "Enter your age: ";
+        cin >> age;
+        cin.ignore();
+        cout << "Enter your address: ";
+        getline(cin, address);
+        cout << "Enter your profession\n1. Student\n2. Working\nYour choice: ";
+        int profession_choice;
+        cin >> profession_choice;
+
+        if (profession_choice == 1) { // Student
+            cout << "Enter your university name: ";
+            cin.ignore();
+            getline(cin, university_name);
+            cout << "Enter your department: ";
+            getline(cin, department);
+            cout << "Enter your ID: ";
+            cin >> id;
+            cout << "Enter your income: ";
+            cin >> income;
+            cout << "Enter your loan amount: ";
+            cin >> lone_amount;
+            cin.ignore();
+            cout << "Why do you want to take a loan: ";
+            getline(cin, problem);
+
+            // Write to file
+            ofstream loan("Loan.txt", ios::app);
+            if (!loan) {
+                cout << "Error opening Loan.txt for writing.\n";
+            }
+            loan << account_number << " " << name << " " << "1" << " " << age << " "
+                 << income << " " << lone_amount << " " << university_name << " "
+                 << department << " " << id << " " << problem << '\n';
+            loan.close();
+            cout << "\nLoan application submitted successfully!\n";
+
+        } else if (profession_choice == 2) { // Working professional
+            cout << "Enter your office name: ";
+            cin.ignore();
+            getline(cin, office);
+            cout << "Enter your position: ";
+            getline(cin, rank_position);
+            cout << "Enter your income: ";
+            cin >> income;
+            cout << "Enter your loan amount: ";
+            cin >> lone_amount;
+            cin.ignore();
+            cout << "Why do you want to take a loan: ";
+            getline(cin, problem);
+
+            // Write to file
+            ofstream loan("Loan.txt", ios::app);
+            if (!loan) {
+                cout << "Error opening Loan.txt for writing.\n";
+            }
+            loan << account_number << " " << name << " " << "2" << " " << age << " "
+                 << income << " " << lone_amount << " " << office << " "
+                 << rank_position << " " << problem << '\n';
+            loan.close();
+            cout << "\nLoan application submitted successfully!\n";
         } else {
-            temp << acc << " " << bal << endl;
+            cout << "Invalid profession choice.\n";
         }
     }
 
-    //if (!found) {
-      //  temp << account_number << " " << new_balance << endl;
-    //}
+    void Transaction(long account_number) {
+        string name, university_name, department, office, rank_position, problem;
+        int age, income, id, profession;
 
-    file.close();
-    temp.close();
-    remove("balances.txt");
-    rename("temp.txt", "balances.txt");
-}
-} 
-  
+        ifstream file("Loan.txt");
+        ofstream temp("temp.txt");
+
+        if (!file || !temp) {
+            cout << "Error opening files.\n";
+            return;
+        }
+
+        bool found = false;
+        long acc;
+        double due_amount, payment;
+
+        while (file >> acc >> name >> profession >> age >> income >> due_amount) {
+            if (profession == 1) {
+                file >> university_name >> department >> id >> problem;
+            } else if (profession == 2) {
+                file >> office >> rank_position >> problem;
+            }
+
+            if (acc == account_number) {
+                found = true;
+
+                // Display current due amount
+                cout << "Your current due: " << due_amount << " TK" << endl;
+
+                // Accept payment amount
+                cout << "Enter payment amount: ";
+                cin >> payment;
+
+                // Validate payment
+                if (payment > due_amount) {
+                    cout << "Payment exceeds due amount. Transaction cancelled.\n";
+                } else {
+                    due_amount -= payment;
+                    if (due_amount == 0) {
+                        cout << "Payment successful! Loan cleared.\n";
+                        continue; // Skip writing this record to effectively delete it
+                    } else {
+                        cout << "Payment successful! Remaining balance: " << due_amount << " TK\n";
+                    }
+                }
+            }
+
+            // Write updated or unchanged data
+            if (profession == 1) {
+                temp << acc << " " << name << " " << profession << " " << age << " "
+                     << income << " " << due_amount << " " << university_name << " "
+                     << department << " " << id << " " << problem << '\n';
+            } else if (profession == 2) {
+                temp << acc << " " << name << " " << profession << " " << age << " "
+                     << income << " " << due_amount << " " << office << " "
+                     << rank_position << " " << problem << '\n';
+            }
+        }
+
+        if (!found) {
+            cout << "Account number not found in the loan records.\n";
+        }
+
+        file.close();
+        temp.close();
+
+        // Replace original file with updated file
+        remove("Loan.txt");
+        rename("temp.txt", "Loan.txt");
+    }
 };
+
 
 
 class help{
@@ -1153,15 +1186,15 @@ void login_conditionn(){
                     else if (b==2){
                        log. show_transaction_history(entered_account);
                     }
-                } else if (second_chart == 4) {
+                }
+                else if (second_chart == 4) {
                     int  openion;
-                    cout << "1: Take a loan .\n2: Pamment due loan.\n 3: Back.\n Inter your choice: >>  ";
+                    cout << "1: Take a loan .\n2: Pamment due loan.\n3: Back.\n Inter your choice: >>  ";
                     cin >> openion;
                     cin.ignore();
                     cout << endl;
                     if (openion == 1 ) {
-                        loan.customer_details();
-                        loan.occupation(entered_account);
+                        loan.customer_details(entered_account);
                     }
                     else if(openion==2){
                         
