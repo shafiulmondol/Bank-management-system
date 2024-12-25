@@ -548,37 +548,40 @@ class help{
 public:
     
 void help_menu(){
-  cout << "---->> Help Menu <<----" << endl;
-  cout << "-----------------------" << endl << endl;
-  
-  cout << "1. About Us " << endl;
-  cout << "2. How to Create an Account" << endl;
-  cout << "3. Password Requirements" << endl;
-  cout << "4. Reset Password" << endl;
-  cout << "5. Transaction Guidelines" << endl;
-  cout << "6. Account Management" << endl;
-  cout << "7. Loan Applications" << endl;
-  cout << "8. Security Tips" << endl;
-  cout << "9. Contact Support" << endl;
-  cout << "10. Delate account" <<endl;
-  cout << "11. Exit" << endl;
+
+  cout << "---->> Help Section <<----" << endl << endl;
+
+  cout << "Menu:" << endl;
+  cout << "\t1. About Us " << endl;
+  cout << "\t2. How to Create an Account" << endl;
+  cout << "\t3. Password Requirements" << endl;
+  cout << "\t4. Reset Password" << endl;
+  cout << "\t5. Transaction Guidelines" << endl;
+  cout << "\t6. Account Management" << endl;
+  cout << "\t7. Loan Applications" << endl;
+  cout << "\t8. Security Tips" << endl;
+  cout << "\t9. Contact Support" << endl;
+  cout << "\t10. Delate account" <<endl;
+  cout << "\t11. Back" << endl;
+  cout << "\t12.Exit" << endl;
+
 }
 
 void problem_1(){
     int choice;
     do{
         cout << "-->>This part of the program is taken from \"The City Bank\"<<--" << endl << endl;
-        cout << "--->>About Us<<---" << endl;
-        cout << "-----------------------------" << endl << endl;
+        cout << "--->>About Us<<---" << endl << endl;
         
-        cout << "1. Overview" << endl;
-        cout << "2. History" << endl;
-        cout << "3. Vision, Mission & Core Values" << endl;
-        cout << "4. Board of Directors" << endl;
-        cout << "5. Management Committee" << endl;
-        cout << "6. Awards and Recognitions" << endl;
-        cout << "7. Annual Reports" << endl;
-        cout << "8. Back" << endl;
+        cout << "Menu:" << endl;
+        cout << "\t1. Overview" << endl;
+        cout << "\t2. History" << endl;
+        cout << "\t3. Vision, Mission & Core Values" << endl;
+        cout << "\t4. Board of Directors" << endl;
+        cout << "\t5. Management Committee" << endl;
+        cout << "\t6. Awards and Recognitions" << endl;
+        cout << "\t7. Annual Reports" << endl;
+        cout << "\t8. Back" << endl;
         
         cout << "Enter your choice: ";
         cin>> choice;
@@ -644,14 +647,13 @@ void problem_1(){
         break;
         
         case 8:{
-        cout << "Thank you for visiting us." << endl << endl;
+        cout << "Thank you for visiting us..." << endl << endl;
         return;
         }
         break;
         
         default:
-        cout << "Error.Try Again" << endl;
-        cout << "xxxxxxxxxxxxxxx" << endl << endl;
+        cout << "ERROR.Try Again..." << endl << endl;
         problem_1();
         break;
         }
@@ -670,8 +672,7 @@ void problem_1(){
 void problem_2(){
     user1 u;
     int choice;
-    cout << "\n--->>How to Create an Account<<---" << endl;
-    cout << "----------------------------------" << endl << endl;
+    cout << "\n--->>How to Create an Account<<---" << endl << endl;
     
         do {
     cout << "Welcome to the Bank System!" << endl;
@@ -691,10 +692,11 @@ void problem_2(){
     cout << "6. Save your account number securely." << endl << endl;
     cout << "--->>Thank you for staying with us<<---" << endl << endl;
 
-        cout << "\n--->>How to Create an Account<<---" << endl;
-        cout << "1. Sign_up" << endl;
-        cout << "2. Back" << endl;
-        cout << "3. Exit" << endl;
+        cout << "\n--->>How to Create an Account<<---" << endl << endl;
+        cout << "\tMenu:" << endl;
+        cout << "\t1. Sign_up" << endl;
+        cout << "\t2. Back" << endl;
+        cout << "\t3. Exit" << endl;
         cout << "Enter your choice (1-3): ";
         cin >> choice;
         cout << endl;
@@ -711,47 +713,75 @@ void problem_2(){
 }
 
 void problem_3(){
-    int choice;
-    cout << "--->>Password Requirements<<---" << endl;
-    cout << "----------------------------------" << endl << endl;
-    
-        do {
+       int choice;
+       cout << "--->>Password Requirements<<---" << endl << endl;
+       cout << "Menu:" << endl;
+       
+       cout << "\t1.Requirements" << endl;
+       cout << "\t2.Back" << endl;
+       cout << "\t2.Exit" << endl;
+       cout << "Enter your choice: << ";
+       cin >> choice;
+       cout << endl;
+       
+       if(choice == 1){
     cout << "1. Password must be at least 8 characters long." << endl;
     cout << "2. Password must include at least one uppercase letter (A-Z)." << endl;
     cout << "3. Password must include at least one lowercase letter (a-z)." << endl;
     cout << "4. Password must include at least one digit (0-9)." << endl;
     cout << "5. Password must include at least one special character (@, #, $, %, &, *)." << endl << endl;
    
-    cout << "--->>Here are some examples of strong passwords<<---" << endl;
-    cout << "----------------------------------------------------" << endl;
-    cout << "- Summer2024@# " << endl;
-    cout << "- SecureP@ssw0rd123 " << endl;
-    cout << "- P@ssw0rD!567 " << endl;
-    cout << "- MyStrongPass!2024 " << endl;
-    cout << "- Safe&Sound#123 " << endl;
+    cout << "--->>Strong Passwords Example<<---" << endl;
+
+    cout << "\t- Summer2024@# " << endl;
+    cout << "\t- SecureP@ssw0rd123 " << endl;
+    cout << "\t- P@ssw0rD!567 " << endl;
+    cout << "\t- MyStrongPass!2024 " << endl;
+    cout << "\t- Safe&Sound#123 " << endl << endl;
     
-    cout << "\n---->>Passwords that should NOT be used<<---" << endl;
-    cout << "--------------------------------------------" << endl;
-    cout << "- 12345678" << endl;
-    cout << "- password" << endl;
-    cout << "- abc12345" << endl;
-    cout << "- qwerty12" << endl;
-    cout << "- letmein@" << endl;
-    cout << "- admin123" << endl;
-    cout << "- welcome1" << endl;
-    cout << "- iloveyou" << endl << endl;
-
-    cout << "--->>Thank you for staying with us<<---" << endl << endl;
-
-        cout << "\n--->>Password Requirements<<---" << endl;
-        cout << "1. Again" << endl;
-        cout << "2. Back" << endl;
-        cout << "Enter your choice (1-2): ";
-        cin >> choice;
-        cout << endl;
-        
-        if (choice == 2);
-        } while (choice == 1);
+    cout << "--->>Normal Passwords Example<<---" << endl;
+    
+    cout << "\t- 12345678" << endl;
+    cout << "\t- password" << endl;
+    cout << "\t- abc12345" << endl;
+    cout << "\t- qwerty12" << endl;
+    cout << "\t- letmein@" << endl;
+    cout << "\t- admin123" << endl;
+    cout << "\t- welcome1" << endl;
+    cout << "\t- iloveyou" << endl << endl;
+           
+       int cho;
+       cout << "--->>Password Requirements<<---" << endl << endl;
+       cout << "Menu:" << endl;
+       
+       cout << "\t1.Back" << endl;
+       cout << "\t2.Exit" << endl;
+       cout << "Enter your choice: << ";
+       cin >> cho;
+       
+       if(cho == 1){
+       cout << "Successfully Back..." << endl << endl;
+       }
+       else if(cho == 2){
+           cout << "Successfully Exit..." << endl << endl;
+           exit(0);
+       }
+       else{
+           cout << "ERROR: Try Again..." << endl << endl;
+       }
+           
+       }
+       else if(choice == 2){
+          cout << "Successfully Back..." << endl << endl;
+       }
+       else if(choice == 3){
+           cout << "Successfully Exit..." << endl << endl;
+           exit(0);
+           
+       }
+       else{
+           cout << "ERROR: Try Again..." << endl << endl;
+       }
 }
 
 void problem_4(){
@@ -922,6 +952,78 @@ void problem_4(){
 }
 
 void problem_5(){
+    int choice;
+    cout << "--->>Transaction Guidelines<<---" << endl << endl;
+    cout << "\tMenu:" << endl;
+    cout << "\t1. Guidelines" << endl;
+    cout << "\t2. Back" << endl;
+    cout << "\t3. Exit" << endl << endl;
+
+    cout << "Enter your choice << ";
+    cin >> choice;
+
+    if(choice == 1){
+        cout << "1. Identification:" << endl;
+    cout << "   - Always carry a valid photo ID (e.g., passport, national ID, or driver's license)." << endl;
+    cout << "   - Ensure the name on the ID matches the account details." << endl;
+    cout << "   - Provide additional documents if required for certain transactions." << endl << endl;
+
+    cout << "2. Accurate Details:" << endl;
+    cout << "   - Verify the recipient's account number before transfers." << endl;
+    cout << "   - Ensure that the account name and transaction amount are correct." << endl;
+    cout << "   - Double-check all details on receipts and confirmation messages." << endl << endl;
+
+    cout << "3. Banking Hours:" << endl;
+    cout << "   - Perform cash-related transactions within the bank's operating hours." << endl;
+    cout << "   - Check cut-off times for cheque clearances or fund transfers." << endl;
+    cout << "   - Use ATMs or on-line banking for transactions outside banking hours." << endl << endl;
+
+    cout << "4. Transaction Slips:" << endl;
+    cout << "   - Fill out deposit and withdrawal slips legibly and accurately." << endl;
+    cout << "   - Double-check the slip details before submission." << endl;
+    cout << "   - Keep the counterfoil or acknowledgment slip for future reference." << endl << endl;
+
+    cout << "5. Cash Handling:" << endl;
+    cout << "   - Count cash carefully before leaving the counter." << endl;
+    cout << "   - Avoid exposing large amounts of cash in public areas." << endl;
+    cout << "   - Use secure methods like demand drafts or bank transfers for high-value transactions." << endl << endl;
+
+    cout << "6. Safety:" << endl;
+    cout << "   - Never disclose sensitive information like your PIN or OTP to anyone." << endl;
+    cout << "   - Monitor your account regularly for unauthorized transactions." << endl;
+    cout << "   - Report lost cards or suspicious activities to the bank immediately." << endl;
+    cout << "   - Use strong passwords for on-line banking and change them periodically." << endl << endl;
+
+    int cho;
+    cout << "--->>Transaction Guidelines<<---" << endl << endl;
+    cout << "\tMenu:" << endl;
+    cout << "\t1. Back" << endl;
+    cout << "\t2. Exit" << endl;
+    cout << "Enter your choice << ";
+    cin >> cho;
+    cout << endl;
+
+    if(cho == 1){
+        cout << "successfully Back..." << endl << endl;
+    }
+    else if(cho == 2){
+        cout << "successfully Exit..." << endl << endl;
+         exit(0);
+    }
+    else{
+        cout << "ERROR: Try Again..." << endl << endl;
+    }
+    }
+    else if(choice == 2){
+        cout << "successfully Back..." << endl << endl;
+    }
+    else if(choice == 3){
+        cout << "successfully Exit..." << endl << endl;
+        exit(0);
+    }
+    else{
+        cout << "ERROR: Try Again..." << endl << endl;
+    }
     
 }
 
@@ -1114,9 +1216,14 @@ void problem_10(){
 
 
 void problem_11(){
-cout << "Thank you for visiting us." << endl << endl;
+cout << "Thank you for visiting us." << endl;
+cout << "Successfully Back..." << endl << endl;
 }
 
+void problem_12(){
+    cout << "Successfully Exit..." << endl;
+    exit(0);
+}
 
 };
 
@@ -1174,8 +1281,12 @@ void access_help(){
             h.problem_10();
 
             case 11:
-            cout << "Exiting help section." << endl;
+            cout << "Successfully Back to help section..." << endl;
             return;
+            break;
+
+            case 12:
+            h.problem_12();
             break;
 
             default:
