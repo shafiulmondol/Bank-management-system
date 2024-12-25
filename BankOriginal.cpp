@@ -367,21 +367,20 @@ long generate_employee_account_number() {
     return new_account_number;
 }
 
-      int count_employee(){
-        ifstream file("employees.txt");
+      void count_employee(){
+        string full_name, dob, nationality, gender, key, login_pass;
         int count=0;
-        string line;
-        if(file .is_open()){
-            while (getline(file,line))
+        ifstream file("employees.txt");
+        long id;
+        if(!file){
+            cout<<"Error: Unable to open file."<<endl;
+        }
+        while (file>>id>>full_name>>login_pass>>key>>dob>>nationality>>gender)
             {
                 count++;
             }
             file.close();
-        }
-        else{
-            cout<<"Error: Unable to open file."<<endl;
-        }
-        return count;
+        cout<<"Total employee: "<< count;
       }
       void employee_login(){
         string id, password,name;
@@ -1500,7 +1499,6 @@ void continue_code() {
                     cout<<"Invalied choice.";
                     continue;
                 }
-                return;
 
             }
             }
