@@ -368,22 +368,37 @@ public:
             cin >> income;
             cout << "Enter your loan amount: ";
             cin >> lone_amount;
+            lone_amount=lone_amount+(lone_amount*20)/100;
+            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 20 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
+            int x;
+            cin>>x;
+            if (x==2){
+                return;
+            }
+            else if (x==1){
             cin.ignore();
             cout << "Why do you want to take a loan: ";
             getline(cin, problem);
-
             // Write to file
             ofstream loan("Loan.txt", ios::app);
             if (!loan) {
                 cout << "Error opening Loan.txt for writing.\n";
             }
-            loan << account_number << " " << name << " " << "1" << " " << age << " "
+            loan << account_number << " " << name << " " << "Student" << " " << age << " "
                  << income << " " << lone_amount << " " << university_name << " "
                  << department << " " << id << " " << problem << '\n';
             loan.close();
-            cout << "\nLoan application submitted successfully!\n";
+            cout << "\nLoan application submitted successfully!\n"<<endl;}
 
-        } else if (profession_choice == 2) { // Working professional
+    ofstream write("loan_history.txt", ios::app);
+    if (!write) {
+        cout << "Error: Unable to open file for writing.\n";
+        return;
+    }
+    write << account_number << " | " << "Take " << ": " << lone_amount << endl;
+    write.close();
+        }
+        else if (profession_choice == 2) { // Working
             cout << "Enter your office name: ";
             cin.ignore();
             getline(cin, office);
@@ -393,6 +408,14 @@ public:
             cin >> income;
             cout << "Enter your loan amount: ";
             cin >> lone_amount;
+             lone_amount=lone_amount+(lone_amount*20)/100;
+            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 20 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
+            int x;
+            cin>>x;
+            if (x==2){
+                return;
+            }
+            else if (x==1){
             cin.ignore();
             cout << "Why do you want to take a loan: ";
             getline(cin, problem);
@@ -402,19 +425,49 @@ public:
             if (!loan) {
                 cout << "Error opening Loan.txt for writing.\n";
             }
-            loan << account_number << " " << name << " " << "2" << " " << age << " "
+            loan << account_number << " " << name << " " << "Working" << " " << age << " "
                  << income << " " << lone_amount << " " << office << " "
                  << rank_position << " " << problem << '\n';
             loan.close();
-            cout << "\nLoan application submitted successfully!\n";
+            cout << "\nLoan application submitted successfully!\n"<<endl;
         } else {
-            cout << "Invalid profession choice.\n";
+            cout << "Invalid profession choice.\n"<<endl;
         }
+         ofstream write("loan_history.txt", ios::app);
+    if (!write) {
+        cout << "Error: Unable to open file for writing.\n";
+        return;
+    }
+    write << account_number << " | " << "Take" << ": " << lone_amount << endl;
+    write.close();
+    }
     }
 
+    void show_loan_history(long account_number) {
+        ifstream file("loan_history.txt");
+        if (!file) {
+            cerr << "Error: Unable to open transactions file.\n"<<endl;
+            return;
+        }
+        else{
+        string record;
+        bool found = false;
+        cout << "\n--- Loan History ---\n";
+        while (getline(file, record)) {
+            if (record.find(to_string(account_number)) == 0) {
+                cout << record << "\n"<<endl;
+                found = true;
+            }
+        }
+
+        if (!found) {
+            cout << "No transactions found.\n"<<endl;
+        }
+        file.close();
+    }}
     void Transaction(long account_number) {
-        string name, university_name, department, office, rank_position, problem;
-        int age, income, id, profession;
+        string name, university_name, department, office, rank_position,profession, problem;
+        int age, income, id;
 
         ifstream file("Loan.txt");
         ofstream temp("temp.txt");
@@ -429,27 +482,33 @@ public:
         double due_amount, payment;
 
         while (file >> acc >> name >> profession >> age >> income >> due_amount) {
-            if (profession == 1) {
+            if (profession == "Student") {
                 file >> university_name >> department >> id >> problem;
-            } else if (profession == 2) {
+            } else if (profession == "Working") {
                 file >> office >> rank_position >> problem;
             }
 
             if (acc == account_number) {
                 found = true;
-
                 // Display current due amount
                 cout << "Your current due: " << due_amount << " TK" << endl;
-
                 // Accept payment amount
                 cout << "Enter payment amount: ";
                 cin >> payment;
-
                 // Validate payment
                 if (payment > due_amount) {
                     cout << "Payment exceeds due amount. Transaction cancelled.\n";
                 } else {
                     due_amount -= payment;
+
+    ofstream write("loan_history.txt", ios::app);
+    if (!write) {
+        cout << "Error: Unable to open file for writing.\n";
+        return;
+    }
+    write << account_number << " | " << "Pay" << ": " << payment << endl;
+    write.close();
+
                     if (due_amount == 0) {
                         cout << "Payment successful! Loan cleared.\n";
                         continue; // Skip writing this record to effectively delete it
@@ -458,13 +517,12 @@ public:
                     }
                 }
             }
-
             // Write updated or unchanged data
-            if (profession == 1) {
+            if (profession == "Student") {
                 temp << acc << " " << name << " " << profession << " " << age << " "
                      << income << " " << due_amount << " " << university_name << " "
                      << department << " " << id << " " << problem << '\n';
-            } else if (profession == 2) {
+            } else if (profession == "Working") {
                 temp << acc << " " << name << " " << profession << " " << age << " "
                      << income << " " << due_amount << " " << office << " "
                      << rank_position << " " << problem << '\n';
@@ -1198,7 +1256,7 @@ void login_conditionn(){
                 }
                 else if (second_chart == 4) {
                     int  openion;
-                    cout << "1: Take a loan .\n2: Pamment due loan.\n3: Back.\n Inter your choice: >>  ";
+                    cout << "1: Take a loan .\n2: Pamment due loan.\n3: Check loan details.\n4: Back.\n Inter your choice: >>  ";
                     cin >> openion;
                     cin.ignore();
                     cout << endl;
@@ -1210,7 +1268,10 @@ void login_conditionn(){
                         loan.Transaction(entered_account);
 
                     }
-                    else if(openion==3)
+                    else if (openion==3){
+                        loan.show_loan_history(entered_account);
+                    }
+                    else if(openion==4)
                     {
                         continue;
                     }
