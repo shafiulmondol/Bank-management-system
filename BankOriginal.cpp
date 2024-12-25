@@ -1461,7 +1461,8 @@ void continue_code() {
                 continue;
             }
             else{
-                //letter
+              cout<<"Invalid choice."<<endl;
+              continue;
             }
         } 
         else if (option == 3) {
@@ -1488,7 +1489,7 @@ void continue_code() {
                 {
 
                 }
-                else if(e==4)//Employee added
+                else if(e==4)
                 {
                     emp.add_employee();
                 }
