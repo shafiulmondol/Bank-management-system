@@ -1210,6 +1210,90 @@ void problem_7(){
 }
 
 void problem_8(){
+    int choice;
+    cout << "--->>Security Tips<<---" << endl << endl;
+    
+    cout << "Menu:"<< endl;
+    cout << "\t1. Tips" << endl;
+    cout << "\t2. Back" << endl;
+    cout << "\t3. Exit" << endl;
+    
+    cout << "Enter your choice: ";
+    cin >> choice;
+    cout << endl;
+    
+    if(choice == 1){
+        cout << "--->>Security Tips<<---" << endl << endl;
+        
+        
+    cout << "1. Protect your PIN and passwords." << endl;
+    cout << "   - Keep your PIN and passwords confidential; never share them with anyone." << endl;
+    cout << "   - Avoid writing down your PIN or saving it in an easily accessible place." << endl;
+    cout << "   - Use a strong combination of uppercase, lowercase, numbers, and symbols for passwords." << endl << endl;
+    cout << "   - Change your passwords regularly to enhance security." << endl;
+
+    cout << "2. Monitor account activity regularly." << endl;
+    cout << "   - Frequently review your bank statements and transaction history online or via mobile banking apps." << endl;
+    cout << "   - Check for any unauthorized or suspicious transactions, even small amounts." << endl;
+    cout << "   - Set reminders to review your account weekly." << endl << endl;
+
+    cout << "3. Beware of phishing scams." << endl;
+    cout << "   - Avoid clicking on links in unsolicited emails, messages, or pop-ups that claim to be from your bank." << endl;
+    cout << "   - Verify the sender's email address or phone number before responding to any requests for personal information." << endl;
+    cout << "   - Your bank will never ask for your PIN or full password through email or phone." << endl << endl;
+
+    cout << "4. Secure your devices." << endl;
+    cout << "   - Install and update antivirus software to protect against malware and viruses." << endl;
+    cout << "   - Keep your operating system and apps updated to fix security vulnerabilities." << endl;
+    cout << "   - Avoid using public or unsecured Wi-Fi for online banking. If necessary, use a trusted VPN service." << endl;
+    cout << "   - Enable screen lock features on your devices to prevent unauthorized access." << endl << endl;
+
+    cout << "5. Report issues immediately." << endl;
+    cout << "   - Notify your bank as soon as you suspect unauthorized access to your account or card." << endl;
+    cout << "   - Use the bank's official helpline or visit the branch to report lost or stolen cards." << endl;
+    cout << "   - Keep your bank's customer support number saved for quick access." << endl << endl;
+
+    cout << "6. Set up transaction alerts." << endl;
+    cout << "   - Enable SMS or email notifications for every transaction on your account." << endl;
+    cout << "   - Use these alerts to quickly detect unauthorized or suspicious activity." << endl;
+    cout << "   - Customize alerts for large withdrawals or transactions over a specific amount." << endl << endl;
+
+        
+        
+        
+    int cho;
+    cout << "--->>Security Tips<<---" << endl << endl;
+    
+    cout << "Menu:"<< endl;
+    cout << "\t1. Back" << endl;
+    cout << "\t2. Exit" << endl;
+    
+    cout << "Enter your choice: ";
+    cin >> cho;
+    cout << endl;
+    
+    if(cho == 1){
+        cout << "Successfully Back..." << endl;
+    }
+    else if(cho == 2){
+        cout << "Successfully Exit..." << endl;
+        exit(0);
+    }
+    else{
+        cout << "ERROR: Try Again..." << endl;
+    }
+    }
+    else if(choice == 2){
+        cout << "Successfully Back..." << endl;
+    }
+    
+    else if(choice == 3){
+        cout << "Successfully Exit..." << endl;
+        exit(0);
+    }
+    else{
+        cout << "ERROR: Try Again..." << endl;
+    }
     
 }
 
