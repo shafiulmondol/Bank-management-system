@@ -39,43 +39,6 @@ Copy code
 ./BankSystem
 Navigate the Menu:
 
-The program provides options for customers, employees, and admins to perform various operations.
-Follow on-screen instructions for each feature.
-File Handling
-The system uses several files to store and retrieve data:
-
-customer_data.txt: Stores customer details.
-transactions.txt: Logs all transactions.
-balances.txt: Keeps track of account balances.
-Loan.txt: Manages loan details.
-loan_history.txt: Records loan-related transactions.
-employees.txt: Contains employee data.
-Security
-Password validation ensures strong passwords with:
-At least 8 characters.
-Uppercase and lowercase letters.
-Digits and special characters.
-Secure file handling for data storage and retrieval.
-Future Enhancements
-Integration with a database for scalability.
-Graphical User Interface (GUI) for better user experience.
-Additional features such as interest calculations and automated notifications.
-Contributing
-Feel free to fork this repository and submit pull requests for improvements or additional features.
-
-License
-This project is open-source and available under the MIT License.
-
-typescript
-Copy code
-
-Save this file as `README.md` in the root of your project directory for GitHub. Let me know if you need any additional modifications!
-
-
-
-
-
-
 
 
 ## How to Use
