@@ -1,6 +1,1 @@
-<<<<<<< Updated upstream
-10000001 su Sumai137&& 12 12/13/1212 bangli female 
-=======
-
 10000001 s Sumai137&& 12 12/12/2312 bangli female 
->>>>>>> Stashed changes
