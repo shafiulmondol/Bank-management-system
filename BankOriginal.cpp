@@ -834,10 +834,10 @@ else if(choice == 2){
     cout << "Sign_up..." << endl << endl;
     u.signup();
 }
-else if(choice == 2){
+else if(choice == 3){
     cout << "Successfully Back..." << endl << endl;
 }
-else if(choice == 2){
+else if(choice == 4){
     cout << "Successfully Exit..." << endl;
     exit(0);
 }
