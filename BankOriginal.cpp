@@ -771,11 +771,21 @@ void problem_1(){
 
 void problem_2(){
     user1 u;
-    int choice;
-    cout << "\n--->>How to Create an Account<<---" << endl;
+int choice;
+cout << "\n--->>How to Create an Account<<---\n" << endl;
+cout << "Menu: " << endl;
+
+cout << "\t1. Details" << endl;
+cout << "\t2. Sign_up" << endl;
+cout << "\t3. Back" << endl;
+cout << "\t4. Exit" << endl;
+
+cout << "Enter your choice: ";
+cin >> choice;
+
+if(choice == 1){
     
-        do {
-    cout << "Welcome to the Bank System!" << endl;
+    cout << "\nWelcome to the Bank System!" << endl;
     cout << "Follow these steps to create an account:" << endl << endl;
     cout << "1. Choose 'Customer Section' from the main menu" << endl;
     cout << "2. Select 'Sign Up' from the Customer Menu" << endl;
@@ -790,25 +800,50 @@ void problem_2(){
     cout << "   - Must include uppercase and lowercase letters, at least one digit, and one special character." << endl;
     cout << "5. Once the information is submitted, your account number will be generated." << endl;
     cout << "6. Save your account number securely." << endl << endl;
-    cout << "--->>Thank you for staying with us<<---" << endl << endl;
 
-        cout << "\n--->>How to Create an Account<<---" << endl;
-        cout << "1. Sign_up" << endl;
-        cout << "2. Back" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Enter your choice (1-3): ";
-        cin >> choice;
-        cout << endl;
-        
-        if (choice == 1){
-            u.signup();
-            break;
-        }
-        else if (choice == 3){
-            cout << "Exiting the program now!" << endl;
-            exit(0);
-        }
-        } while (choice != 2);
+ 
+int cho;
+cout << "--->>How to Create an Account<<---" << endl;
+cout << "Menu: " << endl;
+
+cout << "\t1. Sign_up" << endl;
+cout << "\t2. Back" << endl;
+cout << "\t3. Exit" << endl;
+
+cout << "Enter your choice: ";
+cin >> cho;
+
+if(cho == 1){
+    cout << "Sign_up..." <<endl << endl;
+    u.signup();
+}
+
+else if(cho == 2){
+    cout << "Successfully Back..." << endl << endl;
+}
+else if(cho == 3){
+    cout << "Successfully Exit..." << endl;
+    exit(0);
+}
+else{
+    cout << "ERROR: Try Again..." << endl;
+}
+
+}
+else if(choice == 2){
+    cout << "Sign_up..." << endl << endl;
+    u.signup();
+}
+else if(choice == 2){
+    cout << "Successfully Back..." << endl << endl;
+}
+else if(choice == 2){
+    cout << "Successfully Exit..." << endl;
+    exit(0);
+}
+else{
+    cout << "ERROR: Try Again..." << endl;
+}
 }
 
 void problem_3(){
@@ -1124,7 +1159,7 @@ void problem_6(){
 
         cout << "\t1. New Report" << endl;
         cout << "\t2. Search your report" << endl;
-        cout << "\t3. View all issues(only Admin)" << endl;
+        cout << "\t3. View all issues(only for Admin)" << endl;
         cout << "\t4. Back" << endl;
         cout << "\t5. Exit" << endl;
         cout << "Enter your choice: ";
