@@ -366,12 +366,13 @@ long generate_employee_account_number() {
 
     return new_account_number;
 }
-      int count_employee(){
+      void count_employee(){
+        string full_name, dob, nationality, gender, key, login_pass;
         ifstream file("employees.txt");
         int count=0;
-        string line;
+       long id;
         if(file .is_open()){
-            while (getline(file,line))
+            while (file>>id>>full_name>>dob>>nationality>>gender>>key>>login_pass)
             {
                 count++;
             }
@@ -380,7 +381,7 @@ long generate_employee_account_number() {
         else{
             cout<<"Error: Unable to open file."<<endl;
         }
-        return count;
+        cout<<"Total Employee: "<< count<<endl;
       }
       void employee_login(){
         string id, password,name;
@@ -1579,6 +1580,49 @@ void login_conditionn(){
     file.close();
 }
 };
+void admin() {
+    cout << "Username: ";
+    employee emp;
+    display_chart chart;
+    string username, password;
+    getline(cin, username);
+    cout << "Password: ";
+    getline(cin, password);
+
+    if (username == "Shafiul" && password == "sumai137") {
+        while (true) { // Loop to stay in the admin section
+            chart.for_admin();
+            int choice;
+            cin >> choice;
+            cin.ignore(); // Clear input buffer
+            cout << endl;
+
+            switch (choice) {
+                case 1:
+                    emp.count_employee();
+                    break;
+                case 2:
+                    // Implement total customer functionality
+                    break;
+                case 3:
+                    // Implement total loan receiver functionality
+                    break;
+                case 4:
+                    emp.add_employee();
+                    break;
+                case 5:
+                    return; // Exit admin section
+                default:
+                    cout << "Invalid choice. Try again." << endl;
+            }
+
+            cout << endl;
+        }
+    } else {
+        cout << "Invalid credentials. Try again.\n";
+    }
+}
+
 
 void continue_code() {
     display_chart chart;
@@ -1654,46 +1698,8 @@ void continue_code() {
             access_help();
         } 
         else if (option == 4) {
-            cout<<"Username: ";
-            string c,p;
-            getline(cin,c);
-            cout<<"Password: ";
-            getline(cin,p);
-            if(c=="Shafiul" && p=="sumai137"){
-                chart.for_admin();
-                int e;
-                cin>>e;
-                if(e==1){
-                    emp.count_employee();
-                }
-                else if(e==2)//total customer.
-                {
-                   
-                }
-                else if(e==3)//total lone reciver
-                {
-
-                }
-                else if(e==4)//Employee added
-
-                {
-                    emp.add_employee();
-                }
-                else if(e==5){
-                    return;
-                }
-                else{
-                    cout<<"Invalied choice.";
-                    continue;
-                }
-                return;
-            }
-            }
-        else {
-            cout << "Invalid option. Try again.\n";
-        }
-        cout<<endl;
-    }   
+            admin();
+        }}
 }
 
 int main(){
