@@ -1531,9 +1531,13 @@ void login_conditionn(){
                     cin>>b;
                     if(b==1){
                     double balance = file_manager.get_balance(account_number);
-                    cout << "Account Details:\n";
-                    user.show_details();
-                    cout << "Current Balance: " << balance << endl;}
+                    cout << "---Account Details---\n";
+                    cout<<"Full name : "<<full_name<<endl;
+                    cout<<"Date of birth: " << dob<<endl;
+                     cout<<"Nationality: "<<  nationality<<endl;
+                    cout<<"Gender: "<<gender<<endl;
+
+                    cout << "Current Balance: " << balance << endl<<endl;}
                     else if (b==2){
                        log. show_transaction_history(entered_account);
                     }
