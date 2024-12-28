@@ -3,6 +3,10 @@
         "iostream": "cpp",
         "*.tcc": "cpp",
         "iosfwd": "cpp",
+<<<<<<< Updated upstream
         "ostream": "cpp"
+=======
+        "fstream": "cpp"
+>>>>>>> Stashed changes
     }
 }

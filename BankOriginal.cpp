@@ -367,6 +367,7 @@ long generate_employee_account_number() {
     return new_account_number;
 }
 
+<<<<<<< Updated upstream
       void count_employee(){
         string full_name, dob, nationality, gender, key, login_pass;
         int count=0;
@@ -376,11 +377,27 @@ long generate_employee_account_number() {
             cout<<"Error: Unable to open file."<<endl;
         }
         while (file>>id>>full_name>>login_pass>>key>>dob>>nationality>>gender)
+=======
+      int count_employee(){
+        ifstream file("employees.txt");
+        int count=0;
+        string line;
+        if(file .is_open()){
+            while (getline(file,line))
+>>>>>>> Stashed changes
             {
                 count++;
             }
             file.close();
+<<<<<<< Updated upstream
         cout<<"Total employee: "<< count;
+=======
+        }
+        else{
+            cout<<"Error: Unable to open file."<<endl;
+        }
+        return count;
+>>>>>>> Stashed changes
       }
       void employee_login(){
         string id, password,name;
@@ -407,7 +424,11 @@ long generate_employee_account_number() {
     }
 
     if (employee_login) {
+<<<<<<< Updated upstream
         cout << "Login successful! Welcome, " << name << ".\n";
+=======
+        cout << "Login successful! Welcome, " << id << ".\n";
+>>>>>>> Stashed changes
     } else {
         cout << "Invalid userid or password.\n";
     }
@@ -546,6 +567,7 @@ public:
             return;
         }
         else{
+            
         string record;
         bool found = false;
         cout << "\n--- Loan History ---\n";
@@ -1672,7 +1694,11 @@ void continue_code() {
                 {
 
                 }
+<<<<<<< Updated upstream
                 else if(e==4)
+=======
+                else if(e==4)//Employee added
+>>>>>>> Stashed changes
                 {
                     emp.add_employee();
                 }
@@ -1683,6 +1709,10 @@ void continue_code() {
                     cout<<"Invalied choice.";
                     continue;
                 }
+<<<<<<< Updated upstream
+=======
+                return;
+>>>>>>> Stashed changes
 
             }
             }
