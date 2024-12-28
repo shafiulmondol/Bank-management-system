@@ -657,7 +657,7 @@ cout << "---->> Help Section <<----" << endl << endl;
   cout << "\t3.  Password Requirements" << endl;
   cout << "\t4.  Reset Password" << endl;
   cout << "\t5.  Transaction Guidelines" << endl;
-  cout << "\t6.  Account Management" << endl;
+  cout << "\t6.  Report An Issue" << endl;
   cout << "\t7.  Loan Applications" << endl;
   cout << "\t8.  Security Tips" << endl;
   cout << "\t9.  Contact Support" << endl;
@@ -1116,7 +1116,133 @@ void problem_5(){
 }
 
 void problem_6(){
-  
+    int choice;
+
+
+        cout << "\n--->>Issue Reporting System<<---" << endl << endl;
+        cout << "Menu: " << endl;
+
+        cout << "\t1. New Report" << endl;
+        cout << "\t2. Search your report" << endl;
+        cout << "\t3. View all issues(only Admin)" << endl;
+        cout << "\t4. Back" << endl;
+        cout << "\t5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if(choice == 1){
+
+                ofstream outFile("issues.text");
+    if (!outFile) {
+        cout << "Error: Unable to open file for writing." << endl;
+    }
+
+    string issue;
+    double n;
+    cout << "Enter your Account Number: ";
+    cin >> n;
+    cout << "Enter your issue: ";
+    cin.ignore();
+    getline(cin, issue);
+    outFile << "ID: " << n << " | " << "Issue: "<<issue << endl;
+    cout << "Issue reported successfully!" << endl;
+
+    outFile.close();
+
+            int cho;
+            cout << "\n--->>Report Issue<<---\n" << endl;
+            cout << "\t1. View report" << endl;
+            cout << "\t2. Back" << endl;
+            cout << "\t3. Exit" << endl << endl;
+
+            cout << "Enter your choice: ";
+            cin >> cho;
+
+            if(cho == 1){
+                cout << "Working..." << endl;
+            }
+
+            else if(cho == 2){
+                cout << "Successfully Back..." << endl;
+
+                cout << endl;
+            }
+            else if(cho == 3){
+                cout << "Successfully Exit..." << endl;
+                exit(0);
+            }
+            else{
+                cout << "ERROR. Try Again...." << endl;
+            }
+        }
+
+        else if(choice == 2){
+
+        }
+
+        else if(choice == 3){
+
+        cout << "Only for Admin..." << endl;
+        const string password = "1234";
+        string p;
+        cout << "Enter your password: ";
+        cin >> p;
+
+        if(password != p){
+            cout << "ERROR: Tray Again..." << endl;
+        }
+        else{
+                ifstream inFile("issues.text");
+
+    if (!inFile) {
+        cout << "Error: Unable to open file for reading." << endl;
+    }
+
+    string issue;
+    cout << "\nReported Issues:\n";
+    while (getline(inFile, issue)) {
+        cout << "- " << issue << endl;
+    }
+
+    inFile.close();
+
+            int cho;
+            cout << "\n---> Report<<---" << endl;
+            cout << "Menu: " << endl;
+
+            cout << "\t1. Back" << endl;
+            cout << "\t2. Exit" << endl;
+
+            cout << "Enter your choice: ";
+            cin >> cho;
+
+            if(cho==1){
+                 cout << "Successfully Back..." << endl;
+
+            }
+            else if(cho == 2){
+                 cout << "Successfully Exit..." << endl;
+                 exit(0);
+            }
+            else{
+                cout << "ERROR: Try Again..." << endl;
+            }
+        }
+        }
+
+        else if(choice == 4){
+            cout << "Successfully Back..." << endl;
+        }
+
+        else if(choice == 5){
+            cout << "Successfully Exit..." << endl;
+            exit(0);
+        }
+
+        else{
+            cout << "Invalid choice. Please try again." << endl;
+        }
+
 }
 
 void problem_7(){
