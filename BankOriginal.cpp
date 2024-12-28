@@ -65,7 +65,7 @@ public:
         cout << "Error: Unable to open file for writing.\n";
         return;
     }
-    write << account_number << " | " << type << ": " << balance << endl;
+    write << account_number << " " << type << " " << balance << endl;
     write.close();
 }
 
@@ -210,11 +210,11 @@ long generate_unique_account_number() {
     // Open the file and find the last account number
     ifstream inFile("customer_data.txt");
     if (inFile) {
-        long account_number;
-        while (inFile >> account_number) {
+        long account;
+        while (inFile >> account) {
             string dummy;
             getline(inFile, dummy); // Skip the rest of the line
-            last_account_number = account_number; // Update with the last number read
+            last_account_number = account; // Update with the last number read
         }
         inFile.close();
     }
@@ -284,12 +284,13 @@ public:
             return;
         }
         else{
-        string record;
+        string record,method;
+        long acc;
         bool found = false;
         cout << "\n--- Transaction History ---\n";
-        while (getline(file, record)) {
-            if (record.find(to_string(account_number)) == 0) {
-                cout << record << "\n";
+        while ( file>>acc>>method>>record) {
+            if (acc==account_number) {
+                cout << acc<<" "<<method<<" "<<record << "\n";
                 found = true;
             }
         }
@@ -466,8 +467,8 @@ public:
             cin >> income;
             cout << "Enter your loan amount: ";
             cin >> lone_amount;
-            lone_amount=lone_amount+(lone_amount*20)/100;
-            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 20 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
+            lone_amount=lone_amount+(lone_amount*5)/100;
+            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 5 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
             int x;
             cin>>x;
             if (x==2){
@@ -506,8 +507,8 @@ public:
             cin >> income;
             cout << "Enter your loan amount: ";
             cin >> lone_amount;
-             lone_amount=lone_amount+(lone_amount*20)/100;
-            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 20 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
+             lone_amount=lone_amount+(lone_amount*15)/100;
+            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 15 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
             int x;
             cin>>x;
             if (x==2){
@@ -536,7 +537,7 @@ public:
         cout << "Error: Unable to open file for writing.\n";
         return;
     }
-    write << account_number << " | " << "Take" << ": " << lone_amount << endl;
+    write << account_number << " " << "Take" << " " << lone_amount << endl;
     write.close();
     }
     }
@@ -549,12 +550,13 @@ public:
         }
         else{
             
-        string record;
+        string record,method;
+        long acc;
         bool found = false;
         cout << "\n--- Loan History ---\n";
-        while (getline(file, record)) {
-            if (record.find(to_string(account_number)) == 0) {
-                cout << record << "\n"<<endl;
+        while (file>>acc>>method>> record){
+            if (acc==account_number) {
+                cout <<acc<<" "<<method<<" "<< record << "\n"<<endl;
                 found = true;
             }
         }
@@ -578,7 +580,7 @@ public:
 
         bool found = false;
         long acc;
-        double due_amount, payment;
+        long double  due_amount, payment;
 
         while (file >> acc >> name >> profession >> age >> income >> due_amount) {
             if (profession == "Student") {
@@ -1591,11 +1593,36 @@ void count_total_customer(){
                             count_customer++;
                         }
                         inFile.close();
-                    } else {
+                    } 
+                    else {
                         cout << "Error: Unable to open customer data file.\n";
                     }
 
                     cout << "Total Customers: " << count_customer << endl;
+}
+void count_total_loan_receivers(){
+    ifstream file1("Loan.txt");
+    int count_loan=0;
+    long account_number;
+    string name, university_name, department, office, rank_position,profession, problem;
+    int age, income, id;
+    double loan_amount;
+    if(file1.is_open()){
+        while (file1>>account_number>>name>>profession>>age>>income>>loan_amount){
+            if (profession == "Student") {
+                                file1 >> university_name >> department >> id >> problem;
+                            } 
+                            else if (profession == "Working") {
+                                file1 >> office >> rank_position >> problem;
+                            }
+                            count_loan++; 
+        }
+        file1.close();
+    }
+    else {
+        cout<<"Error: Unable to open loan data file."<<endl;
+    }
+    cout<<"Total lone receiver: "<<count_loan<<endl;
 }
 
 void admin() {
@@ -1625,6 +1652,7 @@ void admin() {
                 
                 case 3:
                     // Implement total loan receiver functionality
+                    count_total_loan_receivers();
                     break;
                 case 4:
                     emp.add_employee();

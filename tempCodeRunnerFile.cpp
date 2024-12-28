@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-add_employee
-=======
-login_id
->>>>>>> Stashed changes
+ ofstream loan("Loan.txt", ios::app);
