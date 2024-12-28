@@ -1580,6 +1580,24 @@ void login_conditionn(){
     file.close();
 }
 };
+void count_total_customer(){
+    ifstream inFile("customer_data.txt");
+                    int count_customer=0;
+                    long account_number;
+                    string full_name, dob, nationality, gender, key, login_pass;
+
+                     if (inFile.is_open()) {
+                        while (inFile >>full_name>>dob>>nationality>>gender>>key>>login_pass) {
+                            count_customer++;
+                        }
+                        inFile.close();
+                    } else {
+                        cout << "Error: Unable to open customer data file.\n";
+                    }
+
+                    cout << "Total Customers: " << count_customer << endl;
+}
+
 void admin() {
     cout << "Username: ";
     employee emp;
@@ -1601,9 +1619,10 @@ void admin() {
                 case 1:
                     emp.count_employee();
                     break;
-                case 2:
-                    // Implement total customer functionality
+                case 2:// Implement total customer functionality
+                    count_total_customer();
                     break;
+                
                 case 3:
                     // Implement total loan receiver functionality
                     break;
@@ -1621,6 +1640,7 @@ void admin() {
     } else {
         cout << "Invalid credentials. Try again.\n";
     }
+
 }
 
 
