@@ -669,104 +669,105 @@ cout << "---->> Help Section <<----" << endl << endl;
 
 void problem_1(){
     int choice;
-    do{
-        cout << "-->>This part of the program is taken from \"The City Bank\"<<--" << endl << endl;
-        cout << "--->>About Us<<---" << endl;
-        
-       cout << "Menu:" << endl;
-        cout << "\t1. Overview" << endl;
-        cout << "\t2. History" << endl;
-        cout << "\t3. Vision, Mission & Core Values" << endl;
-        cout << "\t4. Board of Directors" << endl;
-        cout << "\t5. Management Committee" << endl;
-        cout << "\t6. Awards and Recognitions" << endl;
-        cout << "\t7. Annual Reports" << endl;
-        cout << "\t8. Back" << endl;
-        
-        cout << "Enter your choice: ";
-        cin>> choice;
-        cout << endl << endl;
-        
-        switch(choice){
-            
-        case 1:
-        cout << "--->>Overview<<---" << endl;
-        cout <<"From 1983 till date, City Bank has been a case study in evolution, having transformed over time from a traditional organization to a critically acclaimed multi-faceted institution that embraces global best practices and chooses to be at the forefront of technological initiatives. Unlike many, the Bank's criteria for success are not only the bottom-line numbers but also the milestones set towards becoming the most complete bank in the country." <<endl;
-        break;
-            
-        case 2:
-        cout << "--->>History<<---" << endl;
-       cout << "In 1983, 12 young businessmen set the wheels in motion to establish the country's first private commercial bank. "
-     << "We salute the founding fathers of this institution. These visionary entrepreneurs braved immense uncertainties with "
-     << "courage and zeal to make history. Their grand step will always remain in our memory, and we wholeheartedly pay tribute to them. "
-     << "The founding members are (from left to right): Mr. Monowar Ali, Mr. Ibrahim Mia (Late), Mr. Abdul Hadi (Late), Mr. M.A. Hashem (Late), "
-     << "Mr. Anwar Hossain (Late), Mr. Abdul Barik Choudhury (Late), Mr. Deen Mohammad (Late), Mr. A.B.M. Feroz, Mr. Md. Ali Hossain, "
-     << "Mr. Azizul Haque Chowdhury (Late), and Mr. N.A. Chowdhury (Late)." << endl;
-        break;
-            
-        case 3:
-        cout << "--->>Vision, Mission & Core Values<<---" << endl;
-        
-        cout << "-->>The Vision<<--"<< endl <<endl;
-        cout << "The Financial Supermarket with a Winning Culture Offering Enjoyable Experiences" << endl << endl;
+cout << "--->> About Us<<----" << endl<< endl;
+cout << "Menu: " << endl;
+cout << "\t1. Introduction" << endl;
+cout << "\t2. Mission Statement" << endl;
+cout << "\t3. Vision" << endl;
+cout << "\t4. Services" << endl;
+cout << "\t5. Technical Team" << endl;
+cout << "\t6. Back" << endl;
+cout << "\t7. Exit" << endl;
 
-        cout << "-->>The Mission<<--"<< endl <<endl;
-        cout << "1. Offer a wide array of products and services that differentiate and excite all customer segments." << endl;
-        cout << "2. Be the \"Employer of Choice\" by offering an environment where people excel and leaders are created." << endl;
-        cout << "3. Continuously challenge processes and platforms to enhance effectiveness and efficiency." << endl;
-        cout << "4. Promote innovation and automation with a view to guaranteeing and enhancing excellence in service." << endl;
-        cout << "5. Ensure respect for community, good governance, and compliance in everything we do." << endl << endl;
-        
-        cout << "-->>Core Values<<--" << endl;
-        cout << "- Result Driven" << endl;
-        cout << "- Accountable & Transparent" << endl;
-        cout << "- Courageous & Respectful" << endl;
-        cout << "- Engaged & Inspired" << endl;
-        cout << "- Focused on Customer Delight" << endl;
-        break;
-            
-        case 4:
-        cout << "--->>Board of Directors<<---" << endl;
-        cout << "This File is Private." << endl;
-        break;
-            
-        case 5:
-        cout << "--->>Management Committee<<---" << endl;
-        cout << "This File is Private." << endl;
+cout << "Enter your choice: ";
+cin >> choice;
+cout << endl;
 
-        break;
-        
-        case 6:
-        cout <<"--->>Awards and Recognitions<<---" << endl;
-        cout << "We enable our clients to realize their ambitions by using our expertise to provide innovative and dependable solutions." << endl;
-        cout << "We are proud of our many awards and recognitions that inspire us to continuously lead the way and shape the future of banking in Bangladesh and abroad." << endl;
+if(choice == 1){
+    cout << "Welcome to \"SKS\" Bank..." << endl;
+    cout << "The full Meaning of the bank..." << endl;
+    cout << "\t-S = Md. Shafiul Islam" << endl;
+    cout << "\t-K = Md. Kawsar Miah" << endl;
+    cout << "\t-S = Sumaiya Haq" << endl << endl;
+    
+    cout << "SKS Bank, a trusted financial partner dedicated to empowering individuals, businesses, and communities with innovative and comprehensive banking solutions. With a strong foundation of integrity and excellence, SKS Bank offers a wide range of services, including personal and business accounts, loans, investments, digital banking, and wealth management." << endl;
 
-        case 7:
-        cout << "--->>Annual Reports<<---" << endl;
-        cout << "Soory. We are working on it" << endl;
-        break;
-        
-        case 8:{
-        cout << "Thank you for visiting us..." << endl << endl;
-        return;
-        }
-        break;
-        
-        default:
-        cout << "Error.Try Again..." << endl;
-        problem_1();
-        break;
-        }
-        
-        cout << "\n--->>About Us<<---" << endl;
-        cout << "1. Again" << endl;
-        cout << "2. Back" << endl;
-        cout << "Enter your choice (1-2): ";
-        cin >> choice;
-        cout << endl;
-        
-        if (choice == 2);
-        } while (choice == 1);
+    cout << "Choose SKS Bank today—where trust meets innovation, and your goals become our priorities." << endl;
+    cout << endl;
+}
+
+else if(choice == 2){
+    cout << "--->>Mission Statement<<---" << endl << endl;
+    
+    cout <<"Our mission is to deliver exceptional financial services that empower our customers to achieve their goals. We are committed to innovation, trust, and inclusivity, providing tailored solutions that foster economic growth, financial literacy, and long-term prosperity. Through responsible practices and a customer-first approach, we aim to create value for individuals, businesses, and communities." << endl << endl;
+    
+}
+
+else if(choice == 3){
+    cout << "--->>Vision<<---" << endl << endl;
+    
+    cout <<"To be a trusted financial partner that empowers individuals, businesses, and communities by delivering innovative, inclusive, and sustainable banking solutions. We strive to redefine banking through technological excellence, exceptional customer service, and a commitment to fostering economic growth and social well-being." << endl << endl;
+    
+}
+
+else if(choice == 4){
+    
+    cout << "Benefits of Banking Services:" << endl;
+    cout << "\t-Convenience: Access to funds and financial services 24/7." << endl;
+    cout << "\t-Security: Protection of money and valuables." << endl;
+    cout << "\t-Financial Planning: Expert advice on saving, investing, and managing wealth." << endl;
+    cout << "\t-Accessibility: Easy access to loans for personal, educational, or business needs." << endl;
+    cout << "\t-Record Keeping: Detailed account statements for better financial tracking." << endl;
+    cout << "\t-Customized Services: Tailored solutions for businesses and individuals." << endl;
+}
+
+else if(choice == 5){
+    cout << "--->> Team Member <<---" << endl << endl;
+    cout << "\1. Member-1" << endl;
+    
+    cout << "\t-Name: Md. Kawsar Miah" << endl;
+    cout << "\t-Age: 21" << endl;
+    cout << "\t-Education: Undergraduate" << endl;
+    cout << "\t-Institution: IUBAT" << endl;
+    cout << "\tContact: " << endl;
+    cout << "\t\t-Mobile: 016******95" << endl;
+    cout << "\t\t-Email: 23303105@iubat.edu" << endl << endl;
+    
+    cout << "\2. Member-2" << endl;
+    
+    cout << "\t-Name: Md. Shafiul Islam" << endl;
+    cout << "\t-Age: 22" << endl;
+    cout << "\t-Education: Undergraduate" << endl;
+    cout << "\t-Institution: IUBAT" << endl;
+    cout << "\tContact: " << endl;
+    cout << "\t\t-Mobile: 018******14" << endl;
+    cout << "\t\t-Email: 23303106@iubat.edu" << endl << endl;
+    
+    cout << "\3. Member-3" << endl;
+    cout << "\t-Name: Sumaiya Haq" << endl;
+    cout << "\t-Age: 21" << endl;
+    cout << "\t-Education: Undergraduate" << endl;
+    cout << "\t-Institution: IUBAT" << endl;
+    cout << "\tContact: " << endl;
+    cout << "\t\t-Mobile: 017******98" << endl;
+    cout << "\t\t-Email: 23303137@iubat.edu" << endl << endl;
+    
+}
+
+else if(choice == 6){
+    cout << "Successfully Back..." << endl << endl;
+}
+
+else if(choice == 7){
+    cout << "Successfully Exit..." << endl;
+    exit(0);
+    
+}
+
+else{
+    cout << "ERROR: Try Again..." << endl << endl;
+    
+}
 }
 
 void problem_2(){
