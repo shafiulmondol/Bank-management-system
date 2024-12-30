@@ -1,1 +1,1 @@
- ofstream loan("Loan.txt", ios::app);
+log_option

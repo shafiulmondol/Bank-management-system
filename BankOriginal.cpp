@@ -120,15 +120,16 @@ class display_chart{
 public:
 string name;
 void show_first_chart(){
+    cout<<endl;
     cout<<"\n---->>Bank System<<----"<<endl;
     cout << "1: Customer Section."<<endl;
     cout << "2: Employee Section."<<endl;
     cout << "3: Help Section."<<endl;
     cout << "4: Admin."<<endl;
-    cout << "5: Exit."<<endl;
     cout << "Enter your choice: >>";
 }
 void ask_for_login() {
+    cout<<endl;
     cout<<"----->>Bank Manu<<-----"<<endl;
     cout << "1: Sign Up"<<endl;
     cout << "2: Login"<<endl;
@@ -136,32 +137,26 @@ void ask_for_login() {
     cout << "Enter your choice: >>";
     }
     void show_user_chart() {
+        cout<<endl;
         cout << "1: Deposit"<<endl;
         cout << "2: Withdraw"<<endl;
         cout << "3: Show Details"<<endl;
         cout << "4: Loan Request"<<endl;
         cout << "5: Help"<<endl;
-        cout << "6: Exit"<<endl;
+        cout << "6: Logout"<<endl;
         cout << "Enter your choice: >>";
     }
-void employee_login()
-{
-    cout<<"...Login..."<<endl;
-}
 
-void show_exit(){
-    cout << "Thank you for using our service. Goodbye!"<<endl;
-}
 void for_admin(){
+    cout<<endl;
     cout<<"1: Total empolyee."<<endl;
     cout<<"2: Total customer."<<endl;
     cout<<"3: Total Lone reciver."<<endl;
     cout<<"4: Add employee"<<endl;
     cout<<"5: Back ."<<endl;
+    cout<<"6: Close bank for todays"<<endl;
     cout<<"Enter your choice ->> ";
 }
-
-
 };
 
 
@@ -171,6 +166,7 @@ public:
     string full_name, dob, nationality, gender, key, login_pass;
 
     void signup() {
+    cout<<endl;
     cout << "1. Personal Information>>\n";
     cout << "\n\tFull Name: ";
     cin.ignore();
@@ -1731,7 +1727,7 @@ void login_conditionn(){
                     access_help();
                 }
                 else if (second_chart == 6) {
-                    cout << "Logging out...\n";
+                    cout << "Logging out successfull.....\n";
                     break;
                 } else {
                     cout << "Invalid choice. Please try again.\n";
@@ -1825,6 +1821,9 @@ void admin() {
                     break;
                 case 5:
                     return; // Exit admin section
+                case 6:
+                cout<<"Have a nice day! Thank you";
+                exit(0);
                 default:
                     cout << "Invalid choice. Try again." << endl;
             }
@@ -1838,7 +1837,8 @@ void admin() {
 }
 
 
-void continue_code() {
+class continue_code {
+    public:
     display_chart chart;
     employee emp;
     user1 user;
@@ -1848,57 +1848,25 @@ void continue_code() {
     after_login log;
     save_file file_manager;
     int option,second_chart,log_option,a;
-
+void second(){
     while (true) {
         chart.show_first_chart();
         cin >> option;
         cin.ignore();
         cout<<endl;
-        if (option == 5) {
-          chart.show_exit();
-            break;
-        }
         if (option == 1) {
-             chart.ask_for_login(); 
-            cin>>log_option;
-            cout<<endl;
-
-            if(log_option==1){
-                cout <<"1: Process of creating an account.\n2: Create an account.\nEnter your choice: >>";
-                int s;
-                cin >> s;
-                if (s==1){
-                    h.problem_2();
-                }
-                else if (s==2){
-                user.signup();
-                user.show_details();}
-            }
-               
-            else if (log_option == 2) {
-                loginC.is_valid=false;
-               for(int i=0;i<3;i++){
-               if(loginC.is_valid==false){
-               loginC. login_conditionn();
-               }}
-               cout<<"Please go to help section.";
-}
-
-        else if (log_option==3){
-             cout << "Help Section: Please contact customer support.\n";
+            second21();
         }
-        else if(log_option==4){
-            continue;
-           
-        }      
-        }
+          
+        
         else if (option == 2) {
             cout<<"\n1: Employee"<<endl;
             cout<<"2: Back\n>>>Choice an option: ";
             int b;
             cin>>b;
             if (b==1){
-            chart.employee_login();
+             cout<<endl;
+            cout<<"...Login..."<<endl;
             emp.employee_login();}
             else if(b==2){
                 continue;
@@ -1913,11 +1881,45 @@ void continue_code() {
         } 
         else if (option == 4) {
             admin();
-        }}
+        }}}
+
+        void second21(){
+        chart.ask_for_login(); 
+            cin>>log_option;
+            cout<<endl;
+            if(log_option==1){
+                cout <<"1: Process of creating an account.\n2: Create an account.\n3: Back.\n4: Exit.\nEnter your choice: >>";
+                int s;
+                cin >> s;
+                if(s==1)
+                h.problem_2();
+                else if (s==2){
+                user.signup();
+                user.show_details();}
+               else if(s==3) second21();
+               else if (s==4) second();
+               else {cout<<"Wrong choice\n\n";}
+        }
+        else if (log_option == 2) {
+                loginC.is_valid=false;
+               for(int i=0;i<=3;i++){
+               if(loginC.is_valid==false){
+                if(i==3){
+                     cout<<"Please go to help section.";
+                     continue;
+                }
+               loginC. login_conditionn();
+               }}
+              
 }
+        else if (log_option==3){
+            return;
+        }  
+        }
+};
 
 int main(){
-   continue_code();
-    
+   continue_code con;
+    con.second();
    return 0;
 }
