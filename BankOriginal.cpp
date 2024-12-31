@@ -1418,134 +1418,53 @@ void problem_6(){
 }
 
 void problem_7(){
-     int choice;
-    do{
+          int choice;
         cout<<endl;
         cout << "________________________________________________________"<<endl;
-        cout << "|             --->>Types of Bank Loans<<---            |" << endl;
+        cout << "|--->>Types of Bank Loans<<---                         |" << endl;
         cout << "|______________________________________________________|"<<endl;
-        cout << "|1. Home Loan                                          |" << endl;
-        cout << "|2. Car Loan                                           |" << endl;
-        cout << "|3. Student Loan                                       |" << endl;
-        cout << "|4. Personal Loan                                      |" << endl;
-        cout << "|5. Agriculture Loan                                   |" << endl;
-        cout << "|6. Business Loan                                      |" << endl;
+        cout << "|1. Student Loan                                       |" << endl;
+        cout << "|2. Business Loan                                      |" << endl;
+        cout << "|3. Back                                               |" << endl;
         cout << "|7. More details                                       |" << endl;
         cout << "|8. Exit                                               |" << endl;
         cout << "|______________________________________________________|"<<endl;
-        
+
         cout << "Enter your choice: ";
         cin>> choice;
         cout << endl << endl;
-        
-        switch(choice){
-            
-        case 1:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|                  --->>Home Loan<<--                  |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|- Interest Rate: 7%                                   |" << endl;
-        cout << "|- Maximum Tenure: 20 years                            |" << endl;
-        cout << "|- Minimum Amount: 5,00,000                            |"<< endl;
-        cout << "|______________________________________________________|"<<endl;
-        break;
-            
-        case 2:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|                   --->>Car loan<<---                 |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|- Interest Rate: 9%                                   |" << endl;
-        cout << "|- Maximum Tenure: 7 years                             |" << endl;
-        cout << "|- Minimum Amount: 1,00,000                            |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        break;
-            
-        case 3:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|                 --->>Student Loan<<--                 |" << endl;
-        cout << "|_______________________________________________________|"<<endl;
-        cout << "|- Interest Rate: 4%                                    |"<<endl;
-        cout << "|- Maximum Tenure: 15 years                             |"<<endl;
-        cout << "|- Minimum Amount: 50,000                               |"<<endl;
-        cout << "|_______________________________________________________|"<<endl;
-        break;
-            
-        case 4:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|               --->>Personal Loan<<---                |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|- Interest Rate: 12%                                  |"<<endl;
-        cout << "|- Maximum Tenure: 5 years                             |"<<endl;
-        cout << "|- Minimum Amount: 50,000                              |"<<endl;
-        cout << "|______________________________________________________|"<<endl;
-            break;
-            
-        case 5:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|              --->>Agriculture Loan<<---              |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|- Interest Rate: 5%                                   |"<< endl;
-        cout << "|- Maximum Tenure: 10 years                            |" << endl;
-        cout << "|- Minimum Amount: 1,00,000                            |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        break;
-        
-        case 6:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|                --->>Business Loan<<---               |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|- Interest Rate: 10%                                  |"<<endl;
-        cout << "|- Maximum Tenure: 15 years                            |"<<endl;
-        cout << "|- Minimum Amount: 2,00,000                            |"<<endl;
-        cout << "|______________________________________________________|"<<endl;
-        
-        case 7:
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|                 --->>More details<<---               |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|-->>Contruct us..                                     |"<< endl;
-        cout << "|       >>Email: -bankmanagement@gmil.com              |" <<endl;
-        cout << "|       >>Phone: \n-01727**** \n-01610******           |" << endl;
-        cout << "|         Thank you                                    |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        break;
-        
-        case 8:{
-            cout<<endl;
-        cout << "Thank you for visiting us. "<< endl;
-        return;
+
+        if(choice == 1){
+        cout << "--->>Student Loan<<---" << endl << endl;
+
+        cout << "- Interest Rate: 5%" << endl;
+        cout << "- Maximum Tenure: Not limits yet" << endl;
+        cout << "- Minimum Amount: Not limits yet" << endl << endl;
+
         }
-        break;
-        
-        default:
-        cout<<endl;
-        cout << "Error.Try Again  " << endl;
-        cout << "xxxxxxxxxxxxxxx "<< endl;
-         problem_7();
-        break;
+        else if(choice == 2){
+        cout << "--->>Business Loan<<---" << endl << endl;
+
+        cout << "- Interest Rate: 15%" << endl;
+        cout << "- Maximum Tenure: Not limits yet" << endl;
+        cout << "- Minimum Amount: Not limits yet" << endl << endl;
+
         }
-        
-        cout<<endl;
-        cout << "________________________________________________________"<<endl;
-        cout << "|               --->>Types of Bank Loans<<---          |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "|1. Again                                              |" << endl;
-        cout << "|2. Back                                               |" << endl;
-        cout << "|______________________________________________________|"<<endl;
-        cout << "Enter your choice (1-2): ";
-        cin >> choice;
-        cout << endl;
-        
-        if (choice == 2);
-        } while (choice == 1);
-    
+
+        else if(choice == 3){
+            cout << "Successfully Back..." << endl;
+
+        }
+
+        else if(choice == 4){
+            cout << "Successfully Exit..." << endl;
+            exit(0);
+
+        }
+        else{
+          cout << "ERROR: Try Again..." << endl;
+
+        }
 }
 
 void problem_8(){
@@ -1637,6 +1556,16 @@ void problem_8(){
 }
 
 void problem_9(){
+cout << "--->>Contact Support<<---" << endl << endl;
+    cout << "Welcome to \"SKS\" Bank" << endl;
+    cout << "Email: sks@bb.org.bd" << endl;
+    cout << "Mob: 017******33" << endl;
+    cout << "Mob: 015******68" << endl;
+
+    cout << "-->>Hotline for customer's complaint<<--" << endl;
+    cout << "Dial 16236" << endl;
+    cout << "Fax : 88-02-9530464" << endl;
+    cout << "Email: sks@bb.org.bd" << endl;
     
 }
 
