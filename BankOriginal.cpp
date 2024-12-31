@@ -562,14 +562,14 @@ void delete_employee(){
         while (file >> account >> full_name >> login_pass >> key >> dob >> nationality >> gender>>educational_baground) {
             if (account == account_number) {
                 found = true;
-                cout << "Employee with account number " << account_number << " deleted successfully.\n";
+                cout << "This account belongs to "<<full_name <<"."<< " \nDeleted successfully.\n";
             } else {
                 temp << account << " " << full_name << " " << login_pass << " " << key << " " 
                      << dob << " " << nationality << " " << gender<<" "<<educational_baground << '\n';
             }
         }
        if (!found) {
-            cout << "No employee found with account number " << account_number << ".\n";
+            cout << "Account not found. " << account_number << ".\n";
         }
        file.close();
         temp.close();
@@ -578,29 +578,28 @@ void delete_employee(){
          
 }
 void show_all_employees() {
+int variable=1;
     ifstream file("employees.txt");
     if (!file) {
         cout << "Error: Unable to open the file for reading.\n";
         return;
     }
-    cout <<endl;
      cout << "_________________________________________________________"<<endl;
     cout << "|             --- Employee Details ---                   |"<<endl;
     cout << "|________________________________________________________|"<<endl;
-    cout << "Account Number.\tFull Name.\tDate of Birth.\tNationality.\tGender.\tKey.\tEducational Background.\tPassword.\n";
-    cout << string(300, '-') << "\n";
-
     long account_number;
     string full_name, dob, nationality, gender, key, educational_baground, login_pass;
     while (file >> account_number >> full_name >> login_pass >> key >> dob >> nationality >> gender >> educational_baground) {
-        cout << account_number <<endl; 
-        cout<< full_name <<endl;
-        cout<< dob << endl;
-        cout<< nationality << endl;
-        cout<< gender <<endl;
-        cout<< key << endl;
-        cout<< educational_baground <<endl; 
-        cout<< login_pass <<endl;
+        cout<<variable<<": \t";
+        cout<<" Account_number: " << account_number <<" \t"; 
+        cout<<"Full name: "<< full_name <<" \t";
+        cout<<"Date of birth:"<< dob <<" \t";
+        cout<<"Nationality: "<< nationality <<" \t";
+        cout<<"Gender: "<< gender <<" \t";
+        cout<<"Key Password: "<< key <<" \t";
+        cout<<"Educational background: "<< educational_baground <<" \t"; 
+        cout<<"Password: "<< login_pass <<endl;
+        variable++;
     }
     file.close();
 }
