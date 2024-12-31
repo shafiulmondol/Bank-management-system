@@ -126,6 +126,7 @@ void show_first_chart(){
     cout << "2: Employee Section."<<endl;
     cout << "3: Help Section."<<endl;
     cout << "4: Admin."<<endl;
+    cout <<"5: exit"<<endl;
     cout << "Enter your choice: >>";
 }
 void ask_for_login() {
@@ -133,7 +134,7 @@ void ask_for_login() {
     cout<<"----->>Bank Manu<<-----"<<endl;
     cout << "1: Sign Up"<<endl;
     cout << "2: Login"<<endl;
-    cout << "3: Back"<<endl;//exit cilo
+    cout << "3: Back"<<endl;
     cout << "Enter your choice: >>";
     }
     void show_user_chart() {
@@ -144,6 +145,7 @@ void ask_for_login() {
         cout << "4: Loan Request"<<endl;
         cout << "5: Help"<<endl;
         cout << "6: Logout"<<endl;
+        cout << "7: Dashboard"<<endl;
         cout << "Enter your choice: >>";
     }
 
@@ -1729,7 +1731,12 @@ void login_conditionn(){
                 else if (second_chart == 6) {
                     cout << "Logging out successfull.....\n";
                     break;
-                } else {
+                }
+                else if (second_chart==7)
+                {
+                   return;
+                }
+                 else {
                     cout << "Invalid choice. Please try again.\n";
                 }
             }
@@ -1856,6 +1863,10 @@ void second(){
         cout<<endl;
         if (option == 1) {
             second21();
+        }
+        else if (option==5){
+            cout<<"Exit\n";
+            exit(0);
         }
           
         
