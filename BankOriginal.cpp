@@ -121,43 +121,69 @@ public:
 string name;
 void show_first_chart(){
     cout<<endl;
-    cout<<"\n---->>Bank System<<----"<<endl;
-    cout << "1: Customer Section."<<endl;
-    cout << "2: Employee Section."<<endl;
-    cout << "3: Help Section."<<endl;
-    cout << "4: Admin."<<endl;
-    cout <<"5: exit"<<endl;
-    cout << "Enter your choice: >>";
+    cout<<  "_______________________________________"<<endl;
+    cout<<  "|---->>Bank System<<----              |"<<endl;
+    cout<<  "|_____________________________________|"<<endl;
+    cout << "|1: Customer Section.                 |"<<endl;
+    cout << "|2: Employee Section.                 |"<<endl;
+    cout << "|3: Help Section.                     |"<<endl;
+    cout << "|4: Admin.                            |"<<endl;
+    cout << "|5: exit                              |"<<endl;
+    cout<<  "|_____________________________________|"<<endl;
+    cout << "\nEnter your choice: >>";
 }
 void ask_for_login() {
     cout<<endl;
-    cout<<"----->>Bank Manu<<-----"<<endl;
-    cout << "1: Sign Up"<<endl;
-    cout << "2: Login"<<endl;
-    cout << "3: Back"<<endl;
-    cout << "Enter your choice: >>";
+    cout<<  "_______________________________________"<<endl;
+    cout << "|----->>Bank Manu<<-----              |"<<endl; 
+    cout<<  "|_____________________________________|"<<endl;
+    cout << "|1: Sign Up                           |"<<endl;
+    cout << "|2: Login                             |"<<endl;
+    cout << "|3: Back                              |"<<endl;
+    cout<<  "|_____________________________________|"<<endl;
+    cout << "\nEnter your choice: >>";
     }
+void kinds_of_account(){
+    cout<<endl;
+    cout<<"________________________________________________________"<<endl;
+    cout<<"| Which kinds of bank account you want to create?      |"<<endl;
+    cout<<"|______________________________________________________|"<<endl;
+    cout<<"|1. Savings Account                                    |"<<endl;
+    cout<<"|2. Professionals                                      |"<<endl;
+    cout<<"|3. Fixed Deposit Account (FD)                         |"<<endl;
+    cout<<"|4. Recurring Deposit Account (RD)                     |"<<endl;
+    cout<<"|5. Demat Account                                      |"<<endl;
+    cout<<"|6. Salary Account                                     |"<<endl;
+    cout<<"|7. Joint Account                                      |"<<endl;
+    cout<<"|8. Senior Citizen Account                             |"<<endl;
+    cout<<"|______________________________________________________|"<<endl;
+    cout<<"Enter your choice--->";
+}
     void show_user_chart() {
         cout<<endl;
-        cout << "1: Deposit"<<endl;
-        cout << "2: Withdraw"<<endl;
-        cout << "3: Show Details"<<endl;
-        cout << "4: Loan Request"<<endl;
-        cout << "5: Help"<<endl;
-        cout << "6: Logout"<<endl;
-        cout << "7: Dashboard"<<endl;
+        cout<<  "________________________________________"<<endl;
+        cout << "|1: Deposit                            |"<<endl;
+        cout << "|2: Withdraw                           |"<<endl;
+        cout << "|3: Show Details                       |"<<endl;
+        cout << "|4: Loan Request                       |"<<endl;
+        cout << "|5: Help                               |"<<endl;
+        cout << "|6: Logout                             |"<<endl;
+        cout << "|7: Dashboard                          |"<<endl;
+        cout<<  "|______________________________________|"<<endl;
         cout << "Enter your choice: >>";
     }
 
 void for_admin(){
     cout<<endl;
-    cout<<"1: Total empolyee."<<endl;
-    cout<<"2: Total customer."<<endl;
-    cout<<"3: Total Lone reciver."<<endl;
-    cout<<"4: Add employee"<<endl;
-    cout<<"5: Customer Report"<<endl;
-    cout<<"6: Back "<<endl;
-    cout<<"7: Close bank for todays"<<endl;
+    cout<<"________________________________________"<<endl;
+    cout<<"|1: Total empolyee.                    |"<<endl;
+    cout<<"|2: Total customer.                    |"<<endl;
+    cout<<"|3: Total Lone reciver.                |"<<endl;
+    cout<<"|4: Add employee                       |"<<endl;
+    cout<<"|5: Customer Report                    |"<<endl;
+    cout<<"|6: Back                               |"<<endl;
+    cout<<"|7: Close bank for todays              |"<<endl;
+    cout<<"|______________________________________|"<<endl;
     cout<<"Enter your choice: >> ";
 }
 };
@@ -170,6 +196,10 @@ public:
 
     void signup() {
     cout<<endl;
+     cout<<" ______________________________________________\n";
+    cout <<"|---->Attention please!!!                     |";
+    cout<<"\n|->Backspeach is not allow for anywhere       |\n";
+     cout<<"|_____________________________________________|\n\n";
     cout << "1. Personal Information>>\n";
     cout << "\n\tFull Name: ";
     cin.ignore();
@@ -212,7 +242,7 @@ long generate_unique_account_number() {
         long account;
         while (inFile >> account) {
             string dummy;
-            getline(inFile, dummy); // Skip the rest of the line
+            getline(inFile, dummy);
             last_account_number = account; // Update with the last number read
         }
         inFile.close();
@@ -648,65 +678,78 @@ class help{
 public:
     
 void help_menu(){
-cout << "---->> Help Section <<----" << endl << endl;
-
-  cout << "Menu:" << endl;
-  cout << "\t1.  About Us " << endl;
-  cout << "\t2.  How to Create an Account" << endl;
-  cout << "\t3.  Password Requirements" << endl;
-  cout << "\t4.  Reset Password" << endl;
-  cout << "\t5.  Transaction Guidelines" << endl;
-  cout << "\t6.  Report An Issue" << endl;
-  cout << "\t7.  Loan Applications" << endl;
-  cout << "\t8.  Security Tips" << endl;
-  cout << "\t9.  Contact Support" << endl;
-  cout << "\t10. Delate account" <<endl;
-  cout << "\t11. Back" << endl;
-  cout << "\t12. Exit" << endl;
+  cout << "________________________________________________________"<<endl;
+  cout << "|          ---->> Help Section <<----                  |"<< endl;
+  cout << "|______________________________________________________|"<<endl;
+  cout << "|__________________Menu________________________________|" << endl;
+  cout << "|\t1.  About Us                                        |" << endl;
+  cout << "|\t2.  How to Create an Account                        |" << endl;
+  cout << "|\t3.  Password Requirements                           |" << endl;
+  cout << "|\t4.  Reset Password                                  |" << endl;
+  cout << "|\t5.  Transaction Guidelines                          |" << endl;
+  cout << "|\t6.  Report An Issue                                 |" << endl;
+  cout << "|\t7.  Loan Applications                               |" << endl;
+  cout << "|\t8.  Security Tips                                   |" << endl;
+  cout << "|\t9.  Contact Support                                 |" << endl;
+  cout << "|\t10. Delate account                                  |" <<endl;
+  cout << "|\t11. Back                                            |" << endl;
+  cout << "|\t12. Exit                                            |" << endl;
+  cout << "|______________________________________________________|"<<endl;
 
 }
 
 void problem_1(){
     int choice;
-cout << "--->> About Us<<----" << endl<< endl;
-cout << "Menu: " << endl;
-cout << "\t1. Introduction" << endl;
-cout << "\t2. Mission Statement" << endl;
-cout << "\t3. Vision" << endl;
-cout << "\t4. Services" << endl;
-cout << "\t5. Technical Team" << endl;
-cout << "\t6. Back" << endl;
-cout << "\t7. Exit" << endl;
-
+cout << "__________________________________________________________"<<endl;
+cout << "|--->> About Us<<----                                    |"<< endl;
+cout << "|________________________________________________________|"<<endl;
+cout << "|_____________________Menu_______________________________| " << endl;
+cout << "|\t1. Introduction                                       |" << endl;
+cout << "|\t2. Mission Statement                                  |" << endl;
+cout << "|\t3. Vision                                             |" << endl;
+cout << "|\t4. Services                                           |" << endl;
+cout << "|\t5. Technical Team                                     |" << endl;
+cout << "|\t6. Back                                               |" << endl;
+cout << "|\t7. Exit                                               |" << endl;
+cout << "|________________________________________________________|"<<endl;
 cout << "Enter your choice: ";
 cin >> choice;
 cout << endl;
 
 if(choice == 1){
-    cout << "Welcome to \"SKS\" Bank..." << endl;
-    cout << "The full Meaning of the bank..." << endl;
-    cout << "\t-S = Md. Shafiul Islam" << endl;
-    cout << "\t-K = Md. Kawsar Miah" << endl;
-    cout << "\t-S = Sumaiya Haq" << endl << endl;
-    
+    cout << "________________________________________________________"<<endl;
+    cout << "|Welcome to-------- \"SKS\"-------------Bank..         |" << endl;
+    cout << "|______________________________________________________|"<<endl;
+    cout << "|The full Meaning of the bank...                       |" << endl;
+    cout << "|------------------------------------------------------|"<<endl;
+    cout << "|\t-S = Md. Shafiul Islam                              |" << endl;
+    cout << "|\t-K = Md. Kawsar Miah                                |" << endl;
+    cout << "|\t-S = Sumaiya Haq                                    |" << endl << endl;
+    cout << "|______________________________________________________|"<<endl<<endl;
+    cout << "_____________________________________________________________________"<<endl;
     cout << "SKS Bank, a trusted financial partner dedicated to empowering individuals, businesses, and communities with innovative and comprehensive banking solutions. With a strong foundation of integrity and excellence, SKS Bank offers a wide range of services, including personal and business accounts, loans, investments, digital banking, and wealth management." << endl;
 
     cout << "Choose SKS Bank today—where trust meets innovation, and your goals become our priorities." << endl;
+    cout << "____________________________________________________________________"<<endl;
     cout << endl;
 }
 
 else if(choice == 2){
-    cout << "--->>Mission Statement<<---" << endl << endl;
-    
+    cout << "________________________________________________________"<<endl;
+    cout << "|        --->>Mission Statement<<---                   |" << endl << endl;
+    cout << "|______________________________________________________|"<<endl;
+    cout << "____________________________________________________________________"<<endl;
     cout <<"Our mission is to deliver exceptional financial services that empower our customers to achieve their goals. We are committed to innovation, trust, and inclusivity, providing tailored solutions that foster economic growth, financial literacy, and long-term prosperity. Through responsible practices and a customer-first approach, we aim to create value for individuals, businesses, and communities." << endl << endl;
     
 }
 
 else if(choice == 3){
-    cout << "--->>Vision<<---" << endl << endl;
-    
+    cout << "_________________________________________________________"<<endl;
+    cout << "|--->>Vision<<---                                        |"<< endl;
+    cout << "|________________________________________________________|"<<endl;
+    cout << "________________________________________________________________________"<<endl;
     cout <<"To be a trusted financial partner that empowers individuals, businesses, and communities by delivering innovative, inclusive, and sustainable banking solutions. We strive to redefine banking through technological excellence, exceptional customer service, and a commitment to fostering economic growth and social well-being." << endl << endl;
-    
+    cout << "__________________________________________________________________________"<<endl;
 }
 
 else if(choice == 4){
@@ -772,20 +815,23 @@ else{
 void problem_2(){
     user1 u;
 int choice;
-cout << "\n--->>How to Create an Account<<---\n" << endl;
-cout << "Menu: " << endl;
-
-cout << "\t1. Details" << endl;
-cout << "\t2. Sign_up" << endl;
-cout << "\t3. Back" << endl;
-cout << "\t4. Exit" << endl;
+cout << "________________________________________________________"<<endl;
+cout << "|--->>How to Create an Account<<---                    |" << endl;
+cout << "|______________________________________________________|"<<endl;
+cout << "|Menu:                                                 |" << endl;
+cout << "|\t1. Details                                          |" << endl;
+cout << "|\t2. Sign_up                                          |" << endl;
+cout << "|\t3. Back                                             |" << endl;
+cout << "|\t4. Exit                                             |" << endl;
+cout << "|______________________________________________________|"<<endl;
 
 cout << "Enter your choice: ";
 cin >> choice;
 
 if(choice == 1){
-    
-    cout << "\nWelcome to the Bank System!" << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "--------------------------------------------------------"<<endl;
+    cout << "Welcome to the Bank System!" << endl;
     cout << "Follow these steps to create an account:" << endl << endl;
     cout << "1. Choose 'Customer Section' from the main menu" << endl;
     cout << "2. Select 'Sign Up' from the Customer Menu" << endl;
@@ -800,45 +846,60 @@ if(choice == 1){
     cout << "   - Must include uppercase and lowercase letters, at least one digit, and one special character." << endl;
     cout << "5. Once the information is submitted, your account number will be generated." << endl;
     cout << "6. Save your account number securely." << endl << endl;
-
+    cout << "____________________________________________________________________"<<endl;
  
 int cho;
-cout << "--->>How to Create an Account<<---" << endl;
-cout << "Menu: " << endl;
-
-cout << "\t1. Sign_up" << endl;
-cout << "\t2. Back" << endl;
-cout << "\t3. Exit" << endl;
-
+cout << "________________________________________________________"<<endl;
+cout << "|--->>How to Create an Account<<---                    |" << endl;
+cout << "|______________________________________________________|"<<endl;
+cout << "|Menu:                                                 |" << endl;
+cout << "|\t1. Sign_up                                          |" << endl;
+cout << "|\t2. Back                                             |" << endl;
+cout << "|\t3. Exit                                             |" << endl;
+cout << "|______________________________________________________|"<<endl;
 cout << "Enter your choice: ";
 cin >> cho;
 
 if(cho == 1){
-    cout << "Sign_up..." <<endl << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Sign_up...                                            |"<< endl;
+    cout << "|______________________________________________________|"<<endl;
     u.signup();
 }
 
 else if(cho == 2){
-    cout << "Successfully Back..." << endl << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Successfully Back...                                  |                                             |"<< endl;
+    cout << "|______________________________________________________|"<<endl;
 }
 else if(cho == 3){
-    cout << "Successfully Exit..." << endl;
+    cout << "______________________________________________________"<<endl;
+    cout << "|Successfully Exit...                                |" << endl;
+    cout << "|____________________________________________________|"<<endl;
     exit(0);
 }
 else{
-    cout << "ERROR: Try Again..." << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|ERROR: Try Again...                                   |" << endl;
+    cout << "|______________________________________________________|"<<endl;
 }
 
 }
 else if(choice == 2){
-    cout << "Sign_up..." << endl << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Sign_up...                                            |"<< endl;
+    cout << "|______________________________________________________|"<<endl;
     u.signup();
 }
 else if(choice == 3){
-    cout << "Successfully Back..." << endl << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Successfully Back...                                  |"<< endl;
+    cout << "|______________________________________________________|"<<endl;
 }
 else if(choice == 4){
-    cout << "Successfully Exit..." << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Successfully Exit...                                  |" << endl;
+    cout << "|______________________________________________________|"<<endl;
     exit(0);
 }
 else{
@@ -848,40 +909,45 @@ else{
 
 void problem_3(){
         int choice;
-    cout << "--->>Password Requirements<<---" << endl;
-    cout << "Menu:" << endl;
-       
-       cout << "\t1.Requirements" << endl;
-       cout << "\t2.Back" << endl;
-       cout << "\t2.Exit" << endl;
-       cout << "Enter your choice: << ";
-       cin >> choice;
-       cout << endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|         --->>Password Requirements<<---               |" << endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout << "|___________________Menu________________________________|" << endl;
+    cout << "|\t1.Requirements                                       |" << endl;
+    cout << "|\t2.Back                                               |" << endl;
+    cout << "|\t2.Exit                                               |" << endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout << "Enter your choice: << ";
+    cin >> choice;
+    cout << endl;
        
        if(choice == 1){
-    cout << "1. Password must be at least 8 characters long." << endl;
-    cout << "2. Password must include at least one uppercase letter (A-Z)." << endl;
-    cout << "3. Password must include at least one lowercase letter (a-z)." << endl;
-    cout << "4. Password must include at least one digit (0-9)." << endl;
-    cout << "5. Password must include at least one special character (@, #, $, %, &, *)." << endl << endl;
-    
-     cout << "--->>Strong Passwords Example<<---" << endl;
-      cout << "\t- Summer2024@# " << endl;
-    cout << "\t- SecureP@ssw0rd123 " << endl;
-    cout << "\t- P@ssw0rD!567 " << endl;
-    cout << "\t- MyStrongPass!2024 " << endl;
-    cout << "\t- Safe&Sound#123 " << endl << endl;
-    
-    cout << "--->>Normal Passwords Example<<---" << endl;
-    
-    cout << "\t- 12345678" << endl;
-    cout << "\t- password" << endl;
-    cout << "\t- abc12345" << endl;
-    cout << "\t- qwerty12" << endl;
-    cout << "\t- letmein@" << endl;
-    cout << "\t- admin123" << endl;
-    cout << "\t- welcome1" << endl;
-    cout << "\t- iloveyou" << endl << endl;
+    cout << "_____________________________________________________________________________"<<endl;
+    cout << "|1. Password must be at least 8 characters long.                            |" << endl;
+    cout << "|2. Password must include at least one uppercase letter (A-Z).              |" << endl;
+    cout << "|3. Password must include at least one lowercase letter (a-z).              |" << endl;
+    cout << "|4. Password must include at least one digit (0-9).                         |" << endl;
+    cout << "|5. Password must include at least one special character (@, #, $, %, &, *).|" << endl;
+    cout << "|___________________________________________________________________________|"<<endl;
+    cout << "|                 --->>Strong Passwords Example<<---                        |" << endl;
+    cout << "|___________________________________________________________________________|"<<endl;
+    cout << "|\t- Summer2024@#                                                           |" << endl;
+    cout << "|\t- SecureP@ssw0rd123                                                      |" << endl;
+    cout << "|\t- P@ssw0rD!567                                                           |" << endl;
+    cout << "|\t- MyStrongPass!2024                                                      |" << endl;
+    cout << "|\t- Safe&Sound#123                                                         |" << endl << endl;
+    cout << "|___________________________________________________________________________|"<<endl;
+    cout << "|                  --->>Normal Passwords Example<<---                       |" << endl;
+    cout << "|___________________________________________________________________________|"<<endl;
+    cout << "|\t- 12345678                                                   |" << endl;
+    cout << "|\t- password                                                   |" << endl;
+    cout << "|\t- abc12345                                                   |" << endl;
+    cout << "|\t- qwerty12                                                   |" << endl;
+    cout << "|\t- letmein@                                                   |" << endl;
+    cout << "|\t- admin123                                                   |" << endl;
+    cout << "|\t- welcome1                                                   |" << endl;
+    cout << "|\t- iloveyou                                                   |" << endl;
+    cout << "|_______________________________________________________________|"<<endl;
            
        int cho;
        cout << "--->>Password Requirements<<---" << endl << endl;
@@ -1286,17 +1352,19 @@ void problem_6(){
 void problem_7(){
      int choice;
     do{
-        cout << "--->>Types of Bank Loans<<---" << endl;
-        cout << "-----------------------------" << endl << endl;
-        
-        cout << "1. Home Loan" << endl;
-        cout << "2. Car Loan" << endl;
-        cout << "3. Student Loan" << endl;
-        cout << "4. Personal Loan" << endl;
-        cout << "5. Agriculture Loan" << endl;
-        cout << "6. Business Loan" << endl;
-        cout << "7. More details" << endl;
-        cout << "8. Exit" << endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Types of Bank Loans<<---                         |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|1. Home Loan                                          |" << endl;
+        cout << "|2. Car Loan                                           |" << endl;
+        cout << "|3. Student Loan                                       |" << endl;
+        cout << "|4. Personal Loan                                      |" << endl;
+        cout << "|5. Agriculture Loan                                   |" << endl;
+        cout << "|6. Business Loan                                      |" << endl;
+        cout << "|7. More details                                       |" << endl;
+        cout << "|8. Exit                                               |" << endl;
+        cout << "|______________________________________________________|"<<endl;
         
         cout << "Enter your choice: ";
         cin>> choice;
@@ -1305,70 +1373,108 @@ void problem_7(){
         switch(choice){
             
         case 1:
-        cout << "--->>Home Loan<<---" << endl;
-        cout << "- Interest Rate: 7%" << endl;
-        cout << "- Maximum Tenure: 20 years" << endl;
-        cout << "- Minimum Amount: 5,00,000"<< endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Home Loan<<---                                   |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|- Interest Rate: 7%                                   |" << endl;
+        cout << "|- Maximum Tenure: 20 years                            |" << endl;
+        cout << "|- Minimum Amount: 5,00,000                            |"<< endl;
+        cout << "|______________________________________________________|"<<endl;
         break;
             
         case 2:
-        cout << "--->>Car loan<<---" << endl;
-        cout << "- Interest Rate: 9%" << endl;
-        cout << "- Maximum Tenure: 7 years" << endl;
-        cout << "- Minimum Amount: 1,00,000" << endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Car loan<<---                                    |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|- Interest Rate: 9%                                   |" << endl;
+        cout << "|- Maximum Tenure: 7 years                             |" << endl;
+        cout << "|- Minimum Amount: 1,00,000                            |" << endl;
+        cout << "|______________________________________________________|"<<endl;
         break;
             
         case 3:
-        cout << "--->>Student Loan<<---" << endl;
-        cout << "- Interest Rate: 4%\n";
-        cout << "- Maximum Tenure: 15 years\n";
-        cout << "- Minimum Amount: 50,000\n";
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Student Loan<<---                                 |" << endl;
+        cout << "|_______________________________________________________|"<<endl;
+        cout << "|- Interest Rate: 4%                                    |"<<endl;
+        cout << "|- Maximum Tenure: 15 years                             |"<<endl;
+        cout << "|- Minimum Amount: 50,000                               |"<<endl;
+        cout << "|_______________________________________________________|"<<endl;
         break;
             
         case 4:
-        cout << "--->>Personal Loan<<---" << endl;
-        cout << "- Interest Rate: 12%\n";
-        cout << "- Maximum Tenure: 5 years\n";
-        cout << "- Minimum Amount: 50,000\n";
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Personal Loan<<---                               |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|- Interest Rate: 12%                                  |"<<endl;
+        cout << "|- Maximum Tenure: 5 years                             |"<<endl;
+        cout << "|- Minimum Amount: 50,000                              |"<<endl;
+        cout << "|______________________________________________________|"<<endl;
             break;
             
         case 5:
-        cout << "--->>Agriculture Loan<<---" << endl;
-        cout << "- Interest Rate: 5%" << endl;
-        cout << "- Maximum Tenure: 10 years" << endl;
-        cout << "- Minimum Amount: 1,00,000" << endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Agriculture Loan<<---                            |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|- Interest Rate: 5%                                   |"<< endl;
+        cout << "|- Maximum Tenure: 10 years                            |" << endl;
+        cout << "|- Minimum Amount: 1,00,000                            |" << endl;
+        cout << "|______________________________________________________|"<<endl;
         break;
         
         case 6:
-        cout <<"--->>Business Loan<<---" << endl;
-        cout << "- Interest Rate: 10%";
-        cout << "- Maximum Tenure: 15 years";
-        cout << "- Minimum Amount: 2,00,000";
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Business Loan<<---                               |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|- Interest Rate: 10%                                  |"<<endl;
+        cout << "|- Maximum Tenure: 15 years                            |"<<endl;
+        cout << "|- Minimum Amount: 2,00,000                            |"<<endl;
+        cout << "|______________________________________________________|"<<endl;
         
         case 7:
-        cout << "--->>More details<<---" << endl;
-        cout << "-->>Contruct us.." << endl << endl;
-        cout << "Email: -bankmanagement@gmil.com" <<endl;
-        cout << "Phone: \n-01727**** \n-01610******" << endl;
-        cout << "\nThank you" << endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>More details<<---                                |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|-->>Contruct us..                                     |"<< endl;
+        cout << "|       >>Email: -bankmanagement@gmil.com              |" <<endl;
+        cout << "|       >>Phone: \n-01727**** \n-01610******           |" << endl;
+        cout << "|         Thank you                                    |" << endl;
+        cout << "|______________________________________________________|"<<endl;
         break;
         
         case 8:{
-        cout << "Thank you for visiting us." << endl << endl;
+            cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|Thank you for visiting us.                            |"<< endl;
+        cout << "|______________________________________________________|"<<endl;
         return;
         }
         break;
         
         default:
-        cout << "Error.Try Again" << endl;
-        cout << "xxxxxxxxxxxxxxx" << endl << endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|Error.Try Again                                       |" << endl;
+        cout << "|xxxxxxxxxxxxxxx                                       |"<< endl;
+        cout << "|______________________________________________________|"<<endl;
         problem_7();
         break;
         }
         
-        cout << "\n--->>Types of Bank Loans<<---" << endl;
-        cout << "1. Again" << endl;
-        cout << "2. Back" << endl;
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|--->>Types of Bank Loans<<---                         |" << endl;
+        cout << "|______________________________________________________|"<<endl;
+        cout << "|1. Again                                              |" << endl;
+        cout << "|2. Back                                               |" << endl;
+        cout << "|______________________________________________________|"<<endl;
         cout << "Enter your choice (1-2): ";
         cin >> choice;
         cout << endl;
@@ -1380,63 +1486,68 @@ void problem_7(){
 
 void problem_8(){
     int choice;
-    cout << "--->>Security Tips<<---" << endl << endl;
-    
-    cout << "Menu:"<< endl;
-    cout << "\t1. Tips" << endl;
-    cout << "\t2. Back" << endl;
-    cout << "\t3. Exit" << endl;
+    cout<<endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|--->>Security Tips<<---                               |"<< endl;
+    cout << "|______________________________________________________|"<<endl;
+    cout << "|Menu:                                                 |"<< endl;
+    cout << "|\t1. Tips                                             |" << endl;
+    cout << "|\t2. Back                                             |" << endl;
+    cout << "|\t3. Exit                                             |" << endl;
+    cout << "|______________________________________________________|"<<endl;
     
     cout << "Enter your choice: ";
     cin >> choice;
     cout << endl;
     
     if(choice == 1){
-        cout << "--->>Security Tips<<---" << endl << endl;
-        
-        
-    cout << "1. Protect your PIN and passwords." << endl;
-    cout << "   - Keep your PIN and passwords confidential; never share them with anyone." << endl;
-    cout << "   - Avoid writing down your PIN or saving it in an easily accessible place." << endl;
-    cout << "   - Use a strong combination of uppercase, lowercase, numbers, and symbols for passwords." << endl << endl;
-    cout << "   - Change your passwords regularly to enhance security." << endl;
-
-    cout << "2. Monitor account activity regularly." << endl;
-    cout << "   - Frequently review your bank statements and transaction history online or via mobile banking apps." << endl;
-    cout << "   - Check for any unauthorized or suspicious transactions, even small amounts." << endl;
-    cout << "   - Set reminders to review your account weekly." << endl << endl;
-
-    cout << "3. Beware of phishing scams." << endl;
-    cout << "   - Avoid clicking on links in unsolicited emails, messages, or pop-ups that claim to be from your bank." << endl;
-    cout << "   - Verify the sender's email address or phone number before responding to any requests for personal information." << endl;
-    cout << "   - Your bank will never ask for your PIN or full password through email or phone." << endl << endl;
-
-    cout << "4. Secure your devices." << endl;
-    cout << "   - Install and update antivirus software to protect against malware and viruses." << endl;
-    cout << "   - Keep your operating system and apps updated to fix security vulnerabilities." << endl;
-    cout << "   - Avoid using public or unsecured Wi-Fi for online banking. If necessary, use a trusted VPN service." << endl;
-    cout << "   - Enable screen lock features on your devices to prevent unauthorized access." << endl << endl;
-
-    cout << "5. Report issues immediately." << endl;
-    cout << "   - Notify your bank as soon as you suspect unauthorized access to your account or card." << endl;
-    cout << "   - Use the bank's official helpline or visit the branch to report lost or stolen cards." << endl;
-    cout << "   - Keep your bank's customer support number saved for quick access." << endl << endl;
-
-    cout << "6. Set up transaction alerts." << endl;
-    cout << "   - Enable SMS or email notifications for every transaction on your account." << endl;
-    cout << "   - Use these alerts to quickly detect unauthorized or suspicious activity." << endl;
-    cout << "   - Customize alerts for large withdrawals or transactions over a specific amount." << endl << endl;
-
+        cout<<endl;
+    cout << "___________________________________________________________________"<<endl;
+    cout << "|--->>Security Tips<<---" << endl << endl;
+    cout << "|1. Protect your PIN and passwords." << endl;
+    cout << "|   - Keep your PIN and passwords confidential; never share them with anyone." << endl;
+    cout << "|  - Avoid writing down your PIN or saving it in an easily accessible place." << endl;
+    cout << "|  - Use a strong combination of uppercase, lowercase, numbers, and symbols for passwords." << endl << endl;
+    cout << "|  - Change your passwords regularly to enhance security." << endl;
+    cout << "|________________________________________________________________"<<endl;
+    cout << "|2. Monitor account activity regularly." << endl;
+    cout << "|  - Frequently review your bank statements and transaction history online or via mobile banking apps." << endl;
+    cout << "|  - Check for any unauthorized or suspicious transactions, even small amounts." << endl;
+    cout << "|  - Set reminders to review your account weekly." << endl;
+    cout << "|_________________________________________________________________"<<endl;
+    cout << "|3. Beware of phishing scams." << endl;
+    cout << "|  - Avoid clicking on links in unsolicited emails, messages, or pop-ups that claim to be from your bank." << endl;
+    cout << "|  - Verify the sender's email address or phone number before responding to any requests for personal information." << endl;
+    cout << "|  - Your bank will never ask for your PIN or full password through email or phone." << endl << endl;
+    cout << "|_________________________________________________________________"<<endl;
+    cout << "|4. Secure your devices." << endl;
+    cout << "|   - Install and update antivirus software to protect against malware and viruses." << endl;
+    cout << "|   - Keep your operating system and apps updated to fix security vulnerabilities." << endl;
+    cout << "|   - Avoid using public or unsecured Wi-Fi for online banking. If necessary, use a trusted VPN service." << endl;
+    cout << "|   - Enable screen lock features on your devices to prevent unauthorized access." << endl << endl;
+    cout << "|_________________________________________________________________"<<endl;
+    cout << "|5. Report issues immediately." << endl;
+    cout << "|   - Notify your bank as soon as you suspect unauthorized access to your account or card." << endl;
+    cout << "|   - Use the bank's official helpline or visit the branch to report lost or stolen cards." << endl;
+    cout << "|   - Keep your bank's customer support number saved for quick access." << endl << endl;
+    cout << "|________________________________________________________________"<<endl;
+    cout << "|6. Set up transaction alerts." << endl;
+    cout << "|   - Enable SMS or email notifications for every transaction on your account." << endl;
+    cout << "|   - Use these alerts to quickly detect unauthorized or suspicious activity." << endl;
+    cout << "|   - Customize alerts for large withdrawals or transactions over a specific amount." << endl << endl;
+    cout << "|_________________________________________________________________"<<endl;
         
         
         
     int cho;
-    cout << "--->>Security Tips<<---" << endl << endl;
-    
-    cout << "Menu:"<< endl;
-    cout << "\t1. Back" << endl;
-    cout << "\t2. Exit" << endl;
-    
+    cout<<endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|--->>Security Tips<<---                               |" << endl;
+    cout << "|______________________________________________________|"<<endl;
+    cout << "|Menu:                                                 |"<< endl;
+    cout << "|\t1. Back                                             |" << endl;
+    cout << "|\t2. Exit                                             |" << endl;
+    cout << "|______________________________________________________|"<<endl;
     cout << "Enter your choice: ";
     cin >> cho;
     cout << endl;
@@ -1472,19 +1583,29 @@ void problem_9(){
 
 void problem_10(){
    user1 use;
-     cout << "Do you want to delete your account?\n1. Yes\n2. No\n3. Back\nEnter your choice >> ";
+   cout<<endl;
+    cout << "_________________________________________________________"<<endl;
+    cout << "|Do you want to delete your account?                    |"<<endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout<<  "|1. Yes                                                 |"<<endl;
+    cout<<  "|2. No                                                  |"<<endl;
+    cout<<  "|3. Back                                                |"<<endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout <<"Enter your choice >>";
     int dlt;
     cin >> dlt;
 
     if (dlt == 1) {
         long entered_account;
         string entered_password;
-
-        cout << "Enter Account Number: ";
+        cout<<endl;
+        cout << "________________________________________________________|"<<endl;
+        cout << "|Enter Account Number: ";
         cin >> entered_account;
         cin.ignore(); // Clear input buffer
         cout << "Enter Password: ";
         getline(cin, entered_password);
+        cout << "|________________________________________________________|"<<endl;
         cout << endl;
 
         ifstream file("customer_data.txt");
@@ -1524,40 +1645,62 @@ void problem_10(){
         temp.close();
 
         if (!found) {
-            cout << "Account not found or password incorrect.\n" << endl;
+            cout<<endl;
+            cout << "________________________________________________________"<<endl;
+            cout << "|Account not found or password incorrect.              |" << endl;
+            cout << "|______________________________________________________|"<<endl;
             remove("temp.txt");
         } else {
             if (remove("customer_data.txt") != 0) {
-                cerr << "Error: Unable to delete the original file." << endl;
-                cout << "Operation aborted.\n";
+                cout<<endl;
+                cout << "________________________________________________________"<<endl;
+                cout << "|Error: Unable to delete the original file.            |" << endl;
+                cout << "|Operation aborted.                                    |"<<endl;
+                cout << "|______________________________________________________|"<<endl;
             } else if (rename("temp.txt", "customer_data.txt") != 0) {
-                cerr << "Error: Unable to rename the temporary file." << endl;
-                cout << "Operation aborted.\n";
+                cout << "________________________________________________________"<<endl;
+                cerr << "|Error: Unable to rename the temporary file.           |" << endl;
+                cout << "|Operation aborted.                                    |"<<endl;
+                cout << "|______________________________________________________|"<<endl;
             } else {
-                cout << "Account deleted successfully!" << endl;
+                cout << "________________________________________________________"<<endl;
+                cout << "|Account deleted successfully!                         |" << endl;
+                cout << "|______________________________________________________|"<<endl;
             }
         }
 
     } else if (dlt == 2) {
-        cout << "No action taken." << endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|No action taken.                                      |" << endl;
+        cout << "|______________________________________________________|"<<endl;
     } else if (dlt == 3) {
-        cout << "Returning to the previous menu." << endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|Returning to the previous menu.                       |" << endl;
+        cout << "|______________________________________________________|"<<endl;
     }
 
     else {
-        cout << "Invalid choice." << endl;
+        cout << "_________________________________________________________"<<endl;
+        cout << "|Invalid choice.                                        |" << endl;
+        cout << "|_______________________________________________________|"<<endl;
         problem_10();
     }
     }
 
 
 void problem_11(){
-cout << "Thank you for visiting us." << endl;
-cout << "Successfully Back..." << endl << endl;
+    cout<<endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Thank you for visiting us.                            |" << endl;
+    cout << "|Successfully Back...                                  |" << endl;
+    cout << "|______________________________________________________|"<<endl;
 }
 
 void problem_12(){
-    cout << "Successfully Exit..." << endl;
+    cout<<endl;
+    cout << "________________________________________________________"<<endl;
+    cout << "|Successfully Exit...                                  |" << endl;
+    cout << "|______________________________________________________|"<<endl;
     exit(0);
 }
 
@@ -1571,9 +1714,11 @@ void access_help(){
     while (true) {
 
         h.help_menu();
-
-        cout << "\nEnter your choice: >> ";
+        cout<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|Enter your choice: >> ";
         cin >> choice;
+        cout << "|________________________________________________________|"<<endl;
         cout << endl;
 
         switch(choice){
@@ -1618,7 +1763,9 @@ void access_help(){
             h.problem_10();
 
             case 11:
-           cout << "Successfully Back to help section..." << endl;
+            cout << "________________________________________________________"<<endl;
+            cout << "|Successfully Back to help section...                  |" << endl;
+            cout << "|______________________________________________________|"<<endl;
             return;
             break;
 
@@ -1627,7 +1774,9 @@ void access_help(){
             break;
 
             default:
-            cout << "Error. Try Again" << endl << endl;
+            cout << "________________________________________________________"<<endl;
+            cout << "|Error. Try Again                                      |"<< endl;
+            cout << "|______________________________________________________|"<<endl;
 
             }
           }
@@ -1651,16 +1800,19 @@ void login_conditionn(){
 
      long entered_account;
     string entered_password;
-
-    cout << "Enter Account Number: ";
+    cout << "________________________________________________________"<<endl;
+    cout << "|Enter Account Number: ";
     cin >> entered_account;
     cin.ignore();
-    cout << "Enter Password: ";
+    cout << "|Enter Password: ";
     getline(cin, entered_password);
+    cout << "|_______________________________________________________|"<<endl;
     cout << endl;
     ifstream file("customer_data.txt");
     if (!file) {
-        cout << "Error: Unable to open customer data file.\n";
+        cout << "________________________________________________________"<<endl;
+        cout << "|Error: Unable to open customer data file.             |"<<endl;
+        cout << "|______________________________________________________|"<<endl;
     }
 
 
@@ -1674,7 +1826,9 @@ void login_conditionn(){
         getline(file, login_pass);
 
         if (account_number == entered_account && login_pass == entered_password) {
-            cout << "\nLogin successful! Welcome, " << full_name << ".\n";
+            cout << "________________________________________________________"<<endl;
+            cout << "|Login successful! Welcome, " << full_name << ".       |"<<endl;
+            cout << "|______________________________________________________|"<<endl;
             is_valid = true;
 
             int second_chart;
@@ -1690,38 +1844,56 @@ void login_conditionn(){
                     log.withdraw(account_number);
                     cout<<endl;
                 } else if (second_chart == 3) {
-                    cout<<"1: Show biodata.\n2: Show transection history.\n--Enter your choice-->>"<<endl;
+                    cout << "________________________________________________________"<<endl;
+                    cout<<  "|1: Show biodata.                                      |"<<endl;
+                    cout<<  "|2: Show transection history.                          |"<<endl;
+                    cout<<  "|--Enter your choice-->>                               |"<<endl;
+                    cout << "|______________________________________________________|"<<endl;
                     int b;
                     cin>>b;
                     if(b==1){
                     double balance = file_manager.get_balance(account_number);
-                    cout << "---Account Details---\n";
-                    cout<<"Full name : "<<full_name<<endl;
-                    cout<<"Date of birth: " << dob<<endl;
-                     cout<<"Nationality: "<<  nationality<<endl;
-                    cout<<"Gender: "<<gender<<endl;
-
-                    cout << "Current Balance: " << balance << endl<<endl;}
+                    cout << "________________________________________________________"<<endl;
+                    cout << "|                   ---Account Details---              |"<<endl;
+                    cout << "|______________________________________________________|"<<endl;
+                    cout << "|Full name : "<<full_name<<endl;
+                    cout << "|Date of birth: " << dob<<endl;
+                    cout << "|Nationality: "<<  nationality<<endl;
+                    cout << "|Gender: "<<gender<<endl;
+                    cout << "Current Balance: " << balance << endl<<endl;
+                    cout << "|_______________________________________________________|"<<endl;}
                     else if (b==2){
+                        cout << "________________________________________________________"<<endl;
                        log. show_transaction_history(entered_account);
+                       cout << "________________________________________________________"<<endl;
                     }
                 }
                 else if (second_chart == 4) {
                     int  openion;
-                    cout << "1: Take a loan .\n2: Pamment due loan.\n3: Check loan details.\n4: Back.\n Inter your choice: >>  ";
+                    cout << "________________________________________________________"<<endl;
+                    cout << "|1: Take a loan .                                      |"<<endl;
+                    cout << "|2: Pamment due loan.                                  |"<<endl;
+                    cout << "|3: Check loan details.                                |"<<endl;
+                    cout<<  "|4: Back.                                              |"<<endl;
+                    cout << "|______________________________________________________|"<<endl;
+                    cout<<" Inter your choice: >>  ";
                     cin >> openion;
                     cin.ignore();
                     cout << endl;
                     if (openion == 1 ) {
+                        cout << "________________________________________________________"<<endl;
                         loan.customer_details(entered_account);
+                        cout << "________________________________________________________"<<endl;
                     }
                     else if(openion==2){
-                        
+                        cout << "________________________________________________________"<<endl;
                         loan.Transaction(entered_account);
-
+                        cout << "________________________________________________________"<<endl;
                     }
                     else if (openion==3){
+                        cout << "________________________________________________________"<<endl;
                         loan.show_loan_history(entered_account);
+                        cout << "________________________________________________________"<<endl;
                     }
                     else if(openion==4)
                     {
@@ -1733,7 +1905,9 @@ void login_conditionn(){
                     access_help();
                 }
                 else if (second_chart == 6) {
-                    cout << "Logging out successfull.....\n";
+                    cout << "________________________________________________________"<<endl;
+                    cout << "|Logging out successfull.....                          |"<<endl;
+                    cout << "|______________________________________________________|"<<endl;
                     break;
                 }
                 else if (second_chart==7)
@@ -1741,7 +1915,9 @@ void login_conditionn(){
                    return;
                 }
                  else {
-                    cout << "Invalid choice. Please try again.\n";
+                    cout << "________________________________________________________"<<endl;
+                    cout << "|Invalid choice. Please try again.                     |"<<endl;
+                    cout << "|______________________________________________________|"<<endl;
                 }
             }
             break;
@@ -1749,7 +1925,9 @@ void login_conditionn(){
     }
 
     if (!is_valid) {
-        cout << "Invalid account number or password. Please try again.\n";
+        cout << "_________________________________________________________"<<endl;
+        cout << "|Invalid account number or password. Please try again.  |"<<endl;
+        cout << "|_______________________________________________________|"<<endl;
     }
 
     file.close();
@@ -1793,9 +1971,13 @@ void count_total_loan_receivers(){
         file1.close();
     }
     else {
-        cout<<"Error: Unable to open loan data file."<<endl;
+        cout << "________________________________________________________"<<endl;
+        cout << "|Error: Unable to open loan data file.                 |"<<endl;
+        cout << "|______________________________________________________|"<<endl;
     }
-    cout<<"Total lone receiver: "<<count_loan<<endl;
+    cout << "________________________________________________________"<<endl;
+    cout<<  "|Total lone receiver: "<<count_loan<<endl;
+    cout << "|________________________________________________________|"<<endl;
 }
 
 void admin() {
@@ -1855,11 +2037,11 @@ void admin() {
 }
 
 
-class continue_code {
+class continue_code:public display_chart,public user1 {
     public:
     display_chart chart;
     employee emp;
-    user1 user;
+    // user1 user;
     help h;
    login_conditions loginC;
     string openion;
@@ -1882,8 +2064,12 @@ void second(){
           
         
         else if (option == 2) {
-            cout<<"\n1: Employee"<<endl;
-            cout<<"2: Back\n>>>Choice an option: ";
+            cout<<endl;
+            cout<<"___________________________________________"<<endl;
+            cout<<"|1: Employee                              |"<<endl;
+            cout<<"|2: Back                                  |"<<endl;
+            cout<<"|_________________________________________|"<<endl;
+            cout<<"Choice an option: ";
             int b;
             cin>>b;
             if (b==1){
@@ -1910,14 +2096,24 @@ void second(){
             cin>>log_option;
             cout<<endl;
             if(log_option==1){
-                cout <<"1: Process of creating an account.\n2: Create an account.\n3: Back.\n4: Exit.\nEnter your choice: >>";
+                cout << "________________________________________________________"<<endl;
+                cout << "|1: Process of creating an account.                    |"<<endl;
+                cout << "|2: Create an account.                                 |"<<endl;
+                cout << "|3: Back.                                              |"<<endl;
+                cout << "|4: Exit.                                              |"<<endl;
+                cout << "|______________________________________________________|"<<endl;
+                cout <<"Enter your choice: >>";
                 int s;
                 cin >> s;
                 if(s==1)
                 h.problem_2();
                 else if (s==2){
-                user.signup();
-                user.show_details();}
+                kinds_of_account();
+                int k;
+                cin>>k;
+                if(k>0 || k<9){
+                signup();
+                show_details();}}
                else if(s==3) second21();
                else if (s==4) second();
                else {cout<<"Wrong choice\n\n";}
