@@ -332,9 +332,12 @@ public:
         file.close();
     }}
 };
+class Person {
+public:
+    virtual void display_details() const = 0; // Pure virtual function for polymorphism
+};
 
-
-class employee{
+class employee : public Person {
     public:
      void add_employee(){
  long account_number;
@@ -375,6 +378,13 @@ class employee{
     }
     file<<account_number<<" "<<full_name<<" "<<login_pass<<" "<<key<<" "<<dob<<" "<<nationality<<" "<<gender<<" "<<educational_baground<<" "<<endl;
     file.close();
+    }
+    void display_details() const override {
+        ifstream file("Loan.txt");
+        if (!file) {
+            cout << "Error: Unable to open the file for reading.\n";
+            return;
+    }
     }
 
 
@@ -2043,7 +2053,7 @@ void admin() {
 }
 
 
-class continue_code:public display_chart,public user1 {
+class continue_code:public display_chart,public user1,public employee {
     public:
     display_chart chart;
     employee emp;
@@ -2079,6 +2089,8 @@ void second(){
             int b;
             cin>>b;
             if (b==1){
+                Person* p = new employee();
+                  p->display_details();
              cout<<endl;
             cout<<"...Login..."<<endl;
             emp.employee_login();}
