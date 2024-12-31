@@ -181,9 +181,9 @@ void for_admin(){
     cout<<"|3: Total Lone reciver.                |"<<endl;
     cout<<"|4: Add employee.                      |"<<endl;
     cout<<"|5: delete employee.                   |"<<endl;
-    cout<<"|5: Customer Report                    |"<<endl;
-    cout<<"|6: Back                               |"<<endl;
-    cout<<"|7: Close bank for todays              |"<<endl;
+    cout<<"|6: Customer Report                    |"<<endl;
+    cout<<"|7: Back                               |"<<endl;
+    cout<<"|8: Close bank for todays              |"<<endl;
     cout<<"|______________________________________|"<<endl;
     cout<<"Enter your choice: >> ";
 }
