@@ -194,10 +194,12 @@ void for_admin(){
 
 class user1 {
 public:
+display_chart d;
  long account_number;
     string full_name, dob, nationality, gender, key, login_pass;
 
     void signup() {
+
     cout<<endl;
      cout<<" ______________________________________________"<<endl;
     cout <<"|         ---->Attention please!!!            |"<<endl;
@@ -234,7 +236,8 @@ public:
     save_file s;
     s.save_user_to_file(account_number, full_name, dob, nationality, gender, key, login_pass);
 }
-
+    
+    
 long generate_unique_account_number() {
     long last_account_number = 10000000; // Default if no accounts exist
     long new_account_number;
@@ -838,6 +841,10 @@ public:
 
 class help{
 public:
+display_chart d;
+user1 u;
+
+
     
 void help_menu(){
   cout << "________________________________________________________"<<endl;
@@ -892,6 +899,7 @@ if(choice == 1){
 
     cout << "Choose SKS Bank today—where trust meets innovation, and your goals become our priorities." << endl;
     cout << endl;
+    problem_1();
 }
 
 else if(choice == 2){
@@ -899,7 +907,7 @@ else if(choice == 2){
     cout << "|        --->>Mission Statement<<---                   |" << endl << endl;
     cout << "|______________________________________________________|"<<endl;
     cout <<"Our mission is to deliver exceptional financial services that empower our customers to achieve their goals. We are committed to innovation, trust, and inclusivity, providing tailored solutions that foster economic growth, financial literacy, and long-term prosperity. Through responsible practices and a customer-first approach, we aim to create value for individuals, businesses, and communities." << endl << endl;
-    
+    problem_1();
 }
 
 else if(choice == 3){
@@ -907,6 +915,7 @@ else if(choice == 3){
     cout << "|                    --->>Vision<<---                    |"<< endl;
     cout << "|________________________________________________________|"<<endl;
     cout <<"To be a trusted financial partner that empowers individuals, businesses, and communities by delivering innovative, inclusive, and sustainable banking solutions. We strive to redefine banking through technological excellence, exceptional customer service, and a commitment to fostering economic growth and social well-being." << endl << endl;
+    problem_1();
     }
 
 else if(choice == 4){
@@ -918,6 +927,7 @@ else if(choice == 4){
     cout << "\t-Accessibility: Easy access to loans for personal, educational, or business needs." << endl;
     cout << "\t-Record Keeping: Detailed account statements for better financial tracking." << endl;
     cout << "\t-Customized Services: Tailored solutions for businesses and individuals." << endl;
+    problem_1();
 }
 
 else if(choice == 5){
@@ -952,6 +962,7 @@ else if(choice == 5){
     cout << "|\t-Mobile: 017******98                            |" << endl;
     cout << "|\t-Email: 23303137@iubat.edu                      |" << endl;
     cout << "|_______________________________________________________|"<<endl;
+    problem_1();
 }
 
 else if(choice == 6){
@@ -971,14 +982,14 @@ else{
 }
 
 void problem_2(){
-    user1 u;
+    
 int choice;
 cout << "________________________________________________________"<<endl;
 cout << "|           --->>How to Create an Account<<---         |" << endl;
 cout << "|______________________________________________________|"<<endl;
 cout << "|______________________Menu____________________________|" << endl;
 cout << "|\t1. Details                                     |" << endl;
-cout << "|\t2. Sign_up                                     |" << endl;
+cout << "|\t2. Creat an Acount                             |" << endl;
 cout << "|\t3. Back                                        |" << endl;
 cout << "|\t4. Exit                                        |" << endl;
 cout << "|______________________________________________________|"<<endl;
@@ -1008,7 +1019,7 @@ cout << "________________________________________________________"<<endl;
 cout << "|         --->>How to Create an Account<<---           |" << endl;
 cout << "|______________________________________________________|"<<endl;
 cout << "|_____________________Menu:____________________________|" << endl;
-cout << "|\t1. Sign_up                                     |" << endl;
+cout << "|\t1. Creat an Acount                                     |" << endl;
 cout << "|\t2. Back                                        |" << endl;
 cout << "|\t3. Exit                                        |" << endl;
 cout << "|______________________________________________________|"<<endl;
@@ -1016,11 +1027,18 @@ cout << "Enter your choice: ";
 cin >> cho;
 
 if(cho == 1){
-   cout << "Sign_up..."<< endl;
+ cout << "Creat an Acount..."<< endl;
+          d. kinds_of_account();
+                int k;
+                cin>>k;
+                if(k>0 && k<=8){
     u.signup();
+                }
+
+    
 }
 
-else if(cho == 2){
+else if(cho == 3){
     cout << "|Successfully Back..."<< endl;
     }
 else if(cho == 3){
@@ -1033,8 +1051,13 @@ else{
 
 }
 else if(choice == 2){
-    cout << "Sign_up..."<< endl;
+     cout << "Creat an Acount..."<< endl;
+          d. kinds_of_account();
+                int k;
+                cin>>k;
+                if(k>0 && k<=8){
     u.signup();
+                }
 }
 else if(choice == 3){
     cout << "Successfully Back..."<< endl;
