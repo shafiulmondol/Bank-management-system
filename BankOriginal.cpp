@@ -612,8 +612,9 @@ void show_all_employees() {
 class bank_lone {
 public:
     string name, address, profession, problem, university_name, department, office, rank_position;
-    int age, income, lone_amount, id, semester;
+    int age,  id, semester;
     double balance, due_amount, payment;
+    long double lone_amount,income;
 
     void customer_details(long account_number) {
         long a;
