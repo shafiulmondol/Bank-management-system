@@ -799,7 +799,7 @@ public:
         cout << "Error: Unable to open file for writing.\n";
         return;
     }
-    write << account_number << " " << "Pay" << ": " << payment << endl;
+    write << account_number << " " << "Pay" << " " << payment << endl;
     write.close();
 
                     if (due_amount == 0) {
