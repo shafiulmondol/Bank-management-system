@@ -530,6 +530,7 @@ long generate_employee_account_number() {
         }
         file.close();
     }
+
      else {
         cout << "Error: Unable to open file." << endl;
         return;
@@ -542,6 +543,7 @@ long generate_employee_account_number() {
         cout << "Invalid userid or password.\n";
     }
 }
+
 void delete_employee(){
     long account_number;
         cout << "Enter the employee account number to delete: ";
