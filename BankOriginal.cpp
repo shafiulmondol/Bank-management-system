@@ -182,8 +182,9 @@ void for_admin(){
     cout<<"|4: Add employee.                      |"<<endl;
     cout<<"|5: delete employee.                   |"<<endl;
     cout<<"|6: Customer Report                    |"<<endl;
-    cout<<"|7: Back                               |"<<endl;
-    cout<<"|8: Close bank for todays              |"<<endl;
+    cout<<"|7: Show all employee details.         |"<<endl;
+    cout<<"|8: Back                               |"<<endl;
+    cout<<"|9: Close bank for todays              |"<<endl;
     cout<<"|______________________________________|"<<endl;
     cout<<"Enter your choice: >> ";
 }
@@ -333,13 +334,11 @@ public:
 };
 
 
-
-
 class employee{
     public:
      void add_employee(){
  long account_number;
-    string full_name, dob, nationality, gender, key, login_pass;
+    string full_name, dob, nationality, gender, key, login_pass,educational_baground;
     cout << "1. Personal Information>>\n";
     cout << "\n\tFull Name: ";
     cin.ignore();
@@ -352,6 +351,9 @@ class employee{
     getline(cin, gender);
     cout << "\n\tKey password(2 digits): ";
     getline(cin, key);
+    cout << "\n\t:educational_baground ";
+    cin.ignore();
+    getline(cin, educational_baground);
 
     while (true) {
         cout << "Set a strong password: ";
@@ -371,7 +373,7 @@ class employee{
     if(!file){
         cout<<"Error; Unable to opne file.";
     }
-    file<<account_number<<" "<<full_name<<" "<<login_pass<<" "<<key<<" "<<dob<<" "<<nationality<<" "<<gender<<" "<<endl;
+    file<<account_number<<" "<<full_name<<" "<<login_pass<<" "<<key<<" "<<dob<<" "<<nationality<<" "<<gender<<" "<<educational_baground<<" "<<endl;
     file.close();
     }
 
@@ -398,12 +400,12 @@ long generate_employee_account_number() {
     return new_account_number;
 }
       void count_employee(){
-        string full_name, dob, nationality, gender, key, login_pass;
+        string full_name, dob, nationality, gender, key, login_pass,educational_baground;
         ifstream file("employees.txt");
         int count=0;
        long id;
         if(file .is_open()){
-            while (file>>id>>full_name>>dob>>nationality>>gender>>key>>login_pass)
+            while (file>>id>>full_name>>dob>>nationality>>gender>>key>>login_pass>>educational_baground)
             {
                 count++;
             }
@@ -458,15 +460,15 @@ void delete_employee(){
         }
         bool found = false;
         long account;
-        string full_name, dob, nationality, gender, key, login_pass;
+        string full_name, dob, nationality, gender, key, login_pass,educational_baground;
 
-        while (file >> account >> full_name >> login_pass >> key >> dob >> nationality >> gender) {
+        while (file >> account >> full_name >> login_pass >> key >> dob >> nationality >> gender>>educational_baground) {
             if (account == account_number) {
                 found = true;
                 cout << "Employee with account number " << account_number << " deleted successfully.\n";
             } else {
                 temp << account << " " << full_name << " " << login_pass << " " << key << " " 
-                     << dob << " " << nationality << " " << gender << '\n';
+                     << dob << " " << nationality << " " << gender<<" "<<educational_baground << '\n';
             }
         }
        if (!found) {
@@ -478,7 +480,33 @@ void delete_employee(){
         rename("temp.txt", "employees.txt");
          
 }
+void show_all_employees() {
+    ifstream file("employees.txt");
+    if (!file) {
+        cout << "Error: Unable to open the file for reading.\n";
+        return;
+    }
+    cout << "\n--- Employee Details ---\n";
+    cout << "Account Number.\tFull Name.\tDate of Birth.\tNationality.\tGender.\tKey.\tEducational Background.\tPassword.\n";
+    cout << string(300, '-') << "\n";
 
+    long account_number;
+    string full_name, dob, nationality, gender, key, educational_baground, login_pass;
+    while (file >> account_number >> full_name >> login_pass >> key >> dob >> nationality >> gender >> educational_baground) {
+        cout << account_number <<endl; 
+        cout<< full_name <<endl;
+        cout<< dob << endl;
+        cout<< nationality << endl;
+        cout<< gender <<endl;
+        cout<< key << endl;
+        cout<< educational_baground <<endl; 
+        cout<< login_pass <<endl;
+    }
+    file.close();
+}
+ bool Password_Validity(const string& password) {
+ return password.length() >= 8;
+ }
 };
 
 class bank_lone {
@@ -2055,11 +2083,13 @@ void admin() {
                 case 6:
                     h.problem_6();
                     break;
-
                 case 7:
+                emp.show_all_employees();
+                break;
+                case 8:
                 cout << "Successfully Back..." << endl << endl;
                     return; // Exit admin section
-                case 8:
+                case 9:
                 cout<<"Have a nice day! Thank you";
                 exit(0);
                 default:
