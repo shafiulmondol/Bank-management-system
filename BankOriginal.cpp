@@ -179,7 +179,8 @@ void for_admin(){
     cout<<"|1: Total empolyee.                    |"<<endl;
     cout<<"|2: Total customer.                    |"<<endl;
     cout<<"|3: Total Lone reciver.                |"<<endl;
-    cout<<"|4: Add employee                       |"<<endl;
+    cout<<"|4: Add employee.                      |"<<endl;
+    cout<<"|5: delete employee.                   |"<<endl;
     cout<<"|5: Customer Report                    |"<<endl;
     cout<<"|6: Back                               |"<<endl;
     cout<<"|7: Close bank for todays              |"<<endl;
@@ -443,6 +444,39 @@ long generate_employee_account_number() {
     } else {
         cout << "Invalid userid or password.\n";
     }
+}
+void delete_employee(){
+    long account_number;
+        cout << "Enter the employee account number to delete: ";
+        cin >> account_number;
+
+        ifstream file("employees.txt");
+        ofstream temp("temp.txt");
+        if (!file || !temp) {
+            cout << "Error opening files.\n";
+            return;
+        }
+        bool found = false;
+        long account;
+        string full_name, dob, nationality, gender, key, login_pass;
+
+        while (file >> account >> full_name >> login_pass >> key >> dob >> nationality >> gender) {
+            if (account == account_number) {
+                found = true;
+                cout << "Employee with account number " << account_number << " deleted successfully.\n";
+            } else {
+                temp << account << " " << full_name << " " << login_pass << " " << key << " " 
+                     << dob << " " << nationality << " " << gender << '\n';
+            }
+        }
+       if (!found) {
+            cout << "No employee found with account number " << account_number << ".\n";
+        }
+       file.close();
+        temp.close();
+         remove("employees.txt");
+        rename("temp.txt", "employees.txt");
+         
 }
 
 };
@@ -2013,15 +2047,19 @@ void admin() {
                 case 4:
                     emp.add_employee();
                     break;
-
-                case 5:
-                    h.problem_6();
+                   
+                 case 5:
+                    emp.delete_employee();
                     break;
 
                 case 6:
+                    h.problem_6();
+                    break;
+
+                case 7:
                 cout << "Successfully Back..." << endl << endl;
                     return; // Exit admin section
-                case 7:
+                case 8:
                 cout<<"Have a nice day! Thank you";
                 exit(0);
                 default:
