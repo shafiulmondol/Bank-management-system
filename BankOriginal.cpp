@@ -659,7 +659,7 @@ public:
             cout << "Enter your loan amount: ";
             cin >> lone_amount;
             lone_amount=lone_amount+(lone_amount*5)/100;
-            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 5 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
+            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 5% (Five persent) interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
             int x;
             cin>>x;
             if (x==2){
@@ -685,7 +685,7 @@ public:
         cout << "Error: Unable to open file for writing.\n";
         return;
     }
-    write << account_number << " | " << "Take " << ": " << lone_amount << endl;
+    write << account_number << " " << "Take " << " " << lone_amount << endl;
     write.close();
         }
         else if (profession_choice == 2) { // Working
@@ -699,7 +699,7 @@ public:
             cout << "Enter your loan amount: ";
             cin >> lone_amount;
              lone_amount=lone_amount+(lone_amount*15)/100;
-            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 15 persent interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
+            cout<<"You have to pay BDT "<<lone_amount<<" Taka for 15% (Fifteen persent) interest. Are you agree?\n1: Yes. \n2: No\nEnter choice..>> ";
             int x;
             cin>>x;
             if (x==2){
