@@ -156,6 +156,7 @@ void kinds_of_account(){
     cout<<"|6. Salary Account                                     |"<<endl;
     cout<<"|7. Joint Account                                      |"<<endl;
     cout<<"|8. Senior Citizen Account                             |"<<endl;
+    cout<<"|9. Back                                               |"<<endl;
     cout<<"|______________________________________________________|"<<endl;
     cout<<"Enter your choice--->";
 }
@@ -335,7 +336,7 @@ public:
 
 class Person {
 public:
-    virtual void display_details() const = 0; // Pure virtual function for polymorphism
+    virtual void delate_customer() const= 0; // Pure virtual function for polymorphism
 };
 
 class employee : public Person {
@@ -380,11 +381,93 @@ class employee : public Person {
     file<<account_number<<" "<<full_name<<" "<<login_pass<<" "<<key<<" "<<dob<<" "<<nationality<<" "<<gender<<" "<<educational_baground<<" "<<endl;
     file.close();
     }
-    void display_details() const override {
-        ifstream file("employees.txt");
+    void delate_customer() const override {
+        user1 use;
+   cout<<endl;
+    cout << "_________________________________________________________"<<endl;
+    cout << "|Do you want to delete your account?                    |"<<endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout<<  "|1. Yes                                                 |"<<endl;
+    cout<<  "|2. No                                                  |"<<endl;
+    cout<<  "|3. Back                                                |"<<endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout <<"Enter your choice >>";
+    int dlt;
+    cin >> dlt;
+
+    if (dlt == 1) {
+        long entered_account;
+        string entered_password;
+        cout<<endl;
+        cout << "Enter Account Number: ";
+        cin >> entered_account;
+        cin.ignore(); // Clear input buffer
+        cout << "Enter Password: ";
+        getline(cin, entered_password);
+        cout << endl;
+
+        ifstream file("customer_data.txt");
+        ofstream temp("temp.txt");
+
         if (!file) {
-            cout << "Error: Unable to open the file for reading.\n";
-            return;
+            cerr << "Error: Unable to open the customer data file for reading.\n";
+            cout << "Operation aborted.\n";
+           
+        }
+        if (!temp) {
+            cerr << "Error: Unable to create a temporary file for writing.\n";
+            cout << "Operation aborted.\n";
+            file.close();
+          
+        }
+
+        bool found = false;
+        while (file >> use.account_number) {
+            file.ignore();
+            getline(file, use.full_name, ' ');    
+            getline(file, use.dob, ' ');        
+            getline(file, use.nationality, ' '); 
+            getline(file, use.gender, ' ');   
+            getline(file, use.key, ' ');   
+            getline(file, use.login_pass);      
+            if (use.account_number == entered_account && use.login_pass == entered_password) {
+                cout << "\nAccount belonging to " << use.full_name << " found and will be deleted.\n";
+                found = true;
+                continue;
+            }
+            temp << use.account_number << " " << use.full_name << " " << use.dob << " "
+                 << use.nationality << " " << use.gender << " " << use.key << " "<< use.login_pass << endl;
+        }
+
+        file.close();
+        temp.close();
+
+        if (!found) {
+            cout<<endl;
+            cout << "Account not found or password incorrect.          " << endl;
+            remove("temp.txt");
+        } else {
+            if (remove("customer_data.txt") != 0) {
+                cout<<endl;
+                cout << "Error: Unable to delete the original file." << endl;
+                cout << "Operation aborted."<<endl;
+                }
+                else if (rename("temp.txt", "customer_data.txt") != 0) {
+                cerr << "Error: Unable to rename the temporary file." << endl;
+                cout << "Operation aborted. "<<endl;
+                } else {
+                cout << "Account deleted successfully!      " << endl;
+                }
+        }
+
+    } else if (dlt == 2) {
+        cout << "No action taken." << endl;
+        } else if (dlt == 3) {
+        cout << "Returning to the previous menu. " << endl;
+        }
+
+    else {
+        cout << "Invalid choice." << endl;
     }
     }
 
@@ -427,6 +510,7 @@ long generate_employee_account_number() {
         }
         cout<<"Total Employee: "<< count<<endl;
       }
+
       void employee_login(){
         string id, password,name;
     cout << "Enter id: ";
@@ -453,7 +537,7 @@ long generate_employee_account_number() {
 
     if (employee_login) {
 
-        cout << "Login successful! Welcome, " << id << ".\n";
+        cout << "Login successful! Welcome, " << name << ".\n";
     } else {
         cout << "Invalid userid or password.\n";
     }
@@ -1642,94 +1726,7 @@ void problem_9(){
 }
 
 void problem_10(){
-   user1 use;
-   cout<<endl;
-    cout << "_________________________________________________________"<<endl;
-    cout << "|Do you want to delete your account?                    |"<<endl;
-    cout << "|_______________________________________________________|"<<endl;
-    cout<<  "|1. Yes                                                 |"<<endl;
-    cout<<  "|2. No                                                  |"<<endl;
-    cout<<  "|3. Back                                                |"<<endl;
-    cout << "|_______________________________________________________|"<<endl;
-    cout <<"Enter your choice >>";
-    int dlt;
-    cin >> dlt;
-
-    if (dlt == 1) {
-        long entered_account;
-        string entered_password;
-        cout<<endl;
-        cout << "Enter Account Number: ";
-        cin >> entered_account;
-        cin.ignore(); // Clear input buffer
-        cout << "Enter Password: ";
-        getline(cin, entered_password);
-        cout << endl;
-
-        ifstream file("customer_data.txt");
-        ofstream temp("temp.txt");
-
-        if (!file) {
-            cerr << "Error: Unable to open the customer data file for reading.\n";
-            cout << "Operation aborted.\n";
-           
-        }
-        if (!temp) {
-            cerr << "Error: Unable to create a temporary file for writing.\n";
-            cout << "Operation aborted.\n";
-            file.close();
-          
-        }
-
-        bool found = false;
-        while (file >> use.account_number) {
-            file.ignore();
-            getline(file, use.full_name, ' ');    
-            getline(file, use.dob, ' ');        
-            getline(file, use.nationality, ' '); 
-            getline(file, use.gender, ' ');   
-            getline(file, use.key, ' ');   
-            getline(file, use.login_pass);      
-            if (use.account_number == entered_account && use.login_pass == entered_password) {
-                cout << "\nAccount belonging to " << use.full_name << " found and will be deleted.\n";
-                found = true;
-                continue;
-            }
-            temp << use.account_number << " " << use.full_name << " " << use.dob << " "
-                 << use.nationality << " " << use.gender << " " << use.key << " "<< use.login_pass << endl;
-        }
-
-        file.close();
-        temp.close();
-
-        if (!found) {
-            cout<<endl;
-            cout << "Account not found or password incorrect.          " << endl;
-            remove("temp.txt");
-        } else {
-            if (remove("customer_data.txt") != 0) {
-                cout<<endl;
-                cout << "Error: Unable to delete the original file." << endl;
-                cout << "Operation aborted."<<endl;
-                }
-                else if (rename("temp.txt", "customer_data.txt") != 0) {
-                cerr << "Error: Unable to rename the temporary file." << endl;
-                cout << "Operation aborted. "<<endl;
-                } else {
-                cout << "Account deleted successfully!      " << endl;
-                }
-        }
-
-    } else if (dlt == 2) {
-        cout << "No action taken." << endl;
-        } else if (dlt == 3) {
-        cout << "Returning to the previous menu. " << endl;
-        }
-
-    else {
-        cout << "Invalid choice." << endl;
-        problem_10();
-    }
+    cout<<"Please contuct to admin."<<endl;
     }
 
 
@@ -1876,8 +1873,8 @@ void login_conditionn(){
                     cout << "________________________________________________________"<<endl;
                     cout<<  "|1: Show biodata.                                      |"<<endl;
                     cout<<  "|2: Show transection history.                          |"<<endl;
-                    cout<<  "|--Enter your choice-->>                               |"<<endl;
                     cout << "|______________________________________________________|"<<endl;
+                    cout<<  "--Enter your choice-->>";
                     int b;
                     cin>>b;
                     if(b==1){
@@ -1893,6 +1890,9 @@ void login_conditionn(){
                     }
                     else if (b==2){
                         log. show_transaction_history(entered_account);
+                        cout<<endl;
+                        double tk = file_manager.get_balance(account_number);
+                         cout << "Current Balance: " << tk<< endl<<endl;
                         }
                 }
                 else if (second_chart == 4) {
@@ -2090,11 +2090,25 @@ void second(){
             int b;
             cin>>b;
             if (b==1){
-                Person* p = new employee();
-                  p->display_details();
              cout<<endl;
             cout<<"...Login..."<<endl;
-            emp.employee_login();}
+            emp.employee_login();
+            cout<<endl;
+            cout<<"______________________________________________"<<endl;
+            cout<<"|1. Delate customer account.                 |"<<endl;
+            cout<<"|2. Exit                                     |"<<endl;
+            cout<<"|____________________________________________|"<<endl;
+            cout<<"Enter your choice-->";
+            int cus;
+            cin>>cus;
+            if(cus==1){
+                 Person* p = new employee();
+                  p->delate_customer();
+            }
+            else if (cus==2){
+                return;
+            }
+            }
             else if(b==2){
                 continue;
             }
@@ -2130,9 +2144,13 @@ void second(){
                 kinds_of_account();
                 int k;
                 cin>>k;
-                if(k>0 || k<9){
+                if(k>0 && k<=8){
                 signup();
-                show_details();}}
+                show_details();}
+                else if (k==9){
+                    cout<<"successfully back"<<endl;
+                   second21();
+                }}
                else if(s==3) second21();
                else if (s==4) second();
                else {cout<<"Wrong choice\n\n";}
