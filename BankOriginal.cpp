@@ -155,9 +155,10 @@ void for_admin(){
     cout<<"2: Total customer."<<endl;
     cout<<"3: Total Lone reciver."<<endl;
     cout<<"4: Add employee"<<endl;
-    cout<<"5: Back ."<<endl;
-    cout<<"6: Close bank for todays"<<endl;
-    cout<<"Enter your choice ->> ";
+    cout<<"5: Customer Report"<<endl;
+    cout<<"6: Back "<<endl;
+    cout<<"7: Close bank for todays"<<endl;
+    cout<<"Enter your choice: >> ";
 }
 };
 
@@ -1158,7 +1159,7 @@ void problem_6(){
 
         cout << "\t1. New Report" << endl;
         cout << "\t2. Search your report" << endl;
-        cout << "\t3. View all issues(only for Admin)" << endl;
+        cout << "\t3. Customer Report(Admin Only)" << endl;
         cout << "\t4. Back" << endl;
         cout << "\t5. Exit" << endl;
         cout << "Enter your choice: ";
@@ -1171,12 +1172,11 @@ void problem_6(){
         cout << "Error: Unable to open file for writing." << endl;
     }
 
-    string issue;
-    double n;
+    string n, issue;
     cout << "Enter your Account Number: ";
-    cin >> n;
-    cout << "Enter your issue: ";
     cin.ignore();
+    getline(cin, n);
+    cout << "Enter your issue: ";
     getline(cin, issue);
     outFile << "ID: " << n << " | " << "Issue: "<<issue << endl;
     cout << "Issue reported successfully!" << endl;
@@ -1217,12 +1217,16 @@ void problem_6(){
         else if(choice == 3){
 
         cout << "Only for Admin..." << endl;
-        const string password = "1234";
-        string p;
-        cout << "Enter your password: ";
-        cin >> p;
 
-        if(password != p){
+        const string name = "Shafiul", password = "sumai137";
+        string n, p;
+        cout << "Username: ";
+        cin.ignore();
+        getline(cin,n);
+        cout << "Enter your password: ";
+        getline(cin,p);
+
+        if(name != n && password != p){
             cout << "ERROR: Tray Again..." << endl;
         }
         else{
@@ -1797,6 +1801,7 @@ void count_total_loan_receivers(){
 void admin() {
     cout << "Username: ";
     employee emp;
+    help h;
     display_chart chart;
     string username, password;
     getline(cin, username);
@@ -1826,9 +1831,15 @@ void admin() {
                 case 4:
                     emp.add_employee();
                     break;
+
                 case 5:
-                    return; // Exit admin section
+                    h.problem_6();
+                    break;
+
                 case 6:
+                cout << "Successfully Back..." << endl << endl;
+                    return; // Exit admin section
+                case 7:
                 cout<<"Have a nice day! Thank you";
                 exit(0);
                 default:
