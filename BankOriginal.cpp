@@ -180,7 +180,7 @@ void for_admin(){
     cout<<"|2: Total customer.                    |"<<endl;
     cout<<"|3: Total Lone reciver.                |"<<endl;
     cout<<"|4: Add employee.                      |"<<endl;
-    cout<<"|5: delete employee.                   |"<<endl;
+    cout<<"|5: Terminated an employee.            |"<<endl;
     cout<<"|6: Customer Report                    |"<<endl;
     cout<<"|7: Show all employee details.         |"<<endl;
     cout<<"|8: Back                               |"<<endl;
