@@ -1324,7 +1324,8 @@ inline void problem_5(){
 }
 
 inline void problem_6(){
-    int choice;
+    
+ int choice;
 
         cout << "_________________________________________________________"<<endl;
         cout << "|           --->>Issue Reporting System<<---             |" << endl;
@@ -1341,11 +1342,11 @@ inline void problem_6(){
 
         if(choice == 1){
 
-        ofstream outFile("issues.text");
+        ofstream outFile("issues.text", ios :: app);
         if (!outFile) {
         cout << "Error: Unable to open file for writing." << endl;
     }
-
+    else{
     string n, issue;
     cout << "Enter your Account Number: ";
     cin.ignore();
@@ -1356,44 +1357,44 @@ inline void problem_6(){
     cout << "Issue reported successfully!" << endl;
 
     outFile.close();
+        }
+        problem_6();
 
-            int cho;
-            cout << "_________________________________________________________"<<endl;
-            cout << "|               --->>Report Issue<<---                   |" << endl;
-            cout << "|________________________________________________________|"<<endl;
-            cout << "|\t1. View report                                   |" << endl;
-            cout << "|\t2. Back                                          |" << endl;
-            cout << "|\t3. Exit                                          |" << endl;
-            cout << "|________________________________________________________|"<<endl;
+        }
 
-            cout << "Enter your choice: ";
-            cin >> cho;
+    else if(choice == 2){
 
-            if(cho == 1){
-                cout << "Working..." << endl;
-            }
+    ifstream inFile("issues.text");
+    if (!inFile) {
+        cout << "Error: Unable to open file for reading." << endl;
+    } else {
+        string accountNumber, line;
+        bool found = false;
 
-            else if(cho == 2){
-                cout << "Successfully Back..." << endl;
+        cout << "Enter your Account Number: ";
+        cin.ignore();
+        getline(cin, accountNumber);
 
-                cout << endl;
-            }
-            else if(cho == 3){
-                cout << "Successfully Exit..." << endl;
-                exit(0);
-            }
-            else{
-                cout << "ERROR. Try Again...." << endl;
+        cout << "\nSearching for reports...\n";
+
+        while (getline(inFile, line)) {
+            if (line.find("ID: " + accountNumber) != string::npos) {
+                cout << line << endl;
+                found = true;
             }
         }
 
-        else if(choice == 2){
-
+        if (!found) {
+            cout << "No reports found for Account Number: " << accountNumber << endl;
         }
+
+        inFile.close();
+    }
+    problem_6();
+}
+
 
         else if(choice == 3){
-
-        cout << "Only for Admin..." << endl;
 
         const string name = "Shafiul", password = "sumai137";
         string n, p;
@@ -1404,7 +1405,7 @@ inline void problem_6(){
         getline(cin,p);
 
         if(name != n && password != p){
-            cout << "ERROR: Tray Again..." << endl;
+            cout << "ERROR: Try Again..." << endl;
         }
         else{
                 ifstream inFile("issues.text");
@@ -1414,36 +1415,14 @@ inline void problem_6(){
     }
 
     string issue;
-    cout << "\nReported Issues:\n";
+    cout << endl;
+    cout << "Reported Issues: " << endl;
     while (getline(inFile, issue)) {
         cout << "- " << issue << endl;
     }
 
     inFile.close();
 
-            int cho;
-            cout << "_________________________________________________________"<<endl;
-            cout << "|                   ---> Report<<---                    |" << endl;
-            cout << "|_______________________________________________________|"<<endl;
-            cout << "|_______________________Menu____________________________|" << endl;
-            cout << "|\t1. Back                                         |" << endl;
-            cout << "|\t2. Exit                                         |" << endl;
-            cout << "|_______________________________________________________|"<<endl;
-
-            cout << "Enter your choice: ";
-            cin >> cho;
-
-            if(cho==1){
-                 cout << "Successfully Back..." << endl;
-
-            }
-            else if(cho == 2){
-                 cout << "Successfully Exit..." << endl;
-                 exit(0);
-            }
-            else{
-                cout << "ERROR: Try Again..." << endl;
-            }
         }
         }
 
@@ -1459,6 +1438,8 @@ inline void problem_6(){
         else{
             cout << "Invalid choice. Please try again." << endl;
         }
+
+
 
 }
 
