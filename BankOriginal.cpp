@@ -1081,7 +1081,7 @@ void problem_3(){
     cout << "|\t2.Back                                          |" << endl;
     cout << "|\t2.Exit                                          |" << endl;
     cout << "|_______________________________________________________|"<<endl;
-    cout << "Enter your choice: << ";
+    cout << "Enter your choice:-->> ";
     cin >> choice;
     cout << endl;
        
@@ -1155,7 +1155,12 @@ void problem_4(){
     string reset_pass;
      long account_number;
         string full_name,dob,nationality,gender,login_pass,key;
-    cout << "1. Reset password\n2. Reset key password\n3. Back\n--Enter choice: >> ";
+    cout << "_________________________________________________________"<<endl;
+    cout << "|1. Reset password                                      |"<<endl;
+    cout << "|2. Reset key password                                  |"<<endl;
+    cout << "|3. Back                                                |"<<endl;
+    cout << "|_______________________________________________________|"<<endl;
+    cout << "Enter choice: >> ";
     cin >> res;
 
     if (res == 1) {
