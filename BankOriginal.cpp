@@ -1601,6 +1601,16 @@ inline void problem_8(){
 
 inline void problem_9(){
     
+    cout << "--->>Contact Support<<---" << endl << endl;
+    cout << "Welcome to \"SKS\" Bank" << endl;
+    cout << "Email: sks@bb.org.bd" << endl;
+    cout << "Mob: 017******33" << endl;
+    cout << "Mob: 015******68" << endl;
+    cout << "-->>Hotline for customer's complaint<<--" << endl;
+    cout << "Dial 16236" << endl;
+    cout << "Fax : 88-02-9530464" << endl;
+    cout << "Email: sks@bb.org.bd" << endl;
+    
 }
 
 inline void problem_10(){
