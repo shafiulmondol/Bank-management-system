@@ -59,7 +59,7 @@ public:
         write.close();
     }
 
-    void save_transaction(long account_number, const double &balance, const string &type) {
+    void save_transaction(long account_number, const long long &balance, const string &type) {
     ofstream write("transactions.txt", ios::app);
     if (!write) {
         cout << "Error: Unable to open file for writing.\n";
@@ -70,13 +70,13 @@ public:
 }
 
 
-    void update_balance(long account_number, double new_balance) {
+    void update_balance(long account_number, long long new_balance) {
     ifstream file("balances.txt");
     ofstream temp("temp.txt");
     bool found = false;
 
     long acc;
-    double bal;
+    long long bal;
     while (file >> acc >> bal) {
         if (acc == account_number) {
             temp << acc << " " << new_balance << endl;
@@ -97,14 +97,14 @@ public:
 }
 
 
-    double get_balance(long account_number) {
+    long long get_balance(long account_number) {
     ifstream file("balances.txt");
     if (!file) {
         cout << "Error";
     }
 
     long acc;
-    double bal;
+    long long bal;
     while (file >> acc >> bal) {
         if (acc == account_number) {
             return bal;
@@ -269,6 +269,7 @@ long generate_unique_account_number() {
         cout << "\tNationality and Residency: " << nationality << "\n";
         cout << "\tGender: " << gender << "\n";
         cout << "\tAccount Number: " << account_number << "\n\n";
+        
     }
 };
 
@@ -278,7 +279,7 @@ public:
     save_file s;
 
     void deposit(long account_number) {
-        double deposit_amount;
+        long long deposit_amount;
         cout << "Enter deposit amount: ";
         cin >> deposit_amount;
 
@@ -286,12 +287,17 @@ public:
             cout << "Invalid deposit amount. Please try again.\n";
         }
         else{
-        double current_balance = s.get_balance(account_number);
+            if(deposit_amount<=500000){
+        long long current_balance = s.get_balance(account_number);
         current_balance += deposit_amount;
         s.update_balance(account_number, current_balance);
 
         s.save_transaction(account_number, deposit_amount, "Deposit");
-        cout << "Deposit successful. Current balance: " << current_balance << "\n\n";
+        cout << "Deposit successful. Current balance: " << current_balance << "\n\n";}
+        else {
+            cout<<"You can deposite at a time 1-500000 taka"<<endl;
+            deposit(account_number);
+        }
     }}
 
     void withdraw(long account_number) {
@@ -299,17 +305,20 @@ public:
         cout << "Enter withdrawal amount: ";
         cin >> withdraw_amount;
 
-        double current_balance = s.get_balance(account_number);
+        long long current_balance = s.get_balance(account_number);
         if (withdraw_amount <= 0 || withdraw_amount > current_balance) {
             cout << "Invalid withdrawal amount. Available balance: " << current_balance << "\n";
             return;
         }
         else{
+            if(withdraw_amount<=100000){
         current_balance -= withdraw_amount;
         s.update_balance(account_number, current_balance);
 
         s.save_transaction(account_number, withdraw_amount, "Withdrawal");
-        cout << "Withdrawal successful. Remaining balance: " << current_balance << "\n\n";
+        cout << "Withdrawal successful. Remaining balance: " << current_balance << "\n\n";}
+        else {cout<<"Enter the ammount from 1--100000\n";
+        deposit(account_number);}
     }}
 
     void show_transaction_history(long account_number) {
@@ -329,6 +338,8 @@ public:
                 found = true;
             }
         }
+        long long curr = s.get_balance(account_number);
+        cout<<"Current balance is: "<<curr<<endl;
 
         if (!found) {
             cout << "No transactions found.\n";
@@ -1740,7 +1751,7 @@ void login_conditionn(){
                     int b;
                     cin>>b;
                     if(b==1){
-                    double balance = file_manager.get_balance(account_number);
+                    long long balance = file_manager.get_balance(account_number);
                     cout << "________________________________________________________"<<endl;
                     cout << "|                   ---Account Details---              |"<<endl;
                     cout << "|______________________________________________________|"<<endl;
@@ -1753,8 +1764,6 @@ void login_conditionn(){
                     else if (b==2){
                         log. show_transaction_history(entered_account);
                         cout<<endl;
-                        double tk = file_manager.get_balance(account_number);
-                         cout << "Current Balance: " << tk<< endl<<endl;
                         }
                 }
                 else if (second_chart == 4) {
@@ -1850,7 +1859,7 @@ void count_total_loan_receivers(){
     else {
         cout << "Error: Unable to open loan data file."<<endl;
         }
-    cout<<  "|Total lone receiver: "<<count_loan<<endl;
+    cout<<  "Total lone receiver: "<<count_loan<<endl;
     }
 
 void admin() {
