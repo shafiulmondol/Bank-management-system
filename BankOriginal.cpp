@@ -628,6 +628,8 @@ public:
     int age,  id, semester;
     double balance, due_amount, payment;
     long double lone_amount,income;
+    
+    const int required_age=18;
 
     void customer_details(long account_number) {
         long a;
@@ -649,10 +651,13 @@ public:
 
         // New loan application
         cout << "Enter your name: ";
-        cin.ignore();
-        getline(cin, name);
+        getline(cin, name); 
         cout << "Enter your age: ";
         cin >> age;
+        if(age<required_age){
+            cout<<"sorry! "<<name<<"."<<" You must be at least "<<required_age<<" years old to apply for a loan."<<endl;
+             return;
+        }
         cin.ignore();
         cout << "Enter your address: ";
         getline(cin, address);
