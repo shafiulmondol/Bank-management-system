@@ -626,8 +626,7 @@ class bank_lone {
 public:
     string name, address, profession, problem, university_name, department, office, rank_position;
     int age,  id, semester;
-    double balance, due_amount, payment;
-    long double lone_amount,income;
+    long long lone_amount,income,balance, due_amount, payment;
     
     const int required_age=18;
 
@@ -790,7 +789,7 @@ public:
 
         bool found = false;
         long acc;
-        long double  due_amount, payment;
+        long long  due_amount, payment;
 
         while (file >> acc >> name >> profession >> age >> income >> due_amount) {
             if (profession == "Student") {
