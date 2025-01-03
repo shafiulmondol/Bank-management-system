@@ -532,12 +532,12 @@ long generate_employee_account_number() {
     cin >> password;
     ifstream file("employees.txt");
     string fileid, filePassword;
-    bool employee_login = false;
+    bool emp = false;
 
     if (file.is_open()) {
         while (file >> fileid >>name>> filePassword) {
             if (fileid == id && filePassword == password) {
-               employee_login  = true;
+               emp  = true;
                 break;
             }
         }
@@ -549,11 +549,12 @@ long generate_employee_account_number() {
         return;
     }
 
-    if (employee_login) {
+    if (emp) {
 
         cout << "Login successful! Welcome, " << name << ".\n";
     } else {
-        cout << "Invalid userid or password.\n";
+        cout << "Invalid userid or password. Try again\n\n";
+        employee_login();
     }
 }
 
@@ -872,9 +873,8 @@ inline void help_menu(){
   cout << "|\t7.  Loan Applications                          |" << endl;
   cout << "|\t8.  Security Tips                              |" << endl;
   cout << "|\t9.  Contact Support                            |" << endl;
-  cout << "|\t10. Delate account                             |" <<endl;
-  cout << "|\t11. Back                                       |" << endl;
-  cout << "|\t12. Exit                                       |" << endl;
+  cout << "|\t10. Back                                       |" << endl;
+  cout << "|\t11. Exit                                       |" << endl;
   cout << "|______________________________________________________|"<<endl;
 
 }
@@ -1188,15 +1188,15 @@ inline void problem_4(){
             cout << "Account not found or password incorrect.\n" << endl;
             remove("temp.txt");
         } else {
-            if (remove("customer_data.txt") != 0) {
-                cerr << "Error: Unable to delete the original file." << endl;
-                cout << "Operation aborted.\n";
-            } else if (rename("temp.txt", "customer_data.txt") != 0) {
-                cerr << "Error: Unable to rename the temporary file." << endl;
-                cout << "Operation aborted.\n";
-            } else {
-                cout << "Password reset successfully!\nDo not sear your password and key password.\n" << endl;
-            }
+        if (remove("customer_data.txt") != 0) {
+            cerr << "Error: Unable to delete the original file." << endl;
+            cout << "Operation aborted.\n";
+        } else if (rename("temp.txt", "customer_data.txt") != 0) {
+            cerr << "Error: Unable to rename the temporary file." << endl;
+            cout << "Operation aborted.\n";
+        } else {
+            cout << "Password reset successfully!\nDo not share your password and key password.\n" << endl;
+        }
         }
 
     } 
