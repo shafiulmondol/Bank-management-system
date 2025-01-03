@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 using namespace std;
-
 //this function for pass validation.
 bool Password_Validity(const string &password) {
     if(password.length()<8){
