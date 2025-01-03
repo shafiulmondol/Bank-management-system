@@ -533,12 +533,12 @@ long generate_employee_account_number() {
     cin >> password;
     ifstream file("employees.txt");
     string fileid, filePassword;
-    bool employee_login = false;
+    bool emp = false;
 
     if (file.is_open()) {
         while (file >> fileid >>name>> filePassword) {
             if (fileid == id && filePassword == password) {
-               employee_login  = true;
+               emp  = true;
                 break;
             }
         }
@@ -550,11 +550,12 @@ long generate_employee_account_number() {
         return;
     }
 
-    if (employee_login) {
+    if (emp) {
 
         cout << "Login successful! Welcome, " << name << ".\n";
     } else {
-        cout << "Invalid userid or password.\n";
+        cout << "Invalid userid or password. Try again\n\n";
+        employee_login();
     }
 }
 
