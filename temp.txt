@@ -1,5 +1,0 @@
-10000001 mondol 45  dfg 11 Shafiul#3
-10000002 shafiul 766  jhg 11 Shafiul#3
-10000003 mondol 23  male 11 Shafiul#3
-10000004 islam 3/3/3/  male 11 Shafiul#3
-10000005 sumaiya 12/5/2034 bangli female 12 Shafiul#3
