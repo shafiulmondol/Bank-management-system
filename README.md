@@ -1,48 +1,111 @@
-# Bank Management System
+# SKS Bank Management System
 
-This project is a **Bank Management System** implemented in C++. It allows for managing customers, employees, transactions, and loans efficiently through a menu-driven console interface.
+Welcome to the **SKS Bank Management System** repository! This project provides a comprehensive banking solution with features tailored to manage customer accounts, employees, transactions, loans, and more. The system is designed for scalability and efficiency, making it a robust tool for banking operations.
 
-## Features
+---
 
-### 1. Customer Management
-- **Sign Up**: Create new accounts with unique account numbers.
-- **Login**: Access accounts securely using a password.
-- **Account Details**: View personal details and account balance.
+## 🛠️ Features
 
-### 2. Transactions
-- **Deposit**: Add money to an account.
-- **Withdraw**: Withdraw money from an account, ensuring sufficient balance.
-- **Transaction History**: View detailed transaction records.
+- **Account Management**:
+  - Sign up for new customers with detailed biodata.
+  - Secure login with password validation.
+  - Update and delete accounts.
 
-### 3. Loan Management
-- **Apply for Loans**: Customers can apply for loans as students or working professionals.
-- **Loan History**: View loan history including amounts and payments.
-- **Pay Dues**: Make partial or complete loan payments.
+- **Transactions**:
+  - Deposit and withdrawal functionality with limits.
+  - Transaction history and balance management.
 
-### 4. Employee Management
-- **Add Employees**: Add new employees to the system with secure account credentials.
-- **Employee Login**: Employees can log in to manage customer data and transactions.
+- **Loan Management**:
+  - Apply for student or business loans.
+  - Interest calculation and payment tracking.
+  - Loan history and due payment management.
 
-### 5. Admin Features
-- View total employees and customers.
-- Add new employees.
-- Manage loan applications.
+- **Employee Management**:
+  - Add, delete, and view employee details.
+  - Employee login functionality.
 
-### 6. Help and Support
-- Detailed guides on creating accounts and using features.
-- Password guidelines and reset options.
-- Security tips to protect accounts.
-  Run the Program:
+- **Admin Dashboard**:
+  - View statistics (e.g., total customers, employees, and loan receivers).
+  - Manage reports and employee operations.
 
-bash
-Copy code
-./BankSystem
-Navigate the Menu:
+- **Help Section**:
+  - Detailed guidance on account creation and password security.
+  - Issue reporting system for customers.
 
+---
 
+## 📁 Project Structure
 
-## How to Use
+The key files and their purposes:
 
-1. **Compile the Program**:
+- **`BankOriginal.cpp`**: Main source code implementing the banking system.
+- **`customer_data.txt`**: Stores customer details.
+- **`transactions.txt`**: Records transaction details.
+- **`Loan.txt`**: Tracks loan applications.
+- **`employees.txt`**: Manages employee information.
+
+---
+
+## 🧑‍🤝‍🧑 Collaborators
+
+This project was developed by the following team members:
+
+- **[Md. Shafiul Islam](https://github.com/shafiul-p)**
+- **[Sumaiya Haq](https://github.com/Sumaiya-Haq)**
+- **[Md. Kawsar Miah](https://github.com/kawsar-p)**
+
+---
+
+## 🚀 How to Run
+
+1. Clone the repository:
    ```bash
-   g++ BankOriginal.cpp -o BankSystem
+   git clone https://github.com/your-username/SKS-Bank.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd SKS-Bank
+   ```
+
+3. Compile the program using a C++ compiler (e.g., `g++`):
+   ```bash
+   g++ BankOriginal.cpp -o SKSBank
+   ```
+
+4. Run the executable:
+   ```bash
+   ./SKSBank
+   ```
+
+---
+
+## ⚙️ Prerequisites
+
+- A C++ compiler (e.g., GCC or Clang).
+- Basic knowledge of terminal commands.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to improve this system! To contribute:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push to your branch and create a pull request.
+
+---
+
+## 📞 Support
+
+For any queries or issues, feel free to reach out:
+
+- Email: **mdshafiulmondol02@gmail.com **
