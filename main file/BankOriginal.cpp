@@ -280,8 +280,8 @@ public:
             long account;
             while (inFile >> account)
             {
-                string dummy;
-                getline(inFile, dummy);
+                string d;
+                getline(inFile, d);
                 last_account_number = account; // Update with the last number read
             }
             inFile.close();
@@ -405,7 +405,7 @@ public:
 class Person
 {
 public:
-    virtual void delate_customer() const = 0; // Pure virtual function for polymorphism
+    virtual void delate_customer() const = 0;
 };
 
 class employee : public Person
@@ -457,7 +457,7 @@ public:
         file << account_number << " " << full_name << " " << login_pass << " " << key << " " << dob << " " << nationality << " " << gender << " " << educational_baground << " " << endl;
         file.close();
     }
-    void delate_customer() const override
+    void delate_customer() const
     {
         user1 use;
         cout << endl;
@@ -574,8 +574,8 @@ public:
             long account_number;
             while (File >> account_number)
             {
-                string dummy;
-                getline(File, dummy);                 // Skip the rest of the line
+                string d;
+                getline(File, d);                 // Skip the rest of the line
                 last_account_number = account_number; // Update with the last number read
             }
             File.close();
